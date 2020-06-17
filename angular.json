@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "travel-log"
+    }
+  },
+  "defaultProject": "travel-log",
+  "cli": {
+    "analytics": false
+  }
 }

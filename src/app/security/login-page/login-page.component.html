@@ -1,0 +1,37 @@
+<form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
+    <div>
+      <label for="username">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        #usernameField="ngModel"
+        required
+        [(ngModel)]="authRequest.username"
+      />
+      <p *ngIf="usernameField.hasError('required') && usernameField.touched">
+        Username is required
+      </p>
+    </div>ng 
+    <div>
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="passwrod"
+        #passwordField="ngModel"
+        required
+        [(ngModel)]="authRequest.password"
+      />
+      <p *ngIf="passwordField.hasError('required') && passwordField.touched">
+        Password is required
+      </p>
+    </div>
+  
+    <div>
+      <button type="submit" [disabled]="loginForm.invalid">Log in</button>
+      <p *ngIf="loginError">
+        Unable to log in. See the log for more information.
+      </p>
+    </div>
+  </form>
