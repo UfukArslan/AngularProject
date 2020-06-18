@@ -3,6 +3,6 @@ export class User {
     href: string;
     name: string;
     tripsCount: number;
-    createdAt: string;
-    updatedAt: string;
+    createdAt: Date;
+    updatedAt: Date;
 }

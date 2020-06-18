@@ -68,7 +68,7 @@ export class AuthService {
       map((response) => {
         // ...
       })
-    );
+    ); 
   }
 
   /**
