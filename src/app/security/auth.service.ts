@@ -6,6 +6,7 @@ import { map, tap } from "rxjs/operators";
 import { User } from "../models/user";
 import { AuthRequest } from "../models/auth-request";
 
+
 // TODO: Insert here your personnal api URL
 const apiUrl = "https://masrad-2020-tl-ufuk.herokuapp.com/api";
 const STORAGE_KEY = "auth";
@@ -66,7 +67,9 @@ export class AuthService {
       // In our case, we just store this AuthResponse in the localStorage
       tap((response) => this.saveAuth(response)),
       map((response) => {
-        // ...
+        this.authenticated$.next(response);
+        console.log(`User ${response.user.name} logged in`);
+        return response.user;
       })
     ); 
   }
