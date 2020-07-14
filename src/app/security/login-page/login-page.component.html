@@ -1,38 +1,46 @@
-<form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
-    <div>
-      <label for="username">Username</label>
-      <input
-        type="text"
-        name="username"
-        id="username"
-        #usernameField="ngModel"
-        required
-        [(ngModel)]="authRequest.username"
-      />
-      <p *ngIf="usernameField.hasError('required') && usernameField.touched">
-        Username is required
-      </p>
-    </div>ng 
-    <div>
-      <label for="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        id="passwrod"
-        #passwordField="ngModel"
-        required
-        [(ngModel)]="authRequest.password"
-      />
-      <p *ngIf="passwordField.hasError('required') && passwordField.touched">
-        Password is required
-      </p>
-    </div>
-  
-    <div>
-      <button type="submit" [disabled]="loginForm.invalid">Log in</button>
-      <p *ngIf="loginError">
-        Unable to log in. See the log for more information.
-      </p>
-    </div>
-  </form>
-  <mat-slider min="1" max="100" step="1" value="1">Let's go back</mat-slider>
+<mat-card class='example-card'>
+
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-subtitle>Forget Password</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions class='example-actions'>
+    <form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
+        <div>
+          <label for="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            #usernameField="ngModel"
+            required
+            [(ngModel)]="authRequest.username"
+          />
+          <p *ngIf="usernameField.hasError('required') && usernameField.touched">
+            Username is required
+          </p>
+        </div>ng 
+        <div>
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="passwrod"
+            #passwordField="ngModel"
+            required
+            [(ngModel)]="authRequest.password"
+          />
+          <p *ngIf="passwordField.hasError('required') && passwordField.touched">
+            Password is required
+          </p>
+        </div>
+      
+        <div>
+          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Log in</button>
+          <p *ngIf="loginError">
+            Unable to log in. See the log for more information.
+          </p>
+        </div>
+    </form>
+  </mat-card-actions>
+</mat-card>
