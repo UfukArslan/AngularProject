@@ -7,12 +7,13 @@ import { DummyPageComponent } from './dummy-page/dummy-page.component';
 import { SecurityModule } from './security/security.module';
 import { ApiTokenInterceptorService } from './api/api-token-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider';
+import { MaterialModule } from './material/material.module';
+
 
 
 @NgModule({
   declarations: [AppComponent, DummyPageComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SecurityModule, BrowserAnimationsModule, MatSliderModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SecurityModule, BrowserAnimationsModule, MaterialModule],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: ApiTokenInterceptorService,
