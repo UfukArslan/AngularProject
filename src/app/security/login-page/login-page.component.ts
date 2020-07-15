@@ -27,6 +27,7 @@ export class LoginPageComponent {
     this.authRequest = new AuthRequest();
     this.loginError = false;
   }
+  
 
   /**
    * Called when the login form is submitted.
