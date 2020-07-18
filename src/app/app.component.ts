@@ -7,9 +7,11 @@ import { UserService } from './api/services/user.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'travel-log';
+  title: string ;
   
   constructor (private user: UserService) {
+
+    this.title = 'travel-log';
 
   }
   ngOnInit(): void {
