@@ -1,10 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from './api/services/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'travel-log';
+  
+  constructor (private user: UserService) {
+
+  }
+  ngOnInit(): void {
+    this.user.loadAllUsers().subscribe({
+      next: (messages) => console.log(messages),
+      error: (error) => console.warn(error)
+      
+    });
+  }
+
+
+
+
 }
