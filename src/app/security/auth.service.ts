@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { map, tap } from "rxjs/operators";
 import { User } from "../models/user";
 import { AuthRequest } from "../models/auth-request";
-import {environment} from "../../environments/environment";
+import { environment } from "../../environments/environment";
 
 
 
