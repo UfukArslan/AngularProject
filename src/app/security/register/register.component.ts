@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RegisRequest } from "../../models/regis-request";
 import { AuthService } from "../auth.service";
+import { RegisterService } from "../register.service";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 
@@ -23,7 +24,7 @@ export class RegisterComponent {
    */
   registerError: boolean;
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private regis: RegisterService, private router: Router) {
     this.regisRequest = new RegisRequest();
     this.registerError = false;
   }
@@ -38,9 +39,9 @@ export class RegisterComponent {
       // Hide any previous login error.
       this.registerError = false;
 
-      // Perform the authentication request to the API.
-      this.auth.register(this.regisRequest).subscribe({
-        next: () => this.router.navigateByUrl("/"),
+      // Perform the request for register to the API.
+      this.regis.register(this.regisRequest).subscribe({
+        next: () => this.router.navigateByUrl("../login"),
         error: (err) => {
           this.registerError = true;
           console.warn(`Authentication failed: ${err.message}`);

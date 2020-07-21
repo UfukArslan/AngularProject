@@ -6,8 +6,6 @@ import { map, tap } from "rxjs/operators";
 import { User } from "../models/user";
 import { AuthRequest } from "../models/auth-request";
 import { environment } from "../../environments/environment";
-import { RegisRequest } from "../models/regis-request";
-import { RegisResponse } from "../models/regis-response";
 
 
 
@@ -23,7 +21,6 @@ export class AuthService {
    * It will act as a sort of local "cache" for the AuthResponse object value.
    */
   private authenticated$: ReplaySubject<AuthResponse>;
-  private registered$: ReplaySubject<RegisResponse>;
 
   constructor(private http: HttpClient) {
     const savedAuth = JSON.parse(
@@ -71,20 +68,6 @@ export class AuthService {
       tap((response) => this.saveAuth(response)),
       map((response) => {
         this.authenticated$.next(response);
-        console.log(`User ${response.user.name} logged in`);
-        return response.user;
-      })
-    ); 
-  }
-
-  register(regisRequest: RegisRequest): Observable<User> {
-    return this.http.post<RegisResponse>(`${environment.apiUrl}/auth`, regisRequest).pipe(
-      // The tap operator allows you to do something with an observable's emitted value
-      // and emit it again unaltered.
-      // In our case, we just store this AuthResponse in the localStorage
-      tap((response) => this.saveAuth(response)),
-      map((response) => {
-        this.registered$.next(response);
         console.log(`User ${response.user.name} logged in`);
         return response.user;
       })
