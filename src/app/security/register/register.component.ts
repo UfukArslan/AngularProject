@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthRequest } from "src/app/models/auth-request";
+import { RegisRequest } from "../../models/regis-request";
 import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
@@ -15,17 +15,17 @@ export class RegisterComponent {
    * This authentication request object will be updated when the user
    * edits the login form. It will then be sent to the API.
    */
-  authRequest: AuthRequest;
+  regisRequest: RegisRequest;
 
   /**
    * If true, it means that the authentication API has return a failed response
    * (probably because the name or password is incorrect).
    */
-  loginError: boolean;
+  registerError: boolean;
 
   constructor(private auth: AuthService, private router: Router) {
-    this.authRequest = new AuthRequest();
-    this.loginError = false;
+    this.regisRequest = new RegisRequest();
+    this.registerError = false;
   }
   
 
@@ -36,13 +36,13 @@ export class RegisterComponent {
     // Only do something if the form is valid
     if (form.valid) {
       // Hide any previous login error.
-      this.loginError = false;
+      this.registerError = false;
 
       // Perform the authentication request to the API.
-      this.auth.login(this.authRequest).subscribe({
+      this.auth.register(this.regisRequest).subscribe({
         next: () => this.router.navigateByUrl("/"),
         error: (err) => {
-          this.loginError = true;
+          this.registerError = true;
           console.warn(`Authentication failed: ${err.message}`);
         },
       });

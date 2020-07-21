@@ -1,23 +1,23 @@
-<form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
+<form #regisForm="ngForm" (submit)="onSubmit(regisForm)">
     <mat-card class='example-card'>
-      <mat-card-title back>Login</mat-card-title>
+      <mat-card-title back>Register</mat-card-title>
       <mat-card-subtitle></mat-card-subtitle>
       <mat-card-content>
         <mat-form-field class="example-form-field">
-          <mat-label>Username</mat-label>
+          <mat-label>Name</mat-label>
           <input 
             matInput 
             type="text" 
-            name="username"
-            id="username"
-            #usernameField="ngModel"
+            name="name"
+            id="name"
+            #nameField="ngModel"
             required
-            [(ngModel)]="authRequest.username" 
+            [(ngModel)]="regisRequest.name" 
             >
-          <button mat-button *ngIf="authRequest.username" matSuffix mat-icon-button aria-label="Clear" (click)="authRequest.username=''">
+          <button mat-button *ngIf="regisRequest.name" matSuffix mat-icon-button aria-label="Clear" (click)="regisRequest.name=''">
             <mat-icon>close</mat-icon>
           </button>
-          <mat-error *ngIf="usernameField.hasError('required') && usernameField.touched">
+          <mat-error *ngIf="nameField.hasError('required') && nameField.touched">
             Email is <strong>required</strong>
           </mat-error>
         </mat-form-field>
@@ -31,10 +31,10 @@
               name="password"
               id="password"
               #passwordField="ngModel"
-              [(ngModel)]="authRequest.password" 
+              [(ngModel)]="regisRequest.password" 
               required
             >
-          <button mat-button *ngIf="authRequest.password" matSuffix mat-icon-button aria-label="Clear" (click)="authRequest.password=''">
+          <button mat-button *ngIf="regisRequest.password" matSuffix mat-icon-button aria-label="Clear" (click)="regisRequest.password=''">
             <mat-icon>close</mat-icon>
           </button>
           <mat-error *ngIf="passwordField.hasError('required') && passwordField.touched">
@@ -43,7 +43,7 @@
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions class="example-actions">
-        <button mat-flat-button color="primary" type="submit" (click)="onSubmit(loginForm)">Register</button>
+        <button mat-flat-button color="primary" type="submit" (click)="onSubmit(regisForm)">Register</button>
       </mat-card-actions>
       <mat-card-footer></mat-card-footer>
     </mat-card>
