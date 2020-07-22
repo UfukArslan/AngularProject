@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatRadioModule}  from '@angular/material/radio';
+
 
 
 
@@ -20,7 +22,8 @@ const MaterialComponents =[
   MatIconModule,
   MatGridListModule,
   MatToolbarModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatRadioModule
 ];
 
 @NgModule({

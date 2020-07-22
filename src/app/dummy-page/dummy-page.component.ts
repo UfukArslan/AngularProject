@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "../api/services/user.service";
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: "app-dummy-page",
