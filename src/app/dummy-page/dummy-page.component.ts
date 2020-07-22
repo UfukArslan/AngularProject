@@ -7,6 +7,7 @@ import { UserService } from "../api/services/user.service";
   styleUrls: ["./dummy-page.component.scss"],
 })
 export class DummyPageComponent implements OnInit {
+  showFiller = false;
   // Inject the UserService
   constructor(private userService: UserService) {}
 

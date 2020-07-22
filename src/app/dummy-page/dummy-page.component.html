@@ -1,5 +1,38 @@
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Travel log</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+  </div>
+
+</mat-drawer-container>
+
+
+
+
 <app-logout-button></app-logout-button>
-<mat-grid-list cols="2" rowHeight="1:1" gutterSize="50px">
+<mat-grid-list cols="3" rowHeight="1:1" gutterSize="50px">
   <mat-grid-tile rowspan="2"> <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
@@ -19,8 +52,11 @@
       <button mat-button>SHARE</button>
     </mat-card-actions>
   </mat-card></mat-grid-tile>
-  <mat-grid-tile><mat-grid-tile-header>Header</mat-grid-tile-header>2<mat-grid-tile-footer>footer</mat-grid-tile-footer></mat-grid-tile>
-  <mat-grid-tile><mat-card>Simple card</mat-card></mat-grid-tile>
+  <mat-grid-tile rowspan="2" colspan="2">
+    <mat-grid-tile-header>Header</mat-grid-tile-header>2
+    <mat-grid-tile-footer>footer</mat-grid-tile-footer>
+  </mat-grid-tile>
+
   
   
 </mat-grid-list>
