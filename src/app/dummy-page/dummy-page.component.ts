@@ -11,7 +11,7 @@ export class DummyPageComponent implements OnInit {
   
   opened: boolean;
 
-  shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
+  
 
 
   // Inject the UserService
