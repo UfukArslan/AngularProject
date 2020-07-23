@@ -11,6 +11,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRadioModule}  from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -29,7 +30,8 @@ const MaterialComponents =[
   MatSidenavModule,
   MatRadioModule,
   MatCheckboxModule,
-  MatListModule
+  MatListModule,
+  MatDialogModule
 ];
 
 @NgModule({
