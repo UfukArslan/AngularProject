@@ -8,7 +8,12 @@ import {FormControl} from '@angular/forms';
   styleUrls: ["./dummy-page.component.scss"],
 })
 export class DummyPageComponent implements OnInit {
-  showFiller = false;
+  
+  opened: boolean;
+
+  shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
+
+
   // Inject the UserService
   constructor(private userService: UserService) {}
 

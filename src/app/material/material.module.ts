@@ -9,6 +9,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRadioModule}  from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatListModule } from '@angular/material/list';
+
+
 
 
 
@@ -23,7 +27,9 @@ const MaterialComponents =[
   MatGridListModule,
   MatToolbarModule,
   MatSidenavModule,
-  MatRadioModule
+  MatRadioModule,
+  MatCheckboxModule,
+  MatListModule
 ];
 
 @NgModule({
