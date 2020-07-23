@@ -3,6 +3,9 @@
       
       <mat-toolbar color="primary">
         <span>Register</span>
+        <span class="example-spacer"></span>
+      <button mat-flat-button color="primary" routerLink="/login" routerLinkActive="activebutton">Back</button>
+        
       </mat-toolbar>
       <mat-card-title></mat-card-title>
       <mat-card-subtitle></mat-card-subtitle>
@@ -53,7 +56,7 @@
       </mat-card-content>
       </div>
       <mat-card-actions class="example-actions">
-        <button mat-flat-button color="primary" type="submit" (click)="onSubmit(regisForm)">Register</button>
+        <button mat-flat-button color="primary" type="submit" (click)="onSubmit(regisForm)">Submit</button>
       </mat-card-actions>
       <mat-card-footer></mat-card-footer>
     </mat-card>
