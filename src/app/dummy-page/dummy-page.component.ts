@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "../api/services/user.service";
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: "app-dummy-page",
@@ -7,6 +8,12 @@ import { UserService } from "../api/services/user.service";
   styleUrls: ["./dummy-page.component.scss"],
 })
 export class DummyPageComponent implements OnInit {
+  
+  opened: boolean;
+
+  
+
+
   // Inject the UserService
   constructor(private userService: UserService) {}
 
