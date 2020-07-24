@@ -5,6 +5,7 @@ import { DummyPageComponent } from './dummy-page/dummy-page.component';
 import { AuthGuard } from './security/guards/auth.guard';
 import { RegisterComponent } from './security/register/register.component';
 import { CreateTripComponent } from './create-trip/create-trip.component';
+import { DialogContentExample} from './example/dialog-content-example';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   // Prevent access to this page to unauthenticated users
   {path: "dummy",component: DummyPageComponent,canActivate: [AuthGuard],},
   {path: "create",component: CreateTripComponent ,canActivate: [AuthGuard],},
+  {path: "example",component: DialogContentExample ,canActivate: [AuthGuard],},
   
 
 ];

@@ -10,16 +10,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 import { CreateTripComponent } from './create-trip/create-trip.component';
-
+import { DialogContentExampleDialog } from './example/dialog-content-example';
 
 
 @NgModule({
-  declarations: [AppComponent, DummyPageComponent, CreateTripComponent],
+  declarations: [AppComponent, DummyPageComponent, CreateTripComponent, DialogContentExampleDialog],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, SecurityModule, BrowserAnimationsModule, MaterialModule, FormsModule],
+  entryComponents: [DialogContentExampleDialog],
   providers: [{
-    provide: HTTP_INTERCEPTORS,
+    provide: HTTP_INTERCEPTORS, 
     useClass: ApiTokenInterceptorService,
     multi: true,
+    
   },],
   bootstrap: [AppComponent]
 })
