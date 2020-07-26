@@ -13,6 +13,7 @@ import { CreateTripComponent } from './create-trip/create-trip.component';
 import { DialogContentExampleDialog } from './example/dialog-content-example';
 
 
+
 @NgModule({
   declarations: [AppComponent, DummyPageComponent, CreateTripComponent, DialogContentExampleDialog],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, SecurityModule, BrowserAnimationsModule, MaterialModule, FormsModule],
