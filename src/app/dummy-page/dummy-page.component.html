@@ -65,7 +65,8 @@
         
           <!-- Grid 2 -->  
           <mat-grid-tile rowspan="3" colspan="3">
-            <mat-grid-tile-header>Header</mat-grid-tile-header>2
+            <button mat-stroked-button (click)="openDialog()">Create trip</button>
+            <mat-grid-tile-header>Header</mat-grid-tile-header>
             <mat-grid-tile-footer>footer</mat-grid-tile-footer>
           </mat-grid-tile>
           </mat-grid-list>
@@ -74,4 +75,3 @@
 
 </mat-sidenav-container>
 
-<button mat-button (click)="openDialog()">Open dialog</button>
