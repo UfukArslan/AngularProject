@@ -11,12 +11,13 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 import { CreateTripComponent } from './dummy-page/dummy-page.component';
 import { PlacesTripComponent } from './places-trip/places-trip.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 
 @NgModule({
   declarations: [AppComponent, DummyPageComponent, CreateTripComponent, PlacesTripComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SecurityModule, BrowserAnimationsModule, MaterialModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SecurityModule, BrowserAnimationsModule, MaterialModule, FormsModule, LeafletModule],
   providers: [{
     provide: HTTP_INTERCEPTORS, 
     useClass: ApiTokenInterceptorService,
