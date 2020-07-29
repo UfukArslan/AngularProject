@@ -14,7 +14,7 @@ import { latLng, MapOptions, tileLayer} from 'leaflet';
 })
 export class PlacesTripComponent {
   mapOptions: MapOptions;
-
+  opened: boolean;
 
   constructor() {
     this.mapOptions = {

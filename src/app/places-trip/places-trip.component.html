@@ -1,1 +1,47 @@
-<div class="map" leaflet [leafletOptions]="mapOptions"></div>
+<div class="main-container">
+
+    <!-- Header -->
+  
+    <div>
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>  
+          <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" type="button" (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span class="example-spacer"></span>
+          <span>Travel log</span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+  
+  <!-- Body -->
+  
+  
+    <mat-sidenav-container >
+  
+  
+          <!-- Secondary -->
+          <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+            <mat-selection-list [multiple]="false">
+              <mat-list-option>Delete account</mat-list-option>
+              <mat-list-option>Delete account</mat-list-option>
+              <mat-list-option>Update account</mat-list-option>
+            </mat-selection-list>
+           <app-logout-button></app-logout-button>
+          </mat-sidenav>  
+      
+          <!-- Main -->
+          <mat-sidenav-content>
+            
+            
+            <div class="map" leaflet [leafletOptions]="mapOptions"></div>
+            
+          </mat-sidenav-content>
+  
+  </mat-sidenav-container>
+  
+  
+
+
+
+
