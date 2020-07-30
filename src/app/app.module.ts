@@ -10,13 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 import { CreateTripComponent } from './dummy-page/dummy-page.component';
-import { PlacesTripComponent } from './places-trip/places-trip.component';
+import { MapComponent } from './map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 
 @NgModule({
-  declarations: [AppComponent, DummyPageComponent, CreateTripComponent, PlacesTripComponent],
+  declarations: [AppComponent, DummyPageComponent, CreateTripComponent, MapComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, SecurityModule, BrowserAnimationsModule, MaterialModule, FormsModule, LeafletModule],
   providers: [{
     provide: HTTP_INTERCEPTORS, 

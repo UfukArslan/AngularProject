@@ -8,11 +8,11 @@ import { latLng, MapOptions, tileLayer} from 'leaflet';
 
 
 @Component({
-  selector: 'app-places-trip',
-  templateUrl: './places-trip.component.html',
-  styleUrls: ['./places-trip.component.scss']
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.scss']
 })
-export class PlacesTripComponent {
+export class MapComponent {
   mapOptions: MapOptions;
   opened: boolean;
 
