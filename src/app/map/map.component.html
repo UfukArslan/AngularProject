@@ -3,6 +3,7 @@
     <div style="height: 100pc; width: 100pc;"
         leaflet 
         [leafletOptions]="options"
+        [leafletLayers]="mapMarkers"
         (leafletMapReady)="onMapReady($event)">
     </div>
   </mat-tab>
