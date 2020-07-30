@@ -23,9 +23,13 @@
         <!-- Secondary -->
         <mat-sidenav #sidenav mode="side" [(opened)]="opened">
           <mat-selection-list [multiple]="false">
-            <mat-list-option>Delete account</mat-list-option>
-            <mat-list-option>Delete account</mat-list-option>
-            <mat-list-option>Update account</mat-list-option>
+            <mat-action-list>
+              <mat-list-option>Delete account</mat-list-option>
+              <mat-list-option>Delete account</mat-list-option>
+              <mat-list-option>Update account</mat-list-option>
+              <button mat-list-item (click)="logout()">Logout</button>
+
+            </mat-action-list>
           </mat-selection-list>
          <app-logout-button></app-logout-button>
         </mat-sidenav>  
