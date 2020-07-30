@@ -1,5 +1,12 @@
-<div class="map" leaflet [leafletOptions]="mapOptions"></div>
-
+<mat-tab-group>
+  <mat-tab label="First"> 
+    <div style="height: 100pc; width: 100pc;"
+        leaflet 
+        [leafletOptions]="options"
+        (leafletMapReady)="onMapReady($event)">
+    </div>
+  </mat-tab>
+</mat-tab-group>
   
   
 

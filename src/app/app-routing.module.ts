@@ -5,6 +5,7 @@ import { DummyPageComponent } from './dummy-page/dummy-page.component';
 import { AuthGuard } from './security/guards/auth.guard';
 import { RegisterComponent } from './security/register/register.component';
 import { MapComponent } from './map/map.component';
+import { PlacesMapComponent } from './places-map/places-map.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: "login", component: LoginPageComponent },
   { path: "register", component: RegisterComponent },
   { path: "map", component: MapComponent },
+  { path: "places", component: PlacesMapComponent },
   // Prevent access to this page to unauthenticated users
    {path: "dummy",component: DummyPageComponent,canActivate: [AuthGuard]},
   

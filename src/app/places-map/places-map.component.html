@@ -1,0 +1,55 @@
+<div class="main-container">
+
+  <!-- Header -->
+
+  <div>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>  
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" type="button" (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <span>Travel log</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+
+<!-- Body -->
+
+
+  <mat-sidenav-container >
+
+
+        <!-- Secondary -->
+        <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+          <mat-selection-list [multiple]="false">
+            <mat-list-option>Delete account</mat-list-option>
+            <mat-list-option>Delete account</mat-list-option>
+            <mat-list-option>Update account</mat-list-option>
+          </mat-selection-list>
+         <app-logout-button></app-logout-button>
+        </mat-sidenav>  
+    
+        <!-- Main -->
+        <mat-sidenav-content>
+          
+          
+          <mat-grid-list cols="4" rowHeight="1:1" gutterSize="50px">
+          
+          
+          <!-- Grid 1 -->  
+          <mat-grid-tile rowspan="3"> 
+      
+          </mat-grid-tile>
+        
+        
+          <!-- Grid 2 -->  
+          <mat-grid-tile rowspan="3" colspan="3">
+            <app-map></app-map>
+          
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-sidenav-content>
+      
+    </mat-sidenav-container>
+    

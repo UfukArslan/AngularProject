@@ -12,12 +12,24 @@ import { FormsModule } from '@angular/forms';
 import { CreateTripComponent } from './dummy-page/dummy-page.component';
 import { MapComponent } from './map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { PlacesMapComponent } from './places-map/places-map.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
 @NgModule({
-  declarations: [AppComponent, DummyPageComponent, CreateTripComponent, MapComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SecurityModule, BrowserAnimationsModule, MaterialModule, FormsModule, LeafletModule],
+  declarations: [AppComponent, DummyPageComponent, CreateTripComponent, MapComponent, PlacesMapComponent],
+  imports: [
+    BrowserModule, 
+    AppRoutingModule, 
+    HttpClientModule, 
+    SecurityModule, 
+    BrowserAnimationsModule, 
+    MaterialModule, 
+    FormsModule, 
+    LeafletModule,
+    MatTabsModule
+  ],
   providers: [{
     provide: HTTP_INTERCEPTORS, 
     useClass: ApiTokenInterceptorService,

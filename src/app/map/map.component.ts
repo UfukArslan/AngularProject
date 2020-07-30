@@ -1,10 +1,6 @@
 import { Component } from "@angular/core";
-import { UserService } from "../api/services/user.service";
-import { FormControl } from '@angular/forms';
-import { MatDialogActions, MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { latLng, MapOptions, tileLayer} from 'leaflet';
+import * as L from "leaflet";
+import { Map } from "leaflet";
 
 
 @Component({
@@ -13,22 +9,19 @@ import { latLng, MapOptions, tileLayer} from 'leaflet';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent {
-  mapOptions: MapOptions;
-  opened: boolean;
+  name = 'Angular';
+  options = {
+	layers: [
+		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+	],
+	zoom: 13,
+	center: L.latLng(46.778186, 6.641524)
+};
 
-  constructor() {
-    this.mapOptions = {
-      layers: [
-        tileLayer(
-          'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-          { maxZoom: 18 }
-        )
-      ],
-      zoom: 13,
-      center: latLng(46.778186, 6.641524)
-    };
-   }
-
-  
+onMapReady(map: Map): void {
+    setTimeout(() => {
+      map.invalidateSize();
+    });
+  }
 
 }
