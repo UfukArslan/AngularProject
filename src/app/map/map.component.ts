@@ -13,13 +13,18 @@ export class MapComponent {
   name = 'Angular';
   map: L.Map;
 
-  mapMarkers: L.Marker[];
-  constructor(/* ... */) {
-    // ...
+  mapMarkers: L.Marker[] = [];
+
+  reservationArr : Array<object> = [];
+
+
+  constructor() {
+    
     this.mapMarkers = [
       L.marker([ 46.778186, 6.641524 ], { icon: defaultIcon }).bindTooltip('Hello'),
       L.marker([ 46.780796, 6.647395 ], { icon: defaultIcon }),
-      L.marker([ 46.784992, 6.652267 ], { icon: defaultIcon })
+      L.marker([ 46.784992, 6.652267 ], { icon: defaultIcon }),
+      L.marker([ 46.786015149092634, 6.650311946868897  ], { icon: defaultIcon })
     ];
   }
 
@@ -34,9 +39,12 @@ export class MapComponent {
 
 onMapReady(map: L.Map): void {
     this.map = map;
-    this.map.on('moveend', () => {
-      const center = this.map.getCenter();
-      console.log (`Map moved to ${center.lng}, ${center.lat}`);
+    this.map.on('click', function(ev){
+      var coord = ev;
+      var lat= coord.latlng.lat;
+      var lng= coord.latlng.lng;
+
+      L.marker([ lat, lng  ], { icon: defaultIcon }).addTo(map);
     });
     setTimeout(() => {
       map.invalidateSize();
