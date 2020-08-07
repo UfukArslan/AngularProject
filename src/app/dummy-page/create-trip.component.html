@@ -55,9 +55,11 @@
     </mat-card-content>
     </div>
     <mat-card-actions class="example-actions">
-      <button mat-flat-button color="primary" type="submit" (click)="onSubmit(createTripForm)">Create</button>
+      <button mat-flat-button mat-dialog-close color="primary" (click)="onSubmit(createTripForm)" type="submit" cdkFocusInitial>Create</button>
       <button mat-button mat-dialog-close>Cancel</button>
     </mat-card-actions>
     <mat-card-footer></mat-card-footer>
   <!-- </mat-card> -->
 </form>
+
+

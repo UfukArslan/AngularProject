@@ -39,16 +39,22 @@ export class MapComponent {
 
 onMapReady(map: L.Map): void {
     this.map = map;
-    this.map.on('click', function(ev){
-      var coord = ev;
+    this.map.on('click', function(coord: L.LeafletMouseEvent){
+      var coord = coord;
       var lat= coord.latlng.lat;
       var lng= coord.latlng.lng;
-
       L.marker([ lat, lng  ], { icon: defaultIcon }).addTo(map);
+      
     });
+    
     setTimeout(() => {
       map.invalidateSize();
     });
   }
 
 }
+
+
+// map.on('click', function () {
+//   map.removeLayer(marker);
+// });

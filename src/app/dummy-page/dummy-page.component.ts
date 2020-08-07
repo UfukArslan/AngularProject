@@ -77,7 +77,7 @@ export class CreateTripComponent {
 
       // Perform the request for register to the API.
       this.createT.createdTrip(this.createTripRequest).subscribe({
-        next: () => this.router.navigateByUrl("/places"),
+        next: () => this.router.navigateByUrl("/trips"),
         error: (err) => {
           this.createTripRequestError = true;
           console.warn(`Authentication failed: ${err.message}`);
