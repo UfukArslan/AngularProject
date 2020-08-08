@@ -21,4 +21,6 @@ export class UserService {
   registerNew(newUser: AuthRequest): Observable<AuthRequest> {
     return this.http.post<AuthRequest>(`${environment.apiUrl}/users`, newUser);
   }
+
+   
 }

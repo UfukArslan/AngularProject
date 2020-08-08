@@ -10,11 +10,11 @@ import { CreatetripService } from './createtrip.service';
   //@title
 
 @Component({
-  selector: "app-dummy-page",
-  templateUrl: "./dummy-page.component.html",
-  styleUrls: ["./dummy-page.component.scss"],
+  selector: "app-trips-page",
+  templateUrl: "./trips-page.component.html",
+  styleUrls: ["./trips-page.component.scss"],
 })
-export class DummyPageComponent implements OnInit {
+export class TripsPageComponent implements OnInit {
   
   opened: boolean;
 
@@ -33,9 +33,9 @@ export class DummyPageComponent implements OnInit {
   }
 
   openDialog() {
-    const dummyRef = this.dialog.open(CreateTripComponent,{width: '500px', height: '350px'});
+    const tripsRef = this.dialog.open(CreateTripComponent,{width: '500px', height: '350px'});
 
-    dummyRef.afterClosed().subscribe(result => {
+    tripsRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }

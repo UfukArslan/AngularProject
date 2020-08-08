@@ -38,7 +38,30 @@
           
           
           <!-- Grid 1 -->  
-          <mat-grid-tile rowspan="3"> 
+          <mat-grid-tile rowspan="2"> 
+            <mat-card class="example-card">
+              <mat-card-header>
+                <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                <mat-card-title>Create Trips</mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+              </mat-card-header>
+              
+              <mat-card-content>
+                
+                  <button class="create-card" mat-mini-fab color="primary" (click)="openDialog()">+</button>
+                  
+              
+            </mat-card-content>
+            
+            <mat-card-actions>
+              <!-- <button mat-button>LIKE</button> -->
+              <!-- <button mat-button>SHARE</button> -->
+            </mat-card-actions>
+            
+          </mat-card>
+          </mat-grid-tile>
+
+          <mat-grid-tile rowspan="2"> 
             <mat-card class="example-card">
               <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
