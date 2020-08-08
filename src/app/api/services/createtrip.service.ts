@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
-import { CreateTripRequest } from '../models/create-trip-request';
+import { CreateTripRequest } from '../../models/create-trip-request';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CreatetripService {
 
-  private createdTrip$: ReplaySubject<CreateTripRequest>;
+  //private createdTrip$: ReplaySubject<CreateTripRequest>;
 
   constructor(private http: HttpClient) {
    }

@@ -5,7 +5,9 @@ import { MatDialogActions, MatDialog } from '@angular/material/dialog';
 import { CreateTripRequest } from '../models/create-trip-request';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { CreatetripService } from './createtrip.service';
+import { CreatetripService } from '../api/services/createtrip.service';
+import { ListTripsService } from '../api/services/list-trips.service';
+import { element } from 'protractor';
 
   //@title
 
@@ -22,7 +24,7 @@ export class TripsPageComponent implements OnInit {
 
 
   // Inject the UserService
-  constructor(private userService: UserService, private dialog: MatDialog) {}
+  constructor(private userService: UserService, private dialog: MatDialog, private listTripsService: ListTripsService) {}
 
   ngOnInit(): void {
     // Ask the service to make an API call on component initialisation
@@ -30,7 +32,7 @@ export class TripsPageComponent implements OnInit {
       next: (users) => console.log("Users", users),
       error: (error) => console.warn("Error", error),
     });
-  }
+}
 
   openDialog() {
     const tripsRef = this.dialog.open(CreateTripComponent,{width: '500px', height: '350px'});
@@ -64,6 +66,8 @@ export class CreateTripComponent {
     this.createTripRequest = new CreateTripRequest();
     this.createTripRequestError = false;
   }
+
+
   
 
   /**
