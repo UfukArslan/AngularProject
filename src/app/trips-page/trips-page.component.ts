@@ -1,13 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "../api/services/user.service";
-import {FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { MatDialogActions, MatDialog } from '@angular/material/dialog';
 import { CreateTripRequest } from '../models/create-trip-request';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { CreatetripService } from '../api/services/createtrip.service';
 import { ListTripsService } from '../api/services/list-trips.service';
-import { element } from 'protractor';
+import { ListTripsResponse } from '../models/list-trips-response';
 
   //@title
 
@@ -17,20 +17,23 @@ import { element } from 'protractor';
   styleUrls: ["./trips-page.component.scss"],
 })
 export class TripsPageComponent implements OnInit {
-  
+  listTrips: ListTripsResponse[];
   opened: boolean;
-
   
-
-
   // Inject the UserService
   constructor(private userService: UserService, private dialog: MatDialog, private listTripsService: ListTripsService) {}
 
   ngOnInit(): void {
     // Ask the service to make an API call on component initialisation
-    this.userService.loadAllUsers().subscribe({
-      next: (users) => console.log("Users", users),
-      error: (error) => console.warn("Error", error),
+    // this.userService.loadAllUsers().subscribe({
+    //   next: (users) => console.log("Users", users),
+    //   error: (error) => console.warn("Error", error),
+    // });
+
+    this.listTripsService.loadListTrips().subscribe({
+      next: (listTrip) => this.listTrips = listTrip,
+      // next: (listTrips) => console.log(listTrips),
+      error: (error) => console.warn(error)
     });
 }
 

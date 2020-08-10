@@ -1,13 +1,11 @@
 export class ListTripsResponse {
-    
-        id: string;
-        href: string;
-        title: string;
-        description: string;
-        placesCount: number;
-        userId: string;
-        userHref: string;
-        createdAt: Date;
+        id: String;	
+        href: String;	
+        title: String;	
+        description: String;	
+        placesCount: Number;	
+        userId:	String;	
+        userHref: String;	
+        createdAt: Date;	
         updatedAt: Date;
-    
 }

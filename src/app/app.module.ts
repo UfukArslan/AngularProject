@@ -14,11 +14,19 @@ import { MapComponent } from './map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { PlacesMapComponent } from './places-map/places-map.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { TemplateCardTripComponent } from './template-card-trip/template-card-trip.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, TripsPageComponent, CreateTripComponent, MapComponent, PlacesMapComponent],
+  declarations: [
+    AppComponent, 
+    TripsPageComponent, 
+    CreateTripComponent, 
+    MapComponent, 
+    PlacesMapComponent, 
+    TemplateCardTripComponent
+  ],
   imports: [
     BrowserModule, 
     AppRoutingModule, 
