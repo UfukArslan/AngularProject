@@ -11,8 +11,6 @@ export class ListTripsService {
 
   constructor(private http: HttpClient) { }
 
-
-  //  A MODIFIER SELON LES REQUETES OU LES REPONSES DE LA REQUETE
   loadListTrips(): Observable<ListTripsResponse[]> { 
     return this.http.get<ListTripsResponse[]>(`${environment.apiUrl}/trips`);
   }
