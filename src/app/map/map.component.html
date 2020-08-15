@@ -1,18 +1,17 @@
-<mat-tab-group>
-  <mat-tab label="First"> 
-    <div style="height: 1000px;"
-        leaflet 
-        leafletDraw
-        [leafletOptions]="options"
-        [leafletDrawOptions]="drawOptions"
-        (leafletDrawCreated)="onDrawCreated($event)"
-        [leafletLayersControl]="layersControl"
-        [leafletLayers]="layers"
-        (leafletMapReady)="onMapReady($event)">
-        <div [leafletLayer]="drawnItems"></div>
-    </div>
-  </mat-tab>
-</mat-tab-group>
+ <mat-card>
+    <div style="height: 50pc; width: 50pc;"
+    leaflet 
+    leafletDraw
+    [leafletOptions]="options"
+    [leafletDrawOptions]="drawOptions"
+    (leafletDrawCreated)="onDrawCreated($event)"
+    
+    [leafletLayers]="layers"
+    (leafletMapReady)="onMapReady($event)">
+    <div [leafletLayer]="drawnItems"></div>
+  </div>
+</mat-card>
+
   
   
 
