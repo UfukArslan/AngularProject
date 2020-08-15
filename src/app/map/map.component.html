@@ -1,10 +1,15 @@
 <mat-tab-group>
   <mat-tab label="First"> 
-    <div style="height: 100pc; width: 100pc;"
+    <div style="height: 1000px;"
         leaflet 
+        leafletDraw
         [leafletOptions]="options"
-        [leafletLayers]="mapMarkers"
+        [leafletDrawOptions]="drawOptions"
+        (leafletDrawCreated)="onDrawCreated($event)"
+        [leafletLayersControl]="layersControl"
+        [leafletLayers]="layers"
         (leafletMapReady)="onMapReady($event)">
+        <div [leafletLayer]="drawnItems"></div>
     </div>
   </mat-tab>
 </mat-tab-group>

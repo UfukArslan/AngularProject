@@ -11,10 +11,11 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 import { CreateTripComponent } from './trips-page/trips-page.component';
 import { MapComponent } from './map/map.component';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { PlacesMapComponent } from './places-map/places-map.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TemplateCardTripComponent } from './template-card-trip/template-card-trip.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
 
 
 
@@ -36,6 +37,7 @@ import { TemplateCardTripComponent } from './template-card-trip/template-card-tr
     MaterialModule, 
     FormsModule, 
     LeafletModule,
+    LeafletDrawModule,
     MatTabsModule
   ],
   providers: [{
