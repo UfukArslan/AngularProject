@@ -83,10 +83,15 @@ export class MapComponent {
 
 
   
+  // public onDrawCreated(e: any) {
+  //   this.drawnItems.addLayer((e as L.DrawEvents.Created).layer);
+  // }
+
   public onDrawCreated(e: any) {
     this.drawnItems.addLayer((e as L.DrawEvents.Created).layer);
+   var geojson = this.drawnItems.toGeoJSON();
+   console.log(geojson);
   }
-
   
 
 // -------------------------------------------------------------
