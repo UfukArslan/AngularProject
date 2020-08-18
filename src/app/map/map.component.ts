@@ -83,15 +83,19 @@ export class MapComponent {
 
 
   
-  // public onDrawCreated(e: any) {
-  //   this.drawnItems.addLayer((e as L.DrawEvents.Created).layer);
-  // }
-
   public onDrawCreated(e: any) {
     this.drawnItems.addLayer((e as L.DrawEvents.Created).layer);
-   var geojson = this.drawnItems.toGeoJSON();
-   console.log(geojson);
+    // console.log(e.layer._latlng);
+    console.log ((this.drawnItems));
   }
+
+  json = JSON.stringify(this.drawnItems);
+
+  // public onDrawCreated(e: any) {
+  //   this.drawnItems.addLayer((e as L.DrawEvents.Created).layer);
+  //  var geojson = this.drawnItems.toGeoJSON();
+  //  console.log(geojson);
+  // }
   
 
 // -------------------------------------------------------------
