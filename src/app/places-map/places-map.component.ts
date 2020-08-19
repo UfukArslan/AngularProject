@@ -3,6 +3,7 @@ import { AuthService } from '../security/auth.service';
 import { DataTransferService } from '../api/services/data-transfer.service';
 import { Router } from '@angular/router';
 import { ListTripsResponse } from '../models/list-trips-response';
+import { CreatePlaceRequest } from '../models/create-place-request';
 
 @Component({
   selector: 'app-places-map',
@@ -11,18 +12,25 @@ import { ListTripsResponse } from '../models/list-trips-response';
 })
 export class PlacesMapComponent implements OnInit {
   temp: ListTripsResponse;
-  opened: boolean;
+  createPlaceRequest: CreatePlaceRequest;
+  createPlaceRequestError: boolean;
 
-  constructor(private auth: AuthService, private router: Router, private dataTransferService: DataTransferService) { }
+  constructor(private auth: AuthService, private router: Router, private dataTransferService: DataTransferService) {
+    this.createPlaceRequest = new CreatePlaceRequest();
+    this.createPlaceRequestError = false;
+    this.temp = this.dataTransferService.getData();  
+   }
 
   ngOnInit(): void {
-    this.temp = this.dataTransferService.getData();  
-    console.log(this.temp);
+    console.log(this.temp.id);
+    // console.log(this.createPlaceRequest.name);
   }
 
   logout(): void {
     this.auth.logout();
     this.router.navigateByUrl("/login");
   }
+
+  greeting: string;
 
 }

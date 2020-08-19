@@ -43,8 +43,51 @@
           
           <!-- Grid 1 -->  
           <mat-grid-tile rowspan="3"> 
-      
-          </mat-grid-tile>
+
+            <!-- Name -->
+            <div class="content">
+
+              <mat-form-field appearance="outline">
+                <mat-label>Name of the</mat-label>
+                <input 
+                matInput placeholder="ex: Place de la gare"
+                type="text" 
+                name="name"
+                id="place"
+                #nameField="ngModel"
+                required
+                [(ngModel)]="createPlaceRequest.name"
+                >
+                <button mat-button *ngIf="createPlaceRequest.name" matSuffix mat-icon-button aria-label="Clear" (click)="createPlaceRequest.name=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="nameField.hasError('required') && nameField.touched">
+                  Name is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+              
+              <!-- Name -->
+              <mat-form-field appearance="outline">
+                <mat-label>Descripition</mat-label>
+                <input 
+                matInput placeholder=""
+                type="text" 
+                name="desciption"
+                id="name"
+                #nameField="ngModel"
+                required
+                [(ngModel)]="createPlaceRequest.description"
+                >
+                <button mat-button *ngIf="createPlaceRequest.description" matSuffix mat-icon-button aria-label="Clear" (click)="createPlaceRequest.description=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="nameField.hasError('required') && nameField.touched">
+                  Description is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+              
+            </div>
+            </mat-grid-tile>
         
         
           <!-- Grid 2 -->  
