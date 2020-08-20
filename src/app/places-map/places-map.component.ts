@@ -28,6 +28,7 @@ export class PlacesMapComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.dataTransfer);
     console.log(this.createPlaceRequest);
+
     // console.log(this.createPlaceRequest.name);
   }
 
@@ -38,6 +39,8 @@ export class PlacesMapComponent implements OnInit {
 
  console(){
    console.log(this.createPlaceRequest);
+ 
+  
  }
 
 }

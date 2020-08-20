@@ -1,9 +1,9 @@
 mat-grid-tile {
-    background: rgb(245, 245, 245);
+    background: lightblue;
   }
 
   .example-card {
-    max-width: 100pc;
+    max-width: 400px;
   }
   
   .example-header-image {
@@ -16,7 +16,7 @@ mat-grid-tile {
   }
 
   .main-container {
-    margin : 500px;
+    margin : 100px;
   }
 
 //Sidenav
@@ -28,11 +28,11 @@ mat-grid-tile {
   bottom: 0;
   left: 0;
   right: 0;
-  // background: #eee;
+  background: #eee;
 }
 
 .map-content{
     margin-left: 25.65%;
-    height: 100pc;
+    height: 1000px;
 }
 

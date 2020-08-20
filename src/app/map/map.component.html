@@ -7,7 +7,7 @@
     (leafletDrawCreated)="onDrawCreated($event)"
     
     
-    >
+    (leafletMapReady)="onMapReady($event)">
     <div [leafletLayer]="drawnItems"></div>
   </div>
   <!-- <pre>
@@ -16,8 +16,7 @@
   </pre> -->
 </mat-card>
 
-  
-<!-- (leafletMapReady)="onMapReady($event)" -->
+
 
 
  

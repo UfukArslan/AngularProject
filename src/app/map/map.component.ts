@@ -39,16 +39,16 @@ export class MapComponent {
   
   // Display map
   // -------------------------------------------------------------
-  // onMapReady(map: L.Map): void {
-  //   this.map = map;
+  onMapReady(map: L.Map): void {
+    this.map = map;
     
     
-  //   setTimeout(() => {
-  //     map.invalidateSize();
-  //   });
-  // }
+    setTimeout(() => {
+      map.invalidateSize();
+    });
+  }
   
-  // Toolbar
+  Toolbar
   // -------------------------------------------------------------
   
   drawnItems: L.FeatureGroup = L.featureGroup();
@@ -86,7 +86,7 @@ export class MapComponent {
   public onDrawCreated(e: any) {
     this.drawnItems.addLayer((e as L.DrawEvents.Created).layer);
     // console.log(e.layer._latlng);
-    console.log ((this.drawnItems));
+    // console.log ((this.drawnItems));
   }
 
   json = JSON.stringify(this.drawnItems);
