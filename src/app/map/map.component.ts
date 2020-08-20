@@ -39,14 +39,14 @@ export class MapComponent {
   
   // Display map
   // -------------------------------------------------------------
-  onMapReady(map: L.Map): void {
-    this.map = map;
+  // onMapReady(map: L.Map): void {
+  //   this.map = map;
     
     
-    setTimeout(() => {
-      map.invalidateSize();
-    });
-  }
+  //   setTimeout(() => {
+  //     map.invalidateSize();
+  //   });
+  // }
   
   // Toolbar
   // -------------------------------------------------------------
