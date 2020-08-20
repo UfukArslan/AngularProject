@@ -43,12 +43,12 @@
           
           <!-- Grid 1 -->  
           <mat-grid-tile rowspan="3"> 
-
-            <!-- Name -->
+            
             <div class="content">
-
+              
+              <!-- Name -->
               <mat-form-field appearance="outline">
-                <mat-label>Name of the</mat-label>
+                <mat-label>Name place</mat-label>
                 <input 
                 matInput placeholder="ex: Place de la gare"
                 type="text" 
@@ -66,7 +66,7 @@
                 </mat-error>
               </mat-form-field>
               
-              <!-- Name -->
+              <!-- Description -->
               <mat-form-field appearance="outline">
                 <mat-label>Descripition</mat-label>
                 <input 
@@ -85,6 +85,7 @@
                   Description is <strong>required</strong>
                 </mat-error>
               </mat-form-field>
+              <button mat-flat-button color="primary" (click)="console()" type="submit" cdkFocusInitial>Create</button>
               
             </div>
             </mat-grid-tile>
