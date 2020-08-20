@@ -14,6 +14,7 @@ export class PlacesMapComponent implements OnInit {
   temp: ListTripsResponse;
   createPlaceRequest: CreatePlaceRequest;
   createPlaceRequestError: boolean;
+  opened: boolean;
 
   constructor(private auth: AuthService, private router: Router, private dataTransferService: DataTransferService) {
     this.createPlaceRequest = new CreatePlaceRequest();
