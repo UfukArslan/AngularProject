@@ -1,7 +1,9 @@
-import { Component } from "@angular/core";
-import { defaultIcon } from './default-marker';
+import { Component, OnInit } from "@angular/core";
+import { defaultIcon } from "./default-marker";
+import { DataTranferMapService } from "../api/services/data-tranfer-map.service";
 import * as L from "leaflet";
 import { map } from 'rxjs/operators';
+
 //import { Map } from "leaflet";
 
 
@@ -10,7 +12,9 @@ import { map } from 'rxjs/operators';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent {
+export class MapComponent implements OnInit {
+  message: string;
+
   name = 'Angular';
   map: L.Map;
   
@@ -20,7 +24,17 @@ export class MapComponent {
   
   
 
-  constructor() {}
+  constructor(private data: DataTranferMapService) {}
+
+  ngOnInit () {
+    this.data.currentMessage.subscribe(message => this.message = message);
+
+  }
+
+  newMessage () {
+    this.data.changeMessage("Bienvenue dans l'univers des bisounours");
+  }
+
   
   // -------------------------------------------------------------
   
@@ -86,7 +100,7 @@ export class MapComponent {
   public onDrawCreated(e: any) {
     this.drawnItems.addLayer((e as L.DrawEvents.Created).layer);
     // console.log(e.layer._latlng);
-    // console.log ((this.drawnItems));
+    console.log ((this.drawnItems));
   }
 
   json = JSON.stringify(this.drawnItems);

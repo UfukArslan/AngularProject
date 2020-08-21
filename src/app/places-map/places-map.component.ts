@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../security/auth.service';
 import { DataTransferService } from '../api/services/data-transfer.service';
+import { DataTranferMapService } from "../api/services/data-tranfer-map.service";
 import { Router } from '@angular/router';
 import { ListTripsResponse } from '../models/list-trips-response';
 import { CreatePlaceRequest } from '../models/create-place-request';
 import { TemplateParseError } from '@angular/compiler';
+import { SlicePipe } from '@angular/common';
 
 @Component({
   selector: 'app-places-map',
@@ -12,12 +14,13 @@ import { TemplateParseError } from '@angular/compiler';
   styleUrls: ['./places-map.component.scss']
 })
 export class PlacesMapComponent implements OnInit {
+  message: string;
   dataTransfer: ListTripsResponse;
   createPlaceRequest: CreatePlaceRequest;
   createPlaceRequestError: boolean;
   opened: boolean;
 
-  constructor(private auth: AuthService, private router: Router, private dataTransferService: DataTransferService) {
+  constructor(private auth: AuthService, private router: Router, private dataTransferService: DataTransferService, private data: DataTranferMapService) {
     this.createPlaceRequest = new CreatePlaceRequest();
     this.createPlaceRequestError = false;
     this.dataTransfer = this.dataTransferService.getData();
@@ -28,6 +31,8 @@ export class PlacesMapComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.dataTransfer);
     console.log(this.createPlaceRequest);
+    this.data.currentMessage.subscribe(message => this.message = message);
+    console.log(this.message);
 
     // console.log(this.createPlaceRequest.name);
   }
