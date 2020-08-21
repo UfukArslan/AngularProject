@@ -6,13 +6,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class DataTranferMapService {
 
-  private messageSource = new BehaviorSubject<string>('coucou');
+  private messageSource: BehaviorSubject<any> = new BehaviorSubject<string>('coucou');
   currentMessage = this.messageSource.asObservable();
 
   constructor() { }
 
-  changeMessage(message: string) {
-
-    this.messageSource.next(message)
+  changeMessage(e: any) {
+    this.messageSource.next(e);
+    
   }
 }

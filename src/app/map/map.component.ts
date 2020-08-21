@@ -31,9 +31,10 @@ export class MapComponent implements OnInit {
 
   }
 
-  newMessage () {
-    this.data.changeMessage("Bienvenue dans l'univers des bisounours");
-  }
+  // BehaviorSubject-------------------------------------------------------------
+  // newMessage () {
+  //   this.data.changeMessage("Bienvenue dans l'univers des bisounours");
+  // }
 
   
   // -------------------------------------------------------------
@@ -99,8 +100,13 @@ export class MapComponent implements OnInit {
   
   public onDrawCreated(e: any) {
     this.drawnItems.addLayer((e as L.DrawEvents.Created).layer);
+    this.data.changeMessage(e);
     // console.log(e.layer._latlng);
-    console.log ((this.drawnItems));
+    // console.log ((e.layerType));
+    console.log ((e.layerType));
+    
+
+    
   }
 
   json = JSON.stringify(this.drawnItems);

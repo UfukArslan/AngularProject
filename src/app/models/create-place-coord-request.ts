@@ -1,7 +1,11 @@
 export class Coord {
 
     type: String;
-    coordinates: number[];	
+    coordinates: string;	
     
+    constructor (){
+        this.type = "Point";
+    }
+
 
 }

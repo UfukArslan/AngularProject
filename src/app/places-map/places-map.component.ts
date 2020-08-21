@@ -5,8 +5,9 @@ import { DataTranferMapService } from "../api/services/data-tranfer-map.service"
 import { Router } from '@angular/router';
 import { ListTripsResponse } from '../models/list-trips-response';
 import { CreatePlaceRequest } from '../models/create-place-request';
-import { TemplateParseError } from '@angular/compiler';
-import { SlicePipe } from '@angular/common';
+
+
+
 
 @Component({
   selector: 'app-places-map',
@@ -14,14 +15,17 @@ import { SlicePipe } from '@angular/common';
   styleUrls: ['./places-map.component.scss']
 })
 export class PlacesMapComponent implements OnInit {
-  message: string;
+  e: any;
+  
   dataTransfer: ListTripsResponse;
   createPlaceRequest: CreatePlaceRequest;
   createPlaceRequestError: boolean;
   opened: boolean;
+ 
 
   constructor(private auth: AuthService, private router: Router, private dataTransferService: DataTransferService, private data: DataTranferMapService) {
     this.createPlaceRequest = new CreatePlaceRequest();
+  
     this.createPlaceRequestError = false;
     this.dataTransfer = this.dataTransferService.getData();
     this.createPlaceRequest.tripId = this.dataTransfer.id;  
@@ -29,10 +33,11 @@ export class PlacesMapComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.dataTransfer);
-    console.log(this.createPlaceRequest);
-    this.data.currentMessage.subscribe(message => this.message = message);
-    console.log(this.message);
+    // console.log(this.dataTransfer);
+    // console.log(this.createPlaceRequest);
+    this.data.currentMessage.subscribe(e => this.e = e);
+    // this.createPlaceRequest.location = "helloWorld";
+    // console.log(this.e);
 
     // console.log(this.createPlaceRequest.name);
   }
@@ -43,7 +48,10 @@ export class PlacesMapComponent implements OnInit {
   }
 
  console(){
-   console.log(this.createPlaceRequest);
+  // this.createPlaceRequest.location = this.e.layerType;
+  //  console.log(this.e);
+  console.log(this.createPlaceRequest.location);
+  //  console.log(this.createPlaceRequest.location.type);
  
   
  }
