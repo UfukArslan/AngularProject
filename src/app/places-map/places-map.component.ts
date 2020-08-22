@@ -50,8 +50,8 @@ export class PlacesMapComponent implements OnInit {
  console(){
   // this.createPlaceRequest.location = this.e.layerType;
   //  console.log(this.e);
-  console.log(this.createPlaceRequest.location);
-  //  console.log(this.createPlaceRequest.location.type);
+  console.log(this.createPlaceRequest.location.type);
+  
  
   
  }

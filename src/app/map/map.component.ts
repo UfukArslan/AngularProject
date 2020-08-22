@@ -103,7 +103,7 @@ export class MapComponent implements OnInit {
     this.data.changeMessage(e);
     // console.log(e.layer._latlng);
     // console.log ((e.layerType));
-    console.log ((e.layerType));
+    // console.log ((e.layerType));
     
 
     
