@@ -63,8 +63,8 @@ export class MapComponent implements OnInit {
     });
   }
   
-  Toolbar
-  // -------------------------------------------------------------
+  // Toolbar-----------------------------------------------------
+  
   
   drawnItems: L.FeatureGroup = L.featureGroup();
 
@@ -109,7 +109,7 @@ export class MapComponent implements OnInit {
     
   }
 
-  json = JSON.stringify(this.drawnItems);
+  // json = JSON.stringify(this.drawnItems);s
 
   // public onDrawCreated(e: any) {
   //   this.drawnItems.addLayer((e as L.DrawEvents.Created).layer);

@@ -5,6 +5,7 @@ import { DataTranferMapService } from "../api/services/data-tranfer-map.service"
 import { Router } from '@angular/router';
 import { ListTripsResponse } from '../models/list-trips-response';
 import { CreatePlaceRequest } from '../models/create-place-request';
+import { Observable } from 'rxjs';
 
 
 
@@ -16,6 +17,7 @@ import { CreatePlaceRequest } from '../models/create-place-request';
 })
 export class PlacesMapComponent implements OnInit {
   e: any;
+
   
   dataTransfer: ListTripsResponse;
   createPlaceRequest: CreatePlaceRequest;
@@ -47,10 +49,47 @@ export class PlacesMapComponent implements OnInit {
     this.router.navigateByUrl("/login");
   }
 
+  // const monObservable = new Observable ((observer) => {
+  //   let listOFFriends = ["Damine", "Thomas", "Jean-Claude Dusse"];
+  //   listOFFriends.forEach((friends: string) => {
+  //     observer.next(friends);
+  //   })
+  //   observer.complete();
+    
+  // });
+
+  // monObservable.subscribe({
+  //   next(x) { console.log('got value ' + x); },
+   
+  // });
+
+  observable = new Observable<any>(subscriber => {
+    subscriber.next(this.e);
+    // subscriber.next(3);
+    // subscriber.next(3);
+  });
+
+  
+
+  
+  
+
+
+
  console(){
   // this.createPlaceRequest.location = this.e.layerType;
   //  console.log(this.e);
-  console.log(this.createPlaceRequest.location.type);
+  // console.log(this.createPlaceRequest.location.type);
+
+
+  this.observable.subscribe({
+    next(x) { console.log('got value ' + x); },
+    error(err) { console.error('something wrong occurred: ' + err); },
+    complete() { console.log('done'); }
+  });
+
+
+  
   
  
   
