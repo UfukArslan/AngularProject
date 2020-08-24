@@ -23,7 +23,7 @@ export class PlacesMapComponent implements OnInit {
   createPlaceRequest: CreatePlaceRequest;
   createPlaceRequestError: boolean;
   opened: boolean;
-  // variables Form ---------------------
+  // variables FormStepper ---------------------
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -71,11 +71,11 @@ export class PlacesMapComponent implements OnInit {
 
  console(){
  
-   console.log(this.e);
-   console.log(this.e);
+  //  console.log(this.e);
+  //  console.log(this.e);
 
-   this.createPlaceRequest.location.coordinates = this.e;
-   console.log(this.createPlaceRequest);
+  //  this.createPlaceRequest.location.coordinates = this.e;
+   console.log(this.createPlaceRequest.name);
   }
 
 

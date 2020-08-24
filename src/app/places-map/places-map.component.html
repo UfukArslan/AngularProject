@@ -28,6 +28,7 @@
               <mat-list-option>Delete account</mat-list-option>
               <mat-list-option>Update account</mat-list-option>
               <button mat-list-item (click)="logout()">Logout</button>
+              <p>{{createPlaceRequest.name}}</p>
 
             </mat-action-list>
           </mat-selection-list>
@@ -39,31 +40,59 @@
           
           
           <mat-grid-list cols="4" rowHeight="1:1" gutterSize="50px">
-          
-          
-          <!-- Grid 1 -->  
-          <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-            {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-          </button>
+            
+            
+            <!-- Grid 1 -->  
+            <mat-grid-tile rowspan="3"> 
+              <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+                {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+              </button> -->
           <mat-vertical-stepper [linear]="isLinear" #stepper>
+            
+            <!-- Name -->
             <mat-step [stepControl]="firstFormGroup">
               <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>Fill out your name</ng-template>
+                <ng-template matStepLabel>Fill out your name place</ng-template>
                 <mat-form-field>
-                  <mat-label>Name</mat-label>
-                  <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                  <mat-label>Name place</mat-label>
+                  <input matInput placeholder="ex: Place de la gare" formControlName="firstCtrl" required>
                 </mat-form-field>
                 <div>
                   <button mat-button matStepperNext>Next</button>
                 </div>
               </form>
             </mat-step>
+            
+            <!-- Description -->
             <mat-step [stepControl]="secondFormGroup">
               <form [formGroup]="secondFormGroup">
-                <ng-template matStepLabel>Fill out your address</ng-template>
+                <ng-template matStepLabel>Fill out your description</ng-template>
+                <mat-form-field>
+                  <mat-label>Description</mat-label>
+                  <input 
+                    matInput formControlName="secondCtrl" 
+                    placeholder="Ex. 1 Main St, New York, NY"
+                    type="text"
+                    name="description"
+                    id="name"
+                    required
+                    [(ngModel)]="createPlaceRequest.description"
+                    >
+                </mat-form-field>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+
+            <!-- Coordinates -->
+            <mat-step [stepControl]="secondFormGroup">
+              <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Add coordinates since the map</ng-template>
                 <mat-form-field>
                   <mat-label>Address</mat-label>
-                  <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                  <input matInput formControlName="secondCtrl" placeholder=""
                          required>
                 </mat-form-field>
                 <div>
@@ -72,6 +101,7 @@
                 </div>
               </form>
             </mat-step>
+            
             <mat-step>
               <ng-template matStepLabel>Done</ng-template>
               <p>You are now done.</p>
@@ -81,6 +111,7 @@
               </div>
             </mat-step>
           </mat-vertical-stepper>
+          <button mat-flat-button color="primary" (click)="console()" type="submit" cdkFocusInitial>Console</button>
 
           
           <!-- <mat-grid-tile rowspan="3"> 
@@ -143,9 +174,9 @@
                 <button mat-flat-button color="primary" (click)="postPlace()" type="submit" cdkFocusInitial>Post</button>
               </mat-card-actions>
               
-            </mat-card>
+            </mat-card>-->
           
-          </mat-grid-tile> -->
+          </mat-grid-tile> 
         
           
           <!-- Grid 2 -->  
