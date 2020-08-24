@@ -100,7 +100,7 @@ export class MapComponent implements OnInit {
   
   public onDrawCreated(e: any) {
     this.drawnItems.addLayer((e as L.DrawEvents.Created).layer);
-    this.data.changeMessage(e);
+    this.data.changeMessage([e.layer._latlng.lat, e.layer._latlng.lng] );
     // console.log(e.layer._latlng);
     // console.log ((e.layerType));
     // console.log ((e.layerType));
