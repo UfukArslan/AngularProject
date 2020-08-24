@@ -5,8 +5,8 @@ import { DataTranferMapService } from "../api/services/data-tranfer-map.service"
 import { Router } from '@angular/router';
 import { ListTripsResponse } from '../models/list-trips-response';
 import { CreatePlaceRequest } from '../models/create-place-request';
-import { Observable } from 'rxjs';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { CreatePlaceService } from '../api/services/create-place.service';
+
 
 
 
@@ -26,7 +26,7 @@ export class PlacesMapComponent implements OnInit {
   opened: boolean;
  
 
-  constructor(private auth: AuthService, private router: Router, private dataTransferService: DataTransferService, private data: DataTranferMapService) {
+  constructor(private auth: AuthService, private router: Router, private dataTransferService: DataTransferService, private data: DataTranferMapService, private createP: CreatePlaceService) {
     this.createPlaceRequest = new CreatePlaceRequest();
   
     this.createPlaceRequestError = false;
@@ -58,17 +58,19 @@ export class PlacesMapComponent implements OnInit {
 
    this.createPlaceRequest.location.coordinates = this.e;
    console.log(this.createPlaceRequest);
-   
- 
+  }
 
 
- 
+  postPlace(){
 
+    this.createP.createdPlace(this.createPlaceRequest).subscribe({
+      next: () => this.router.navigateByUrl("/trips"),
+      error: (err) => {
+        this.createPlaceRequestError = true;
+        console.warn (`Anthentication failed: ${err.message}`);
+      },
+    })}
 
   
-  
- 
-  
- }
 
 }
