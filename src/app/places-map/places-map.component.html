@@ -42,8 +42,48 @@
           
           
           <!-- Grid 1 -->  
+          <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+            {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+          </button>
+          <mat-vertical-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+              <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Fill out your name</ng-template>
+                <mat-form-field>
+                  <mat-label>Name</mat-label>
+                  <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                </mat-form-field>
+                <div>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+              <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Fill out your address</ng-template>
+                <mat-form-field>
+                  <mat-label>Address</mat-label>
+                  <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                         required>
+                </mat-form-field>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+              <p>You are now done.</p>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+              </div>
+            </mat-step>
+          </mat-vertical-stepper>
+
           
-          <mat-grid-tile rowspan="3"> 
+          <!-- <mat-grid-tile rowspan="3"> 
             <mat-card class='example-card'>
 
               <mat-card-header>
@@ -51,10 +91,10 @@
                 <mat-card-title>{{dataTransfer.title}}</mat-card-title>
                 <mat-card-subtitle>{{dataTransfer.description}}</mat-card-subtitle>
                 <mat-card-subtitle>{{e}}</mat-card-subtitle>
-              </mat-card-header>
+              </mat-card-header> -->
 
               <!-- Name -->
-              <mat-card-content>
+              <!-- <mat-card-content>
                 <mat-form-field appearance="outline">
                   <mat-label>Name place</mat-label>
                   <input 
@@ -73,12 +113,12 @@
                     Name is <strong>required</strong>
                   </mat-error>
                 </mat-form-field>
-              </mat-card-content>
+              </mat-card-content> -->
            
               
                 
               <!-- Description -->
-              <mat-card-content>
+              <!-- <mat-card-content>
                 <mat-form-field appearance="outline">
                   <mat-label>Descripition</mat-label>
                   <input 
@@ -105,7 +145,7 @@
               
             </mat-card>
           
-          </mat-grid-tile>
+          </mat-grid-tile> -->
         
           
           <!-- Grid 2 -->  

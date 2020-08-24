@@ -12,8 +12,8 @@ import { MatRadioModule}  from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
-
-
+import { MatStepperModule } from '@angular/material/stepper';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -31,7 +31,10 @@ const MaterialComponents =[
   MatRadioModule,
   MatCheckboxModule,
   MatListModule,
-  MatDialogModule
+  MatDialogModule,
+  MatStepperModule,
+  ReactiveFormsModule,
+  FormsModule
 ];
 
 @NgModule({

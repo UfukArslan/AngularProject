@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ListTripsResponse } from '../models/list-trips-response';
 import { CreatePlaceRequest } from '../models/create-place-request';
 import { CreatePlaceService } from '../api/services/create-place.service';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 
@@ -18,17 +19,26 @@ import { CreatePlaceService } from '../api/services/create-place.service';
 })
 export class PlacesMapComponent implements OnInit {
   e: any;
-
-  
   dataTransfer: ListTripsResponse;
   createPlaceRequest: CreatePlaceRequest;
   createPlaceRequestError: boolean;
   opened: boolean;
+  // variables Form ---------------------
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
  
 
-  constructor(private auth: AuthService, private router: Router, private dataTransferService: DataTransferService, private data: DataTranferMapService, private createP: CreatePlaceService) {
+  constructor(
+    private auth: AuthService, 
+    private router: Router, 
+    private dataTransferService: DataTransferService, 
+    private data: DataTranferMapService, 
+    private createP: CreatePlaceService,
+    private _formBuilder: FormBuilder
+    ){
     this.createPlaceRequest = new CreatePlaceRequest();
-  
     this.createPlaceRequestError = false;
     this.dataTransfer = this.dataTransferService.getData();
     this.createPlaceRequest.tripId = this.dataTransfer.id;  
@@ -43,6 +53,14 @@ export class PlacesMapComponent implements OnInit {
     // console.log(this.e);
 
     // console.log(this.createPlaceRequest.name);
+
+    // Form ---------------------
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
   }
 
   logout(): void {
