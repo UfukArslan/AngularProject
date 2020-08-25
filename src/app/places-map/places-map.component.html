@@ -133,8 +133,15 @@
             <app-map></app-map>
           
           </mat-grid-tile>
+          <mat-grid-tile *ngFor="let listPlace of listPlaces">
+            <app-template-card-place [listPlaces]="listPlace"></app-template-card-place>
+          </mat-grid-tile>
         </mat-grid-list>
+        
       </mat-sidenav-content>
       
     </mat-sidenav-container>
+  </div>
+  
+
     

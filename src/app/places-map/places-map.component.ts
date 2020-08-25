@@ -8,6 +8,7 @@ import { CreatePlaceRequest } from '../models/create-place-request';
 import { CreatePlaceService } from '../api/services/create-place.service';
 import { ListPlacesService } from 'src/app/api/services/list-places.service';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { ListPlacesResponse } from '../models/list-places-response';
 
 
 
@@ -23,6 +24,7 @@ export class PlacesMapComponent implements OnInit {
   dataTransfer: ListTripsResponse;
   createPlaceRequest: CreatePlaceRequest;
   createPlaceRequestError: boolean;
+  listPlaces: ListPlacesResponse[];
   opened: boolean;
   // variables FormStepper ---------------------
   isLinear = false;
@@ -51,8 +53,8 @@ export class PlacesMapComponent implements OnInit {
   ngOnInit(): void {
 
     this.listPlacesService.loadListPlaces(this.createPlaceRequest.tripId).subscribe({
+      next: (listPlaces) => this.listPlaces = listPlaces,
       // next: (listTrips) => console.log(listTrips),
-      next: (listTrips) => console.log(listTrips),
     })
     console.log(this.createPlaceRequest.tripId);
     // Between placeComponent and template cardComponent

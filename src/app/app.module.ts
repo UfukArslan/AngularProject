@@ -16,6 +16,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { TemplateCardTripComponent } from './template-card-trip/template-card-trip.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
+import { TemplateCardPlaceComponent } from './template-card-place/template-card-place.component';
+
 
 
 
@@ -27,7 +29,8 @@ import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
     CreateTripComponent, 
     MapComponent, 
     PlacesMapComponent, 
-    TemplateCardTripComponent
+    TemplateCardTripComponent, 
+    TemplateCardPlaceComponent
   ],
   imports: [
     BrowserModule, 
