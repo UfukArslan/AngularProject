@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ListTripsResponse } from '../models/list-trips-response';
 import { CreatePlaceRequest } from '../models/create-place-request';
 import { CreatePlaceService } from '../api/services/create-place.service';
+import { ListPlacesService } from 'src/app/api/services/list-places.service';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
@@ -37,18 +38,24 @@ export class PlacesMapComponent implements OnInit {
     private dataTransferService: DataTransferService, 
     private data: DataTranferMapService, 
     private createP: CreatePlaceService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private listPlacesService: ListPlacesService,
     ){
     this.createPlaceRequest = new CreatePlaceRequest();
     this.createPlaceRequestError = false;
-    this.dataTransfer = this.dataTransferService.getData();
+    this.dataTransfer = this.dataTransferService.getData(); 
     this.createPlaceRequest.tripId = this.dataTransfer.id;  
     this.createPlaceRequest.tripHref= this.dataTransfer.href;
    }
 
   ngOnInit(): void {
-    
-    // 
+
+    this.listPlacesService.loadListPlaces(this.createPlaceRequest.tripId).subscribe({
+      // next: (listTrips) => console.log(listTrips),
+      next: (listTrips) => console.log(listTrips),
+    })
+    console.log(this.createPlaceRequest.tripId);
+    // Between placeComponent and template cardComponent
     this.data.currentMessage.subscribe(e => this.e = e);
     
     // Form ---------------------
