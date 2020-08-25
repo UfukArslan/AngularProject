@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class DataTranferMapService {
 
-  private messageSource: BehaviorSubject<any> = new BehaviorSubject<string>('coucou');
+  private messageSource: BehaviorSubject<any> = new BehaviorSubject<string>('');
   currentMessage = this.messageSource.asObservable();
 
   constructor() { }

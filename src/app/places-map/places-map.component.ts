@@ -27,6 +27,7 @@ export class PlacesMapComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
 
  
 
@@ -46,20 +47,19 @@ export class PlacesMapComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    // console.log(this.dataTransfer);
-    // console.log(this.createPlaceRequest);
+    
+    // 
     this.data.currentMessage.subscribe(e => this.e = e);
-    // this.createPlaceRequest.location = "helloWorld";
-    // console.log(this.e);
-
-    // console.log(this.createPlaceRequest.name);
-
+    
     // Form ---------------------
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required]
     });
   }
 
@@ -69,18 +69,12 @@ export class PlacesMapComponent implements OnInit {
   }
 
 
- console(){
- 
-  //  console.log(this.e);
-  //  console.log(this.e);
-
-  //  this.createPlaceRequest.location.coordinates = this.e;
-   console.log(this.createPlaceRequest.name);
-  }
+ addCoord(){
+  this.createPlaceRequest.location.coordinates = this.e;
+}
 
 
-  postPlace(){
-
+postPlace(){
     this.createP.createdPlace(this.createPlaceRequest).subscribe({
       next: () => this.router.navigateByUrl("/trips"),
       error: (err) => {

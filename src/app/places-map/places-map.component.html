@@ -79,7 +79,7 @@
                       <mat-label>Description</mat-label>
                       <input 
                       matInput formControlName="secondCtrl" 
-                      placeholder="Ex. 1 Main St, New York, NY"
+                      placeholder="Ex. Belle ambiance"
                       type="text"
                       name="description"
                       id="name"
@@ -95,28 +95,33 @@
                 </mat-step>
                 
                 <!-- Coordinates -->
-                <mat-step [stepControl]="secondFormGroup">
-                  <form [formGroup]="secondFormGroup">
+                <mat-step [stepControl]="thirdFormGroup">
+                  <form [formGroup]="thirdFormGroup">
                     <ng-template matStepLabel>Add coordinates since the map</ng-template>
                     <mat-form-field>
-                      <mat-label>Address</mat-label>
-                      <input matInput formControlName="secondCtrl" placeholder=""
-                      required>
+                      <mat-label>Click on map</mat-label>
+                      <input 
+                        matInput 
+                        formControlName="thirdCtrl" 
+                        placeholder="46.000 , 0.015"
+                        [(ngModel)]="this.e"
+                        required
+                        >
                     </mat-form-field>
                     <div>
-                      <button mat-button matStepperPrevious>Back</button>
-                      <button mat-button matStepperNext>Next</button>
+                      <button mat-button matStepperPrevious >Back</button>
+                      <button mat-button matStepperNext (click)="addCoord()">Next</button>
                     </div>
                   </form>
                 </mat-step>
                 
                 <mat-step>
                   <ng-template matStepLabel>Done</ng-template>
-                  <p>You are now done.</p>
+                  <!-- <p>You are now done.</p> -->
                   <div>
                     <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button (click)="stepper.reset()">Reset</button>
-                    <button mat-flat-button color="primary" (click)="console()" type="submit" cdkFocusInitial>Console</button>
+                    <button mat-flat-button color="primary" (click)="postPlace()" type="submit">Save</button>
+                    <!-- <button mat-flat-button color="primary" (click)="console()" type="submit" cdkFocusInitial>Console</button> -->
                   </div>
                 </mat-step>
               </mat-vertical-stepper>
