@@ -29,12 +29,12 @@
               <mat-list-option>Update account</mat-list-option>
               <button mat-list-item (click)="logout()">Logout</button>
               <p>{{createPlaceRequest.name}}</p>
-
+              
             </mat-action-list>
           </mat-selection-list>
-         <app-logout-button></app-logout-button>
+          <app-logout-button></app-logout-button>
         </mat-sidenav>  
-    
+        
         <!-- Main -->
         <mat-sidenav-content>
           
@@ -47,73 +47,81 @@
               <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
                 {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
               </button> -->
-          <mat-vertical-stepper [linear]="isLinear" #stepper>
-            
-            <!-- Name -->
-            <mat-step [stepControl]="firstFormGroup">
-              <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>Fill out your name place</ng-template>
-                <mat-form-field>
-                  <mat-label>Name place</mat-label>
-                  <input matInput placeholder="ex: Place de la gare" formControlName="firstCtrl" required>
-                </mat-form-field>
-                <div>
-                  <button mat-button matStepperNext>Next</button>
-                </div>
-              </form>
-            </mat-step>
-            
-            <!-- Description -->
-            <mat-step [stepControl]="secondFormGroup">
-              <form [formGroup]="secondFormGroup">
-                <ng-template matStepLabel>Fill out your description</ng-template>
-                <mat-form-field>
-                  <mat-label>Description</mat-label>
-                  <input 
-                    matInput formControlName="secondCtrl" 
-                    placeholder="Ex. 1 Main St, New York, NY"
-                    type="text"
-                    name="description"
-                    id="name"
-                    required
-                    [(ngModel)]="createPlaceRequest.description"
-                    >
-                </mat-form-field>
-                <div>
-                  <button mat-button matStepperPrevious>Back</button>
-                  <button mat-button matStepperNext>Next</button>
-                </div>
-              </form>
-            </mat-step>
-
-            <!-- Coordinates -->
-            <mat-step [stepControl]="secondFormGroup">
-              <form [formGroup]="secondFormGroup">
-                <ng-template matStepLabel>Add coordinates since the map</ng-template>
-                <mat-form-field>
-                  <mat-label>Address</mat-label>
-                  <input matInput formControlName="secondCtrl" placeholder=""
-                         required>
-                </mat-form-field>
-                <div>
-                  <button mat-button matStepperPrevious>Back</button>
-                  <button mat-button matStepperNext>Next</button>
-                </div>
-              </form>
-            </mat-step>
-            
-            <mat-step>
-              <ng-template matStepLabel>Done</ng-template>
-              <p>You are now done.</p>
-              <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
-              </div>
-            </mat-step>
-          </mat-vertical-stepper>
-          <button mat-flat-button color="primary" (click)="console()" type="submit" cdkFocusInitial>Console</button>
-
-          
+              <mat-vertical-stepper [linear]="isLinear" #stepper>
+                
+                <!-- Name -->
+                <mat-step [stepControl]="firstFormGroup">
+                  <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Fill out your name place</ng-template>
+                    <mat-form-field>
+                      <mat-label>Name place</mat-label>
+                      <input 
+                      matInput 
+                      placeholder="ex: Place de la gare" 
+                      type="text"
+                      name="name"
+                      formControlName="firstCtrl" 
+                      [(ngModel)]="createPlaceRequest.name"
+                      required
+                      >
+                    </mat-form-field>
+                    <div>
+                      <button mat-button matStepperNext>Next</button>
+                    </div>
+                  </form>
+                </mat-step>
+                
+                <!-- Description -->
+                <mat-step [stepControl]="secondFormGroup">
+                  <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Fill out your description</ng-template>
+                    <mat-form-field>
+                      <mat-label>Description</mat-label>
+                      <input 
+                      matInput formControlName="secondCtrl" 
+                      placeholder="Ex. 1 Main St, New York, NY"
+                      type="text"
+                      name="description"
+                      id="name"
+                      required
+                      [(ngModel)]="createPlaceRequest.description"
+                      >
+                    </mat-form-field>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button matStepperNext>Next</button>
+                    </div>
+                  </form>
+                </mat-step>
+                
+                <!-- Coordinates -->
+                <mat-step [stepControl]="secondFormGroup">
+                  <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Add coordinates since the map</ng-template>
+                    <mat-form-field>
+                      <mat-label>Address</mat-label>
+                      <input matInput formControlName="secondCtrl" placeholder=""
+                      required>
+                    </mat-form-field>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button matStepperNext>Next</button>
+                    </div>
+                  </form>
+                </mat-step>
+                
+                <mat-step>
+                  <ng-template matStepLabel>Done</ng-template>
+                  <p>You are now done.</p>
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                    <button mat-flat-button color="primary" (click)="console()" type="submit" cdkFocusInitial>Console</button>
+                  </div>
+                </mat-step>
+              </mat-vertical-stepper>
+              
+              
           <!-- <mat-grid-tile rowspan="3"> 
             <mat-card class='example-card'>
 
