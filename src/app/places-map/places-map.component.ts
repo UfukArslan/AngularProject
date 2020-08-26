@@ -21,6 +21,7 @@ import { ListPlacesResponse } from '../models/list-places-response';
 })
 export class PlacesMapComponent implements OnInit {
   e: any;
+  test: string;
   dataTransfer: ListTripsResponse;
   createPlaceRequest: CreatePlaceRequest;
   createPlaceRequestError: boolean;
@@ -48,19 +49,19 @@ export class PlacesMapComponent implements OnInit {
     this.dataTransfer = this.dataTransferService.getData(); 
     this.createPlaceRequest.tripId = this.dataTransfer.id;  
     this.createPlaceRequest.tripHref= this.dataTransfer.href;
+    this.test= "test";
    }
 
   ngOnInit(): void {
-
+    console.log(this.test);
     this.listPlacesService.loadListPlaces(this.createPlaceRequest.tripId).subscribe({
       next: (listPlaces) => this.listPlaces = listPlaces,
       // next: (listTrips) => console.log(listTrips),
-    })
+    });
     console.log(this.createPlaceRequest.tripId);
-    // Between placeComponent and template cardComponent
+    // Between placeComponent and template cardComponent------------------------------
     this.data.currentMessage.subscribe(e => this.e = e);
-    
-    // Form ---------------------
+    // Form ---------------------------------------------------------------------------
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });

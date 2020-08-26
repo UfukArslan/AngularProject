@@ -1,10 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { defaultIcon } from "./default-marker";
 import { DataTranferMapService } from "../api/services/data-tranfer-map.service";
 import * as L from "leaflet";
 import { map } from 'rxjs/operators';
+import { ListPlacesResponse } from '../models/list-places-response';
 
 //import { Map } from "leaflet";
+
+
 
 
 @Component({
@@ -13,6 +16,8 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+  @Input()  test: string;
+
   message: string;
 
   name = 'Angular';
@@ -24,11 +29,19 @@ export class MapComponent implements OnInit {
   
   
 
-  constructor(private data: DataTranferMapService) {}
+  constructor(private data: DataTranferMapService) {
+
+    this.mapMarkers = [
+      L.marker([ 46.778186, 6.641524 ], { icon: defaultIcon }).bindTooltip('Hello'),
+      L.marker([ 46.780796, 6.647395 ], { icon: defaultIcon }),
+      L.marker([ 46.784992, 6.652267 ], { icon: defaultIcon }),
+      L.marker([ 46.786015149092634, 6.650311946868897  ], { icon: defaultIcon })
+    ];
+  }
 
   ngOnInit () {
     this.data.currentMessage.subscribe(message => this.message = message);
-
+    console.log("map" ,this.test);
   }
 
   // BehaviorSubject-------------------------------------------------------------
@@ -150,3 +163,56 @@ export class MapComponent implements OnInit {
 // map.on('click', function () {
 //   map.removeLayer(marker);
 // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ---++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// constructor() {
+    
+//   this.mapMarkers = [
+//     L.marker([ 46.778186, 6.641524 ], { icon: defaultIcon }).bindTooltip('Hello'),
+//     L.marker([ 46.780796, 6.647395 ], { icon: defaultIcon }),
+//     L.marker([ 46.784992, 6.652267 ], { icon: defaultIcon }),
+//     L.marker([ 46.786015149092634, 6.650311946868897  ], { icon: defaultIcon })
+//   ];
+// }
+
+
+// options = {
+// layers: [
+//   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+// ],
+// zoom: 13,
+// center: L.latLng(46.778186, 6.641524)
+// };
+
+// onMapReady(map: L.Map): void {
+//   this.map = map;
+//   this.map.on('click', function(coord: L.LeafletMouseEvent){
+//     var coord = coord;
+//     var lat= coord.latlng.lat;
+//     var lng= coord.latlng.lng;
+//     L.marker([ lat, lng  ], { icon: defaultIcon }).addTo(map);
+    
+//   }); 
+  
+//   setTimeout(() => {
+//     map.invalidateSize();
+//   });
+// }
