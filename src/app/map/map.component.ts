@@ -4,6 +4,11 @@ import { DataTransferMarkerCoordService } from "../api/services/data-transfer-ma
 import * as L from "leaflet";
 import { map } from 'rxjs/operators';
 import { ListPlacesResponse } from '../models/list-places-response';
+import { ListTripsResponse } from '../models/list-trips-response';
+import { DataTransferTripIdMarkerService } from '../api/services/data-transfer-tripId-marker.service';
+
+import { CreatePlaceRequest } from '../models/create-place-request';
+import { ListPlacesMarkerService } from '../api/services/list-places-marker.service';
 
 //import { Map } from "leaflet";
 
@@ -17,18 +22,22 @@ import { ListPlacesResponse } from '../models/list-places-response';
 })
 export class MapComponent implements OnInit {
 
-
+ 
   name = 'Angular';
   map: L.Map;
-  
   mapMarkers: L.Marker[] = [];
-  
   reservationArr : Array<object> = [];
-  
+  dataTransferTripIdMarker: ListTripsResponse;
+  // createPlaceRequest: CreatePlaceRequest;
+  z: CreatePlaceRequest[];
   
 
-  constructor(private dataTransferMarkerCoord: DataTransferMarkerCoordService) {
-
+  constructor(
+    private dataTransferMarkerCoord: DataTransferMarkerCoordService,  
+    private dataTransferTripIdMarkerService: DataTransferTripIdMarkerService, 
+    private listPlacesMarkerService: ListPlacesMarkerService,
+    ){
+    this.dataTransferTripIdMarker = this.dataTransferTripIdMarkerService.getData();
     this.mapMarkers = [
       L.marker([ 46.778186, 6.641524 ], { icon: defaultIcon }).bindTooltip('Hello'),
       L.marker([ 46.780796, 6.647395 ], { icon: defaultIcon }),
@@ -38,12 +47,19 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit () {
+    this.listPlacesMarkerService.loadListPlaces(this.dataTransferTripIdMarker.id).subscribe({
+      next: (listPlaces) => {this.z = listPlaces; console.log("map", this.z[3].location.coordinates);}
+      // next: (listTrips) => console.log("map", this.createPlaceRequest.tripId),
+    });
+    
   }
 
-  // BehaviorSubject-------------------------------------------------------------
-  // newMessage () {
-  //   this.data.changeMessage("Bienvenue dans l'univers des bisounours");
-  // }
+  
+  newMessage () {
+    
+    console.log("OnMAP",this.z[1].location);
+    // console.log("OnMAP",this.z);
+  }
 
   
   // -------------------------------------------------------------

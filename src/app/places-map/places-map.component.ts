@@ -21,7 +21,6 @@ import { ListPlacesResponse } from '../models/list-places-response';
 })
 export class PlacesMapComponent implements OnInit {
   coord: any;
-  test: string;
   dataTransferTripId: ListTripsResponse;
   createPlaceRequest: CreatePlaceRequest;
   createPlaceRequestError: boolean;
@@ -46,12 +45,10 @@ export class PlacesMapComponent implements OnInit {
     ){
     this.createPlaceRequest = new CreatePlaceRequest();
     this.createPlaceRequestError = false;
-    // Get tripId for get request of the ListPlaces------------------------------
-    this.dataTransferTripId = this.dataTransferTripIdService.getData(); 
-    // Fill informations for postPlace()------------------------------
-    this.createPlaceRequest.tripId = this.dataTransferTripId.id;  
+    this.dataTransferTripId = this.dataTransferTripIdService.getData(); // Get tripId for get request of the ListPlaces------------------------------
+    this.createPlaceRequest.tripId = this.dataTransferTripId.id;  // Fill informations for postPlace()------------------------------
     this.createPlaceRequest.tripHref= this.dataTransferTripId.href;
-    this.test= "test";
+   
    }
 
   ngOnInit(): void {
@@ -68,7 +65,7 @@ export class PlacesMapComponent implements OnInit {
       thirdCtrl: ['', Validators.required]
     });
     this.listPlacesService.loadListPlaces(this.createPlaceRequest.tripId).subscribe({
-      next: (listPlaces) => {this.listPlaces = listPlaces; console.log("Subscirbe", this.listPlaces);}
+      next: (listPlaces) => {this.listPlaces = listPlaces; console.log("Subscribe", this.listPlaces);}
       // next: (listTrips) => console.log("Subscribe", listTrips),
     });
   }
