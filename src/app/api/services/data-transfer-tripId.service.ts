@@ -4,7 +4,7 @@ import { ListTripsResponse } from 'src/app/models/list-trips-response';
 @Injectable({
   providedIn: 'root'
 })
-export class DataTransferService {
+export class DataTransferTripIdService {
 
   data: ListTripsResponse;
   

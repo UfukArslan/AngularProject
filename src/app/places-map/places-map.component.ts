@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../security/auth.service';
-import { DataTransferService } from '../api/services/data-transfer.service';
-import { DataTranferMapService } from "../api/services/data-tranfer-map.service";
+import { DataTransferTripIdService } from '../api/services/data-transfer-tripId.service';
+import { DataTransferMarkerCoordService } from "../api/services/data-transfer-marker-coord.service";
 import { Router } from '@angular/router';
 import { ListTripsResponse } from '../models/list-trips-response';
 import { CreatePlaceRequest } from '../models/create-place-request';
@@ -20,9 +20,9 @@ import { ListPlacesResponse } from '../models/list-places-response';
   styleUrls: ['./places-map.component.scss']
 })
 export class PlacesMapComponent implements OnInit {
-  e: any;
+  coord: any;
   test: string;
-  dataTransfer: ListTripsResponse;
+  dataTransferTripId: ListTripsResponse;
   createPlaceRequest: CreatePlaceRequest;
   createPlaceRequestError: boolean;
   listPlaces: ListPlacesResponse[];
@@ -38,29 +38,25 @@ export class PlacesMapComponent implements OnInit {
   constructor(
     private auth: AuthService, 
     private router: Router, 
-    private dataTransferService: DataTransferService, 
-    private data: DataTranferMapService, 
+    private dataTransferTripIdService: DataTransferTripIdService, 
+    private dataTransferMarkerCoordService: DataTransferMarkerCoordService, 
     private createP: CreatePlaceService,
     private _formBuilder: FormBuilder,
     private listPlacesService: ListPlacesService,
     ){
     this.createPlaceRequest = new CreatePlaceRequest();
     this.createPlaceRequestError = false;
-    this.dataTransfer = this.dataTransferService.getData(); 
-    this.createPlaceRequest.tripId = this.dataTransfer.id;  
-    this.createPlaceRequest.tripHref= this.dataTransfer.href;
+    // Get tripId for get request of the ListPlaces------------------------------
+    this.dataTransferTripId = this.dataTransferTripIdService.getData(); 
+    // Fill informations for postPlace()------------------------------
+    this.createPlaceRequest.tripId = this.dataTransferTripId.id;  
+    this.createPlaceRequest.tripHref= this.dataTransferTripId.href;
     this.test= "test";
    }
 
   ngOnInit(): void {
-    console.log(this.test);
-    this.listPlacesService.loadListPlaces(this.createPlaceRequest.tripId).subscribe({
-      next: (listPlaces) => this.listPlaces = listPlaces,
-      // next: (listTrips) => console.log(listTrips),
-    });
-    console.log(this.createPlaceRequest.tripId);
     // Between placeComponent and template cardComponent------------------------------
-    this.data.currentMessage.subscribe(e => this.e = e);
+    this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
     // Form ---------------------------------------------------------------------------
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
@@ -71,7 +67,16 @@ export class PlacesMapComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
+    this.listPlacesService.loadListPlaces(this.createPlaceRequest.tripId).subscribe({
+      next: (listPlaces) => {this.listPlaces = listPlaces; console.log("Subscirbe", this.listPlaces);}
+      // next: (listTrips) => console.log("Subscribe", listTrips),
+    });
   }
+ 
+  console(){
+    console.log(this.dataTransferTripId)
+  }
+  
 
   logout(): void {
     this.auth.logout();
@@ -79,19 +84,19 @@ export class PlacesMapComponent implements OnInit {
   }
 
 
- addCoord(){
-  this.createPlaceRequest.location.coordinates = this.e;
-}
+  addCoord(){
+    this.createPlaceRequest.location.coordinates = this.coord;
+  }
 
 
-postPlace(){
+  postPlace(){
     this.createP.createdPlace(this.createPlaceRequest).subscribe({
       next: () => this.router.navigateByUrl("/trips"),
       error: (err) => {
         this.createPlaceRequestError = true;
         console.warn (`Anthentication failed: ${err.message}`);
       },
-    })}
+  })}
 
   
 

@@ -104,7 +104,7 @@
                         matInput 
                         formControlName="thirdCtrl" 
                         placeholder="46.000 , 0.015"
-                        [(ngModel)]="this.e"
+                        [(ngModel)]="this.coord"
                         required
                         >
                     </mat-form-field>
@@ -121,7 +121,7 @@
                   <div>
                     <button mat-button matStepperPrevious>Back</button>
                     <button mat-flat-button color="primary" (click)="postPlace()" type="submit">Save</button>
-                    <!-- <button mat-flat-button color="primary" (click)="console()" type="submit" cdkFocusInitial>Console</button> -->
+                    <button mat-flat-button color="primary" (click)="console()" type="submit" cdkFocusInitial>Console</button>
                   </div>
                 </mat-step>
               </mat-vertical-stepper>

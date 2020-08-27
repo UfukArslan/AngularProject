@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { defaultIcon } from "./default-marker";
-import { DataTranferMapService } from "../api/services/data-tranfer-map.service";
+import { DataTransferMarkerCoordService } from "../api/services/data-transfer-marker-coord.service";
 import * as L from "leaflet";
 import { map } from 'rxjs/operators';
 import { ListPlacesResponse } from '../models/list-places-response';
@@ -16,9 +16,7 @@ import { ListPlacesResponse } from '../models/list-places-response';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-  @Input()  test: string;
 
-  message: string;
 
   name = 'Angular';
   map: L.Map;
@@ -29,7 +27,7 @@ export class MapComponent implements OnInit {
   
   
 
-  constructor(private data: DataTranferMapService) {
+  constructor(private dataTransferMarkerCoord: DataTransferMarkerCoordService) {
 
     this.mapMarkers = [
       L.marker([ 46.778186, 6.641524 ], { icon: defaultIcon }).bindTooltip('Hello'),
@@ -40,8 +38,6 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit () {
-    this.data.currentMessage.subscribe(message => this.message = message);
-    console.log("map" ,this.test);
   }
 
   // BehaviorSubject-------------------------------------------------------------
@@ -111,9 +107,9 @@ export class MapComponent implements OnInit {
 
 
   
-  public onDrawCreated(e: any) {
-    this.drawnItems.addLayer((e as L.DrawEvents.Created).layer);
-    this.data.changeMessage([e.layer._latlng.lat, e.layer._latlng.lng] );
+  public onDrawCreated(coord: any) {
+    this.drawnItems.addLayer((coord as L.DrawEvents.Created).layer);
+    this.dataTransferMarkerCoord.changeMessage([coord.layer._latlng.lat, coord.layer._latlng.lng] );
     // console.log(e.layer._latlng);
     // console.log ((e.layerType));
     // console.log ((e.layerType));

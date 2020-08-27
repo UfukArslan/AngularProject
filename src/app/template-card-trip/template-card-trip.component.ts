@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ListTripsResponse } from '../models/list-trips-response';
 import { Router } from '@angular/router';
-import { DataTransferService } from '../api/services/data-transfer.service';
+import { DataTransferTripIdService } from '../api/services/data-transfer-tripId.service';
 
 @Component({
   selector: 'app-template-card-trip',
@@ -14,13 +14,13 @@ export class TemplateCardTripComponent implements OnInit {
   @Input() listTrips: ListTripsResponse;
 
 
-  constructor(private router: Router, private dataTransferService: DataTransferService) { }
+  constructor(private router: Router, private dataTransferTripIdService: DataTransferTripIdService) { }
 
   ngOnInit(): void {
   }
 
   createPlace(){
-  this.dataTransferService.setData(this.listTrips);
+  this.dataTransferTripIdService.setData(this.listTrips);
   this.router.navigateByUrl("/places");
   }
 

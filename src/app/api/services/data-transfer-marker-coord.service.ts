@@ -4,15 +4,15 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DataTranferMapService {
+export class DataTransferMarkerCoordService {
 
   private messageSource: BehaviorSubject<any> = new BehaviorSubject<string>('');
   currentMessage = this.messageSource.asObservable();
 
   constructor() { }
 
-  changeMessage(e: any) {
-    this.messageSource.next(e);
+  changeMessage(coord: any) {
+    this.messageSource.next(coord);
     
   }
 }
