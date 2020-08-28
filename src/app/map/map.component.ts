@@ -45,7 +45,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit () {
     this.listPlacesMarkerService.loadListPlaces(this.dataTransferTripIdMarker.id).subscribe({
-      next: (listPlaces) => {this.centerPlace = listPlaces[1], console.log(this.centerPlace), listPlaces.forEach( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon })))}
+      next: (listPlaces) => {this.centerPlace = listPlaces[1], console.log(this.centerPlace), listPlaces.forEach( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon }).bindTooltip('Hello')))}
       // next: (listPlaces) => listPlaces.forEach( listPlaces => console.log('loop', listPlaces))
       // next: (listTrips) => console.log("Methode Map",listTrips)
     });
@@ -70,8 +70,8 @@ export class MapComponent implements OnInit {
     layers: [
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
     ],
-    zoom: 13,
-    center: L.latLng(46.778186, 6.641524)
+    zoom: 7.6,
+    center: L.latLng(46.818932, 8.179)
   };
   
   
