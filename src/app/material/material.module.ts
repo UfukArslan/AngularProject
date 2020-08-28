@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -34,7 +35,8 @@ const MaterialComponents =[
   MatDialogModule,
   MatStepperModule,
   ReactiveFormsModule,
-  FormsModule
+  FormsModule,
+  MatMenuModule
 ];
 
 @NgModule({

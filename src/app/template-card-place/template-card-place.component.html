@@ -2,6 +2,22 @@
     <mat-card-header>
       <mat-card-title >{{ listPlaces.name }}</mat-card-title>    
       <mat-card-subtitle>{{ listPlaces.name}}</mat-card-subtitle>
+      <!-- MaterialMenu -->
+      <span class="example-spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Delete place{{listPlaces.id}}</span>
+        </button>
+      </mat-menu>
+      <!-- MaterialMenu -->
     </mat-card-header>
     
     <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
