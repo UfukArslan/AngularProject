@@ -15,7 +15,11 @@ export class TemplateCardTripComponent implements OnInit {
   @Input() listTrips: ListTripsResponse;
 
 
-  constructor(private router: Router, private dataTransferTripIdService: DataTransferTripIdService, private dataTransferTripIdMarkerService: DataTransferTripIdMarkerService) { }
+  constructor(
+    private router: Router, 
+    private dataTransferTripIdService: DataTransferTripIdService, 
+    private dataTransferTripIdMarkerService: DataTransferTripIdMarkerService
+    ){}
 
   ngOnInit(): void {
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ListPlacesResponse } from '../models/list-places-response';
-import { Router } from '@angular/router';
+import { DeletedPlaceService } from '../api/services/deleted-place.service';
 
 
 @Component({
@@ -12,10 +12,19 @@ export class TemplateCardPlaceComponent implements OnInit {
 
   @Input() listPlaces: ListPlacesResponse;
 
-  constructor(private router: Router) { }
+  constructor(
+    private deletedPlaceService: DeletedPlaceService
+    ) {}
 
   ngOnInit(): void {
   }
 
+  deletedPlace() {
+    this.deletedPlaceService.removePlace(this.listPlaces.id).subscribe({
+      next: (deletedPlace) => console.log("DeletedPlace")
+    });
+  }
+
+ 
 
 }
