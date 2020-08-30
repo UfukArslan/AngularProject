@@ -21,7 +21,7 @@ export class TemplateCardPlaceComponent implements OnInit {
 
   deletedPlace() {
     this.deletedPlaceService.removePlace(this.listPlaces.id).subscribe({
-      next: (deletedPlace) => alert("DeletedPlace")
+      next: () => alert("DeletedPlace")
     });
   }
 

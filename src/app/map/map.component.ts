@@ -29,7 +29,7 @@ export class MapComponent implements OnInit {
   reservationArr : Array<object> = [];
   dataTransferTripIdMarker: ListTripsResponse;
 
-  
+
   
 
   constructor(
@@ -39,7 +39,7 @@ export class MapComponent implements OnInit {
     ){
     this.dataTransferTripIdMarker = this.dataTransferTripIdMarkerService.getData();
     this.mapMarkers = [
-      // L.marker([ 46.778186, 6.641524 ], { icon: defaultIcon }).bindTooltip('Hello'),
+      L.marker([ 46.778186, 6.641524 ], { icon: defaultIcon }).bindTooltip('Hello'),
     ];
   }
 
@@ -49,6 +49,8 @@ export class MapComponent implements OnInit {
       // next: (listPlaces) => listPlaces.forEach( listPlaces => console.log('loop', listPlaces))
       // next: (listTrips) => console.log("Methode Map",listTrips)
     });
+
+  
     
     
   }

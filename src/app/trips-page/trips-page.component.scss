@@ -5,6 +5,13 @@
   .example-card {
     max-width: 400px;
   }
+  .create-title-card{
+  padding-left: 520px;
+  }
+  .create-card {
+   width: 100pc;
+   height: 10pc;
+  }
   
   .example-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
@@ -20,8 +27,8 @@
     width: 1200px;
   }
 
-  .create-card {
-    margin-left: 35%;
+  .create {
+    margin-left: 48%;
   }
 
 //Sidenav

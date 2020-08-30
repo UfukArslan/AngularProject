@@ -10,7 +10,7 @@ export class DeletedPlaceService {
 
   constructor(private http: HttpClient) {}
 
-  removePlace(id): Observable<any> {
+  removePlace(id: string): Observable<any> {
     return this.http.delete<any>(`${environment.apiUrl}/places/${id}`);
   }
 
