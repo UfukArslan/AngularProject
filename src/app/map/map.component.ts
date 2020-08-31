@@ -39,7 +39,7 @@ export class MapComponent implements OnInit {
     ){
     this.dataTransferTripIdMarker = this.dataTransferTripIdMarkerService.getData();
     this.mapMarkers = [
-      L.marker([ 46.778186, 6.641524 ], { icon: defaultIcon }).bindTooltip('Hello'),
+      // L.marker([ 46.778186, 6.641524 ], { icon: defaultIcon }).bindTooltip('Hello'),
     ];
   }
 
