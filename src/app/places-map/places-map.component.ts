@@ -48,8 +48,7 @@ export class PlacesMapComponent implements OnInit {
     this.dataTransferTripId = this.dataTransferTripIdService.getData(); // Get tripId for get request of the ListPlaces------------------------------
     this.createPlaceRequest.tripId = this.dataTransferTripId.id;  // Fill informations for postPlace()------------------------------
     this.createPlaceRequest.tripHref= this.dataTransferTripId.href;
-   
-   }
+    }
 
   ngOnInit(): void {
     // Between placeComponent and template cardComponent------------------------------

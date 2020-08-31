@@ -1,0 +1,48 @@
+mat-grid-tile {
+    background: lightblue;
+  }
+
+  .example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .main-container {
+    margin : auto;
+    width: 1200px;
+  }
+
+//Sidenav
+
+
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+.map-content{
+    margin-left: 25.65%;
+    height: 1000px;
+}
+
+//Stepper
+
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}

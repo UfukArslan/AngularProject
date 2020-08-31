@@ -6,6 +6,7 @@ import { AuthGuard } from './security/guards/auth.guard';
 import { RegisterComponent } from './security/register/register.component';
 import { MapComponent } from './map/map.component';
 import { PlacesMapComponent } from './places-map/places-map.component';
+import { EditPlaceComponent } from './edit-place/edit-place.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "map", component: MapComponent },
   { path: "places", component: PlacesMapComponent },
+  { path: "edit", component: EditPlaceComponent },
   // Prevent access to this page to unauthenticated users
    {path: "trips",component: TripsPageComponent,canActivate: [AuthGuard]},
   
