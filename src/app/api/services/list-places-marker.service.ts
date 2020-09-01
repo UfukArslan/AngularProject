@@ -15,7 +15,7 @@ export class ListPlacesMarkerService {
 
   constructor(private http: HttpClient) { }
 
-  loadListPlaces(id): Observable<any> {
+  loadListPlaces(id: String): Observable<any> {
     return this.http
       .get<CreatePlaceRequest[]>(`${environment.apiUrl}/places?trip=${id}`)
       .pipe(  

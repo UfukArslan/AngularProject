@@ -12,7 +12,7 @@ export class ListPlacesService {
 
   constructor(private http: HttpClient) { }
 
-  loadListPlaces(id): Observable<ListPlacesResponse[]> {
+  loadListPlaces(id: any): Observable<ListPlacesResponse[]> {
     return this.http.get<ListPlacesResponse[]>(`${environment.apiUrl}/places?trip=${id}`);
   }
 }

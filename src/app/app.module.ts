@@ -18,6 +18,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
 import { TemplateCardPlaceComponent } from './template-card-place/template-card-place.component';
 import { EditPlaceComponent } from './edit-place/edit-place.component';
+import { MapEditComponent } from './map-edit/map-edit.component';
 
 
 
@@ -32,7 +33,7 @@ import { EditPlaceComponent } from './edit-place/edit-place.component';
     PlacesMapComponent, 
     TemplateCardTripComponent, 
     TemplateCardPlaceComponent, 
-    EditPlaceComponent
+    EditPlaceComponent, MapEditComponent
   ],
   imports: [
     BrowserModule, 

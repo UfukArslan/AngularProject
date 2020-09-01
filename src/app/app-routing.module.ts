@@ -7,6 +7,7 @@ import { RegisterComponent } from './security/register/register.component';
 import { MapComponent } from './map/map.component';
 import { PlacesMapComponent } from './places-map/places-map.component';
 import { EditPlaceComponent } from './edit-place/edit-place.component';
+import { MapEditComponent } from './map-edit/map-edit.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: "login", component: LoginPageComponent },
   { path: "register", component: RegisterComponent },
   { path: "map", component: MapComponent },
+  { path: "mapEdit", component: MapEditComponent },
   { path: "places", component: PlacesMapComponent },
   { path: "edit", component: EditPlaceComponent },
   // Prevent access to this page to unauthenticated users

@@ -3,6 +3,7 @@ import { AuthService } from '../security/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { EditPlaceRequest } from '../models/edit-place-request';
+import { ListPlacesService } from 'src/app/api/services/list-places.service';
 import { DataTransferEditPlaceService } from '../api/services/data-transfer-edit-place.service';
 import { ListPlacesResponse } from '../models/list-places-response';
 import { DataTransferMarkerCoordService } from '../api/services/data-transfer-marker-coord.service';
@@ -10,6 +11,8 @@ import { EditPlaceService } from '../api/services/edit-place.service';
 import { OnePlaceResponse } from '../models/one-place-response';
 import { environment } from 'src/environments/environment';
 import { Location } from '@angular/common';
+import { DataTransferTripIdService } from '../api/services/data-transfer-tripId.service';
+import { DataTransferTripIdMarkerService } from '../api/services/data-transfer-tripId-marker.service';
 
 @Component({
   selector: 'app-edit-place',
@@ -35,12 +38,16 @@ export class EditPlaceComponent implements OnInit {
     private dataTransferEditPlace: DataTransferEditPlaceService,
     private dataTransferMarkerCoordService: DataTransferMarkerCoordService, 
     private updatePlace: EditPlaceService,
-    private location: Location
+    private dataTransferTripIdService: DataTransferTripIdService, 
+    private dataTransferTripIdMarkerService: DataTransferTripIdMarkerService,
+    private listPlacesService: ListPlacesService,
     ){ 
     this.editPlaceRequest = new EditPlaceRequest();
     }
 
   ngOnInit(): void {
+
+      
        this.dataTransferEditPlace.currentMessage.subscribe(place => {this.place = place; console.log(this.place)});
        // Between placeComponent and template cardComponent------------------------------
       this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
@@ -80,7 +87,11 @@ export class EditPlaceComponent implements OnInit {
 
   editPlace(){
     this.updatePlace.editplace(this.place.id, this.editPlaceRequest).subscribe({
-      next: () => this.router.navigateByUrl(`${environment.apiUrl}/trips`),
+      // next: () => {this.router.navigateByUrl("places"); console.log("hello")},
+      // next: () => {this.dataTransferTripIdMarkerService.setData(this.place.location.coordinates); this.dataTransferTripIdService.setData(this.place);this.router.navigateByUrl("places"); console.log("hello")},
+      next: () => {this.dataTransferTripIdService.setData(this.place);this.router.navigateByUrl("places"); console.log(this.place)},
+      // next: () => {this.listPlacesService.loadListPlaces(this.place.tripId);this.router.navigateByUrl("places"); console.log("hello")},
+      // next: () => console.log(this.place.tripId),
       // next: () => this.location.replaceState(`${environment.apiUrl}/places`),
       // error: (err) => {
         // this.editPlaceRequestError = true;

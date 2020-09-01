@@ -6,11 +6,11 @@ import { ListTripsResponse } from 'src/app/models/list-trips-response';
 })
 export class DataTransferTripIdService {
 
-  data: ListTripsResponse;
+  data: any;
   
   constructor() { }
 
-  setData(data: ListTripsResponse) {
+  setData(data: any) {
     this.data = data;
   }
 

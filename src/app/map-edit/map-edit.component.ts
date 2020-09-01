@@ -16,11 +16,11 @@ import { ListPlacesMarkerService } from '../api/services/list-places-marker.serv
 
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  selector: 'app-map-edit',
+  templateUrl: './map-edit.component.html',
+  styleUrls: ['./map-edit.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapEditComponent implements OnInit {
 
   centerPlace: [];
   name = 'Angular';
@@ -44,11 +44,11 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit () {
-    this.listPlacesMarkerService.loadListPlaces(this.dataTransferTripIdMarker.id).subscribe({
-      next: (listPlaces) => {this.centerPlace = listPlaces[1], console.log(this.centerPlace), listPlaces.forEach( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon }).bindTooltip('Hello')))}
+    // this.listPlacesMarkerService.loadListPlaces(this.dataTransferTripIdMarker.id).subscribe({
+      // next: (listPlaces) => {this.centerPlace = listPlaces[1], console.log(this.centerPlace), listPlaces.forEach( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon }).bindTooltip('Hello')))}
       // next: (listPlaces) => listPlaces.forEach( listPlaces => console.log('loop', listPlaces))
       // next: () => console.log(this.dataTransferTripIdMarker)
-    });
+    // });
 
   
     

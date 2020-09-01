@@ -21,7 +21,7 @@ import { ListPlacesResponse } from '../models/list-places-response';
 })
 export class PlacesMapComponent implements OnInit {
   coord: any;
-  dataTransferTripId: ListTripsResponse;
+  dataTransferTripId: any;
   createPlaceRequest: CreatePlaceRequest;
   createPlaceRequestError: boolean;
   listPlaces: ListPlacesResponse[];
@@ -48,11 +48,14 @@ export class PlacesMapComponent implements OnInit {
     this.dataTransferTripId = this.dataTransferTripIdService.getData(); // Get tripId for get request of the ListPlaces------------------------------
     this.createPlaceRequest.tripId = this.dataTransferTripId.id;  // Fill informations for postPlace()------------------------------
     this.createPlaceRequest.tripHref= this.dataTransferTripId.href;
+    // this.createPlaceRequest.name= this.dataTransferTripId.name;
+    // this.createPlaceRequest.description= this.dataTransferTripId.description;
+    // this.createPlaceRequest.location.coordinates = this.dataTransferTripId.location.coordinates;
+    // this.createPlaceRequest.location.coordinates = this.coord;
     }
 
   ngOnInit(): void {
     // Between placeComponent and template cardComponent------------------------------
-    this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
     // Form ---------------------------------------------------------------------------
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
@@ -64,9 +67,11 @@ export class PlacesMapComponent implements OnInit {
       thirdCtrl: ['', Validators.required]
     });
     this.listPlacesService.loadListPlaces(this.createPlaceRequest.tripId).subscribe({
-      next: (listPlaces) => {this.listPlaces = listPlaces; console.log("Subscribe", this.listPlaces);}
-      // next: (listTrips) => console.log("Subscribe", listTrips),
+      next: (listPlaces) => {this.listPlaces = listPlaces; console.log("Subscribe", this.createPlaceRequest);}
+      // next: (listPlaces) => {this.listPlaces = listPlaces; console.log(this.createPlaceRequest);}
+      // next: () => console.log("Subscribe", this.createPlaceRequest),
     });
+    this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
   }
  
   console(){

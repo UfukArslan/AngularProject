@@ -44,13 +44,6 @@
             
             <!-- Grid 1 -->  
             <mat-grid-tile rowspan="3"> 
-
-              <mat-toolbar color="primary">
-                <span>Edit</span>
-                <!-- <button mat-flat-button color="primary" routerLink="/register" routerLinkActive="activebutton">Sign up</button> -->
-              </mat-toolbar>
-              <mat-card-title></mat-card-title>
-              <mat-card-subtitle></mat-card-subtitle>
               
               <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
                 {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
@@ -118,6 +111,7 @@
                     </mat-form-field>
                     <div>
                       <button mat-button matStepperPrevious >Back</button>
+                      <button mat-button matStepperNext>Next</button>
                       <button mat-button matStepperNext (click)="addCoord()">Next</button>
                     </div>
                   </form>

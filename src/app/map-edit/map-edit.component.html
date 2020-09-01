@@ -1,0 +1,27 @@
+<mat-card>
+    <div style="height: 50pc; width: 50pc;"
+    leaflet 
+    leafletDraw
+    [leafletOptions]="options"
+    [leafletLayers]="mapMarkers"
+    [leafletDrawOptions]="drawOptions"
+    (leafletDrawCreated)="onDrawCreated($event)"
+    
+    
+    (leafletMapReady)="onMapReady($event)">
+    <div [leafletLayer]="drawnItems"></div>
+  </div>
+  <!-- <pre>
+    <p>"hello"</p>
+    <p>{{json}}</p>
+  </pre> -->
+  <!-- <pre>
+    <button (click)="newMessage()" class="button">New Message</button>
+  </pre> -->
+</mat-card>
+
+
+
+
+ 
+
