@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ListPlacesResponse } from '../models/list-places-response';
 import { DeletedPlaceService } from '../api/services/deleted-place.service';
 import { Router } from '@angular/router';
+import { DataTransferEditPlaceService } from '../api/services/data-transfer-edit-place.service';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class TemplateCardPlaceComponent implements OnInit {
 
   constructor(
     private deletedPlaceService: DeletedPlaceService,
-    private router: Router
+    private router: Router,
+    private dataTransferEditPlace: DataTransferEditPlaceService
     ) {}
 
   ngOnInit(): void {
@@ -28,7 +30,8 @@ export class TemplateCardPlaceComponent implements OnInit {
   }
 
   editPlace (){
-    this.router.navigateByUrl("/edit")
+    this.router.navigateByUrl("/edit");
+    this.dataTransferEditPlace.changeMessage(this.listPlaces);
   }
 
  

@@ -70,7 +70,7 @@ export class PlacesMapComponent implements OnInit {
   }
  
   console(){
-    console.log(this.dataTransferTripId)
+    console.log(this.listPlaces)
   }
   
 
