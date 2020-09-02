@@ -14,6 +14,7 @@ export class TemplateCardPlaceComponent implements OnInit {
 
   @Input() listPlaces: ListPlacesResponse;
 
+
   constructor(
     private deletedPlaceService: DeletedPlaceService,
     private router: Router,
@@ -22,18 +23,22 @@ export class TemplateCardPlaceComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
   deletedPlace() {
     this.deletedPlaceService.removePlace(this.listPlaces.id).subscribe({
       next: () => alert("DeletedPlace")
     });
   }
-
-  editPlace (){
+  
+  editPlace () {
     this.router.navigateByUrl("/edit");
     this.dataTransferEditPlace.changeMessage(this.listPlaces);
   }
+  
+  console(){
 
- 
-
+    console.log("templateCard",this.dataTransferTripId)
+    console.log("listPlaces",this.listPlaces)
+  }
+  
 }

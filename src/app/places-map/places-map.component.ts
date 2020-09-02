@@ -22,9 +22,9 @@ import { ListPlacesResponse } from '../models/list-places-response';
 export class PlacesMapComponent implements OnInit {
   coord: any;
   dataTransferTripId: any;
+  listPlaces: ListPlacesResponse[];
   createPlaceRequest: CreatePlaceRequest;
   createPlaceRequestError: boolean;
-  listPlaces: ListPlacesResponse[];
   opened: boolean;
   // variables FormStepper ---------------------
   isLinear = false;
@@ -45,15 +45,15 @@ export class PlacesMapComponent implements OnInit {
     ){
     this.createPlaceRequest = new CreatePlaceRequest();
     this.createPlaceRequestError = false;
-    this.dataTransferTripId = this.dataTransferTripIdService.getData(); // Get tripId for get request of the ListPlaces------------------------------
-    this.createPlaceRequest.tripId = this.dataTransferTripId.id;  // Fill informations for postPlace()------------------------------
-    this.createPlaceRequest.tripHref= this.dataTransferTripId.href;
+    // this.dataTransferTripId = this.dataTransferTripIdService.getData(); // Get tripId for get request of the ListPlaces------------------------------
+    // this.createPlaceRequest.tripId = this.dataTransferTripId.id;  // Fill informations for postPlace()------------------------------
+    // this.createPlaceRequest.tripHref= this.dataTransferTripId.href;
     // this.createPlaceRequest.name= this.dataTransferTripId.name;
     // this.createPlaceRequest.description= this.dataTransferTripId.description;
     // this.createPlaceRequest.location.coordinates = this.dataTransferTripId.location.coordinates;
     // this.createPlaceRequest.location.coordinates = this.coord;
-    }
-
+  }
+  
   ngOnInit(): void {
     // Between placeComponent and template cardComponent------------------------------
     // Form ---------------------------------------------------------------------------
@@ -66,12 +66,17 @@ export class PlacesMapComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
-    this.listPlacesService.loadListPlaces(this.createPlaceRequest.tripId).subscribe({
-      next: (listPlaces) => {this.listPlaces = listPlaces; console.log("Subscribe", this.createPlaceRequest);}
+
+    this.dataTransferTripId = this.dataTransferTripIdService.getData();
+    console.log("place-map/dataTransferTripID",this.dataTransferTripId);
+
+    this.listPlacesService.loadListPlaces(this.dataTransferTripId.id).subscribe({
+      next: (listPlaces) => {this.listPlaces = listPlaces; console.log("Subscribe/listPlaces", this.listPlaces);}
       // next: (listPlaces) => {this.listPlaces = listPlaces; console.log(this.createPlaceRequest);}
       // next: () => console.log("Subscribe", this.createPlaceRequest),
     });
     this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
+
   }
  
   console(){
