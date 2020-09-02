@@ -80,7 +80,8 @@ export class PlacesMapComponent implements OnInit {
   }
  
   console(){
-    console.log(this.listPlaces)
+    console.log("placesMap listPlace", this.listPlaces);
+    console.log("placesMap dataTransferTrip", this.dataTransferTripId);
   }
   
 

@@ -136,7 +136,7 @@
           
           </mat-grid-tile>
           <mat-grid-tile rowspan="2" colspan="1" *ngFor="let listPlace of listPlaces">
-            <app-template-card-place [listPlaces]="listPlace"></app-template-card-place>
+            <app-template-card-place [listPlaces]="listPlace" [dataTransferTripId]="dataTransferTripId"></app-template-card-place>
           </mat-grid-tile>
         </mat-grid-list>
         

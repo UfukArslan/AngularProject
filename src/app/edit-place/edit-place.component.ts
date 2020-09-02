@@ -21,6 +21,7 @@ import { DataTransferTripIdMarkerService } from '../api/services/data-transfer-t
 })
 export class EditPlaceComponent implements OnInit {
   // place: EditPlaceRequest;
+  dataTransferTripId: any;
   place: OnePlaceResponse;
   coord: any;
   editPlaceRequest: EditPlaceRequest;
@@ -47,10 +48,10 @@ export class EditPlaceComponent implements OnInit {
 
   ngOnInit(): void {
 
-      
-       this.dataTransferEditPlace.currentMessage.subscribe(place => {this.place = place; console.log(this.place)});
-       // Between placeComponent and template cardComponent------------------------------
-      this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
+        this.dataTransferTripId = this.dataTransferTripIdService.getData();
+        this.dataTransferEditPlace.currentMessage.subscribe(place => {this.place = place; console.log(this.place)});
+        // Between placeComponent and template cardComponent------------------------------
+        this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
         // Form ---------------------------------------------------------------------------
         this.firstFormGroup = this._formBuilder.group({
           firstCtrl: ['', Validators.required]
@@ -89,7 +90,7 @@ export class EditPlaceComponent implements OnInit {
     this.updatePlace.editplace(this.place.id, this.editPlaceRequest).subscribe({
       // next: () => {this.router.navigateByUrl("places"); console.log("hello")},
       // next: () => {this.dataTransferTripIdMarkerService.setData(this.place.location.coordinates); this.dataTransferTripIdService.setData(this.place);this.router.navigateByUrl("places"); console.log("hello")},
-      next: () => {this.dataTransferTripIdService.setData(this.place);this.router.navigateByUrl("places"); console.log(this.place)},
+      next: () => {this.dataTransferTripIdService.setData(this.dataTransferTripId);this.router.navigateByUrl("places"); console.log(this.place)},
       // next: () => {this.listPlacesService.loadListPlaces(this.place.tripId);this.router.navigateByUrl("places"); console.log("hello")},
       // next: () => console.log(this.place.tripId),
       // next: () => this.location.replaceState(`${environment.apiUrl}/places`),
