@@ -49,6 +49,7 @@ export class EditPlaceComponent implements OnInit {
   ngOnInit(): void {
 
         this.dataTransferTripId = this.dataTransferTripIdService.getData();
+        console.log();
         this.dataTransferEditPlace.currentMessage.subscribe(place => {this.place = place; console.log(this.place)});
         // Between placeComponent and template cardComponent------------------------------
         this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);

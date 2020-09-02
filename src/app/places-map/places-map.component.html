@@ -111,7 +111,6 @@
                     </mat-form-field>
                     <div>
                       <button mat-button matStepperPrevious >Back</button>
-                      <button mat-button matStepperNext>Next</button>
                       <button mat-button matStepperNext (click)="addCoord()">Next</button>
                     </div>
                   </form>
@@ -132,7 +131,7 @@
           
           <!-- Grid 2 -->  
           <mat-grid-tile rowspan="3" colspan="3">
-            <app-map></app-map>
+            <app-map [dataTransferTripId]="dataTransferTripId"></app-map>
           
           </mat-grid-tile>
           <mat-grid-tile rowspan="2" colspan="1" *ngFor="let listPlace of listPlaces">

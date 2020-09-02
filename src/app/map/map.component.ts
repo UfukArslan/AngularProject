@@ -22,6 +22,8 @@ import { ListPlacesMarkerService } from '../api/services/list-places-marker.serv
 })
 export class MapComponent implements OnInit {
 
+  @Input() dataTransferTripId: any;
+
   centerPlace: [];
   name = 'Angular';
   map: L.Map;
@@ -37,14 +39,16 @@ export class MapComponent implements OnInit {
     private dataTransferTripIdMarkerService: DataTransferTripIdMarkerService, 
     private listPlacesMarkerService: ListPlacesMarkerService,
     ){
-    this.dataTransferTripIdMarker = this.dataTransferTripIdMarkerService.getData();
-    this.mapMarkers = [
-      // L.marker([ 46.778186, 6.641524 ], { icon: defaultIcon }).bindTooltip('Hello'),
-    ];
-  }
-
-  ngOnInit () {
-    this.listPlacesMarkerService.loadListPlaces(this.dataTransferTripIdMarker.id).subscribe({
+      this.mapMarkers = [
+        // L.marker([ 46.778186, 6.641524 ], { icon: defaultIcon }).bindTooltip('Hello'),
+      ];
+    }
+    
+    ngOnInit () {
+      this.dataTransferTripIdMarker = this.dataTransferTripIdMarkerService.getData();
+      // console.log("mapComponent", this.dataTransferTripIdMarker)
+      console.log("mapComponent/input", this.dataTransferTripId)
+      this.listPlacesMarkerService.loadListPlaces(this.dataTransferTripId.id).subscribe({
       next: (listPlaces) => {this.centerPlace = listPlaces[1], console.log(this.centerPlace), listPlaces.forEach( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon }).bindTooltip('Hello')))}
       // next: (listPlaces) => listPlaces.forEach( listPlaces => console.log('loop', listPlaces))
       // next: () => console.log(this.dataTransferTripIdMarker)

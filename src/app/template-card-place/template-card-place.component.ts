@@ -4,6 +4,7 @@ import { DeletedPlaceService } from '../api/services/deleted-place.service';
 import { Router } from '@angular/router';
 import { DataTransferEditPlaceService } from '../api/services/data-transfer-edit-place.service';
 import { DataTransferTripIdService } from '../api/services/data-transfer-tripId.service';
+import { CreatePlaceRequest } from '../models/create-place-request';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class TemplateCardPlaceComponent implements OnInit {
 
   @Input() listPlaces: ListPlacesResponse;
   @Input() dataTransferTripId: any;
+  @Input() createPlaceRequest: CreatePlaceRequest;
 
 
   constructor(

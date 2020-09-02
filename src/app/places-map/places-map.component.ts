@@ -45,9 +45,9 @@ export class PlacesMapComponent implements OnInit {
     ){
     this.createPlaceRequest = new CreatePlaceRequest();
     this.createPlaceRequestError = false;
-    // this.dataTransferTripId = this.dataTransferTripIdService.getData(); // Get tripId for get request of the ListPlaces------------------------------
-    // this.createPlaceRequest.tripId = this.dataTransferTripId.id;  // Fill informations for postPlace()------------------------------
-    // this.createPlaceRequest.tripHref= this.dataTransferTripId.href;
+    this.dataTransferTripId = this.dataTransferTripIdService.getData(); // Get tripId for get request of the ListPlaces------------------------------
+    this.createPlaceRequest.tripId = this.dataTransferTripId.id;  // Fill informations for postPlace()------------------------------
+    this.createPlaceRequest.tripHref= this.dataTransferTripId.href;
     // this.createPlaceRequest.name= this.dataTransferTripId.name;
     // this.createPlaceRequest.description= this.dataTransferTripId.description;
     // this.createPlaceRequest.location.coordinates = this.dataTransferTripId.location.coordinates;
@@ -67,8 +67,8 @@ export class PlacesMapComponent implements OnInit {
       thirdCtrl: ['', Validators.required]
     });
 
-    this.dataTransferTripId = this.dataTransferTripIdService.getData();
-    console.log("place-map/dataTransferTripID",this.dataTransferTripId);
+    // this.dataTransferTripId = this.dataTransferTripIdService.getData();
+    console.log("place-map/dataTransferTripID",this.dataTransferTripId.href);
 
     this.listPlacesService.loadListPlaces(this.dataTransferTripId.id).subscribe({
       next: (listPlaces) => {this.listPlaces = listPlaces; console.log("Subscribe/listPlaces", this.listPlaces);}
@@ -82,6 +82,7 @@ export class PlacesMapComponent implements OnInit {
   console(){
     console.log("placesMap listPlace", this.listPlaces);
     console.log("placesMap dataTransferTrip", this.dataTransferTripId);
+    console.log("placesMap creatPlaceRequest", this.createPlaceRequest);
   }
   
 
