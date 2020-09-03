@@ -21,7 +21,11 @@ export class TripsPageComponent implements OnInit {
   opened: boolean;
   
   // Inject the UserService
-  constructor(private userService: UserService, private dialog: MatDialog, private listTripsService: ListTripsService) {}
+  constructor(
+    private userService: UserService, 
+    private dialog: MatDialog, 
+    private listTripsService: ListTripsService
+    ) {}
 
   ngOnInit(): void {
     // Ask the service to make an API call on component initialisation
@@ -44,6 +48,8 @@ export class TripsPageComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+  
 }
 
 @Component({
@@ -92,5 +98,8 @@ export class CreateTripComponent {
       });
     }
   }
-
+  
 }
+
+
+
