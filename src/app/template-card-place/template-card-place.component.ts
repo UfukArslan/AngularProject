@@ -31,7 +31,7 @@ l
   
   deletedPlace() {
     this.deletedPlaceService.removePlace(this.listPlaces.id).subscribe({
-      next: () => alert("DeletedPlace")
+      next: () => alert("Deleted Place")
     });
   }
   

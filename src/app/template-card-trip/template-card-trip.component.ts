@@ -7,9 +7,9 @@ import { DataTransferTripIdService } from '../api/services/data-transfer-tripId.
 import { DataTransferTripIdMarkerService } from '../api/services/data-transfer-tripId-marker.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTripService } from '../api/services/edit-trip.service';
-
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
+import { DeletedTripService } from '../api/services/deleted-trip.service';
 
 @Component({
   selector: 'app-template-card-trip',
@@ -19,17 +19,24 @@ import { Inject } from '@angular/core';
 export class TemplateCardTripComponent implements OnInit {
   
 
-  @Input() listTrips: ListTripsResponse;
+  @Input() listTrips: any;
 
 
   constructor(
     private router: Router, 
     private dataTransferTripIdService: DataTransferTripIdService, 
     private dataTransferTripIdMarkerService: DataTransferTripIdMarkerService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private deletedTripService: DeletedTripService
     ){}
 
   ngOnInit(): void {
+  }
+
+  deletedTrip() {
+    this.deletedTripService.removeTrip(this.listTrips.id).subscribe({
+      next: () => alert("Deleted Trip")
+    });
   }
 
   console(){
