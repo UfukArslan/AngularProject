@@ -8,7 +8,7 @@ import { SecurityModule } from './security/security.module';
 import { ApiTokenInterceptorService } from './api/api-token-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateTripComponent } from './trips-page/trips-page.component';
 import { EditTripComponent } from './template-card-trip/template-card-trip.component';
 import { MapComponent } from './map/map.component';
@@ -46,6 +46,7 @@ import { MapEditComponent } from './map-edit/map-edit.component';
     BrowserAnimationsModule, 
     MaterialModule, 
     FormsModule, 
+    ReactiveFormsModule,
     LeafletModule,
     LeafletDrawModule,
     MatTabsModule

@@ -8,6 +8,8 @@ import { NgForm } from '@angular/forms';
 import { CreatetripService } from '../api/services/createtrip.service';
 import { ListTripsService } from '../api/services/list-trips.service';
 import { ListTripsResponse } from '../models/list-trips-response';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
   //@title
 
@@ -18,7 +20,10 @@ import { ListTripsResponse } from '../models/list-trips-response';
 })
 export class TripsPageComponent implements OnInit {
   options: string[] = ['Angular', 'React', 'Vue'];
-  listTrips: ListTripsResponse[];
+  listTrips: any[];
+  myControl = new FormControl();
+  filteredListTrips: Observable<any[]>
+
   opened: boolean;
   
   // Inject the UserService
@@ -36,11 +41,28 @@ export class TripsPageComponent implements OnInit {
     // });
 
     this.listTripsService.loadListTrips().subscribe({
-      next: (listTrip) => this.listTrips = listTrip,
+      next: (listTrip) => {this.listTrips = listTrip, console.log(this.listTrips),this.filteredListTrips = this.myControl.valueChanges
+                                                        .pipe(
+                                                          startWith(''),
+                                                          map(value => this._filter(value))
+                                                        )},
       // next: (listTrips) => console.log(listTrips),
       error: (error) => console.warn(error)
     });
+
+    // this.console(this.listTrips);
+
+    // this.filteredListrips = this.myControl.valueChanges
+    //   .pipe(
+    //     startWith(''),
+    //     map(value => this._filter(value))
+    //   );s
 }
+
+  private _filter (value: any) : any[] {
+    const filterValue = value.toLowerCase();
+    return this.listTrips.filter(listTrip => listTrip.toString().toLowerCase().includes(filterValue));
+  }
 
   openDialog() {
     const tripsRef = this.dialog.open(CreateTripComponent,{width: '500px', height: '350px'});
@@ -50,11 +72,11 @@ export class TripsPageComponent implements OnInit {
     });
   }
 
-  console(){
-    console.log(this.listTrips);
+  console(t){
+    console.log(t);
   }
 
-  displayFn(subject){
+  displayFn(subject: any){
     return subject ? subject.title : undefined;
   }
 
