@@ -17,6 +17,7 @@ import { ListTripsResponse } from '../models/list-trips-response';
   styleUrls: ["./trips-page.component.scss"],
 })
 export class TripsPageComponent implements OnInit {
+  options: string[] = ['Angular', 'React', 'Vue'];
   listTrips: ListTripsResponse[];
   opened: boolean;
   
@@ -47,6 +48,14 @@ export class TripsPageComponent implements OnInit {
     tripsRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  console(){
+    console.log(this.listTrips);
+  }
+
+  displayFn(subject){
+    return subject ? subject.title : undefined;
   }
 
   

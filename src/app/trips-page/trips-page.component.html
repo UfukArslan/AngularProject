@@ -31,11 +31,22 @@
         </mat-sidenav>  
     
         <!-- Main -->
+        
         <mat-sidenav-content>
           
-          
           <mat-grid-list cols="4" rowHeight="1:1" gutterSize="50px">
-          
+            
+            <form>
+              <mat-form-field>
+                <input type="text" matInput [matAutocomplete]="auto"/>
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                  <mat-option *ngFor="let listTrip of listTrips" [value]="listTrip">
+                    {{listTrip.title}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </form>
+            <button class="create" mat-mini-fab color="primary" (click)="console()">console</button>
           
           <!-- Card 1 -->  
           <mat-grid-tile rowspan="1" colspan="4"> 
