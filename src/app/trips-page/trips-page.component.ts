@@ -40,28 +40,34 @@ export class TripsPageComponent implements OnInit {
     //   error: (error) => console.warn("Error", error),
     // });
 
+    // this.listTripsService.loadListTrips().subscribe({
+    //   next: (listTrip) => {this.listTrips = listTrip, console.log(this.listTrips)},
+    //   // next: (listTrips) => console.log(listTrips),
+    //   error: (error) => console.warn(error)
+    // });
+
     this.listTripsService.loadListTrips().subscribe({
-      next: (listTrip) => {this.listTrips = listTrip, console.log(this.listTrips),this.filteredListTrips = this.myControl.valueChanges
+      next: (listTrip) => {this.listTrips = listTrip, console.log("observalbloadlist",this.listTrips),this.filteredListTrips = this.myControl.valueChanges
                                                         .pipe(
                                                           startWith(''),
                                                           map(value => this._filter(value))
-                                                        ), console.log("Filter", this.filteredListTrips)},
+                                                        )},
       // next: (listTrips) => console.log(listTrips),
       error: (error) => console.warn(error)
     });
 
     // this.console(this.listTrips);
 
-    // this.filteredListrips = this.myControl.valueChanges
+    // this.filteredListTrips = this.myControl.valueChanges
     //   .pipe(
     //     startWith(''),
     //     map(value => this._filter(value))
-    //   );s
+    //   );
 }
 
   private _filter (value: any) : any[] {
     const filterValue = value.toLowerCase();
-    return this.listTrips.filter(listTrip => listTrip.toString().toLowerCase().includes(filterValue));
+    return this.listTrips.filter(listTrip => listTrip.title.toLowerCase().includes(filterValue));
   }
 
   openDialog() {
@@ -77,7 +83,7 @@ export class TripsPageComponent implements OnInit {
   }
 
   displayFn(subject: any){
-    return subject ? subject.id : undefined;
+    return subject ? subject.title : undefined;
   }
 
   

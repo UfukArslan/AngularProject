@@ -38,9 +38,9 @@
             
             <form>
               <mat-form-field>
-                <input type="text" matInput [matAutocomplete]="auto"/>
-                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" [formControl]="myControl">
-                  <mat-option *ngFor="let listTrip of filteredListTrips | async " [value]="listTrip">
+                <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto"/>
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                  <mat-option *ngFor="let listTrip of filteredListTrips | async " [value]="listTrip.title">
                     {{listTrip.title}}
                   </mat-option>
                 </mat-autocomplete>
