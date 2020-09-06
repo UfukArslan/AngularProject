@@ -34,38 +34,23 @@ export class TripsPageComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    // Ask the service to make an API call on component initialisation
-    // this.userService.loadAllUsers().subscribe({
-    //   next: (users) => console.log("Users", users),
-    //   error: (error) => console.warn("Error", error),
-    // });
-
-    // this.listTripsService.loadListTrips().subscribe({
-    //   next: (listTrip) => {this.listTrips = listTrip, console.log(this.listTrips)},
-    //   // next: (listTrips) => console.log(listTrips),
-    //   error: (error) => console.warn(error)
-    // });
+  
 
     this.listTripsService.loadListTrips().subscribe({
-      next: (listTrip) => {this.listTrips = listTrip, console.log("observalbloadlist",this.listTrips),this.filteredListTrips = this.myControl.valueChanges
-                                                        .pipe(
-                                                          startWith(''),
-                                                          map(value => this._filter(value))
-                                                        )},
+      next: (listTrip) => { this.listTrips = listTrip, 
+                            console.log("observalbloadlist",this.listTrips),  
+                            this.filteredListTrips = this.myControl.valueChanges.pipe(
+                                                                                      startWith(''),
+                                                                                      map(value => this._filter(value))
+                                                                                     )},
       // next: (listTrips) => console.log(listTrips),
       error: (error) => console.warn(error)
     });
 
-    // this.console(this.listTrips);
+  
+  }
 
-    // this.filteredListTrips = this.myControl.valueChanges
-    //   .pipe(
-    //     startWith(''),
-    //     map(value => this._filter(value))
-    //   );
-}
-
-  private _filter (value: any) : any[] {
+  _filter (value: any) : any[] {
     const filterValue = value.toLowerCase();
     return this.listTrips.filter(listTrip => listTrip.title.toLowerCase().includes(filterValue));
   }
