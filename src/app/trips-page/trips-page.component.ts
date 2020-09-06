@@ -20,9 +20,9 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class TripsPageComponent implements OnInit {
   options: string[] = ['Angular', 'React', 'Vue'];
-  listTrips: any[];
+  listTrips: ListTripsResponse[];
   myControl = new FormControl();
-  filteredListTrips: Observable<any[]>
+  filteredListTrips: Observable<ListTripsResponse[]>
 
   opened: boolean;
   
@@ -45,7 +45,7 @@ export class TripsPageComponent implements OnInit {
                                                         .pipe(
                                                           startWith(''),
                                                           map(value => this._filter(value))
-                                                        )},
+                                                        ), console.log("Filter", this.filteredListTrips)},
       // next: (listTrips) => console.log(listTrips),
       error: (error) => console.warn(error)
     });
@@ -77,7 +77,7 @@ export class TripsPageComponent implements OnInit {
   }
 
   displayFn(subject: any){
-    return subject ? subject.title : undefined;
+    return subject ? subject.id : undefined;
   }
 
   
