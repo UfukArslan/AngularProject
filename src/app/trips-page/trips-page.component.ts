@@ -10,6 +10,7 @@ import { ListTripsService } from '../api/services/list-trips.service';
 import { ListTripsResponse } from '../models/list-trips-response';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { title } from 'process';
 
   //@title
 
@@ -19,9 +20,8 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ["./trips-page.component.scss"],
 })
 export class TripsPageComponent implements OnInit {
-  options: string[] = ['Angular', 'React', 'Vue'];
-  listTrips: ListTripsResponse[];
   myControl = new FormControl();
+  listTrips: ListTripsResponse[];
   filteredListTrips: Observable<ListTripsResponse[]>
 
   opened: boolean;
@@ -63,8 +63,8 @@ export class TripsPageComponent implements OnInit {
     });
   }
 
-  console(t){
-    console.log(t);
+  console(){
+    console.log(this.listTrips[0].title);
   }
 
   displayFn(subject: any){

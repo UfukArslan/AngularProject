@@ -35,11 +35,25 @@
         <mat-sidenav-content>
           
           <mat-grid-list cols="4" rowHeight="1:1" gutterSize="50px">
+             
             
+            
+            
+            <!-- Filter -->
             <form>
               <mat-form-field>
-                <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto"/>
-                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <input 
+                  type="text" 
+                  placeholder="Search"
+                  aria-label="trips"
+                  matInput 
+                  [formControl]="myControl" 
+                  [matAutocomplete]="auto">
+                  <button mat-icon-button matSuffix aria-label="Search-icon" (click)="console()">
+                    <mat-icon>search icon</mat-icon>
+                  </button>
+                <!-- <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"> -->
+                <mat-autocomplete #auto="matAutocomplete" >
                   <mat-option *ngFor="let listTrip of filteredListTrips | async " [value]="listTrip.title">
                     {{listTrip.title}}
                   </mat-option>
