@@ -9,7 +9,7 @@
           <mat-icon>menu</mat-icon>
         </button>
         <span class="example-spacer"></span>
-        <span>Travel log</span>
+        <span>Trips - Travel log</span>
       </mat-toolbar-row>
     </mat-toolbar>
   </div>
@@ -34,38 +34,38 @@
         
         <mat-sidenav-content>
           
-          <mat-grid-list cols="4" rowHeight="1:1" gutterSize="50px">
-             
-            
-            
-            
-            <!-- Filter -->
-            <form #searchTripForm="ngForm">
-              <mat-form-field>
-                <input 
-                  type="text" 
-                  name="filtertrip"
-                  id="filtertrip"
-                  placeholder="Search"
-                  matInput 
-                  [formControl]="myControl" 
-                  [matAutocomplete]="auto">
-                  <button mat-icon-button matSuffix aria-label="Search-icon" (click)="retrieveTrip()">
-                    <mat-icon>search icon</mat-icon>
-                  </button>
-                <!-- <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"> -->
-                <mat-autocomplete #auto="matAutocomplete" >
-                  <mat-option *ngFor="let listTrip of filteredListTrips | async" [value]="listTrip.title">
-                    {{listTrip.title}}
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field>
-            </form>
-            
-            
           
-          <!-- Card 1 -->  
+          <mat-grid-list class="example-list" cols="4" rowHeight="2.7:1" gutterSize="50px">
+          
           <mat-grid-tile rowspan="1" colspan="4"> 
+            <!-- Filter -->
+            <form class="example-form" #searchTripForm="ngForm">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <input 
+                type="text" 
+                name="filtertrip"
+                id="filtertrip"
+                placeholder="Search"
+                matInput 
+                [formControl]="myControl" 
+                [matAutocomplete]="auto">
+                <button mat-icon-button matSuffix aria-label="Search-icon" (click)="retrieveTrip()">
+                  <mat-icon>search icon</mat-icon>
+                </button>
+                <!-- <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"> -->
+                  <mat-autocomplete #auto="matAutocomplete" >
+                    <mat-option *ngFor="let listTrip of filteredListTrips | async" [value]="listTrip.title">
+                      {{listTrip.title}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </form>
+            </mat-grid-tile>
+          </mat-grid-list>
+            <mat-grid-list cols="4" rowHeight="1:1" gutterSize="50px">
+            
+            <!-- Card 1 -->  
+            <mat-grid-tile rowspan="2" colspan="1"> 
             <mat-card class="create-card">
               <mat-card-header>
                 <!-- <div mat-card-avatar class="example-header-image"></div> -->
@@ -123,11 +123,11 @@
         
         
           <!-- test(header+footer) -->  
-          <mat-grid-tile rowspan="3" colspan="3">
+          <!-- <mat-grid-tile rowspan="3" colspan="3">
             <button mat-stroked-button (click)="openDialog()">Create trip</button>
             <mat-grid-tile-header>Header</mat-grid-tile-header>
             <mat-grid-tile-footer>footer</mat-grid-tile-footer>
-          </mat-grid-tile>
+          </mat-grid-tile> -->
           </mat-grid-list>
           
         </mat-sidenav-content>

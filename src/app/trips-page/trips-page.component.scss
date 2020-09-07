@@ -6,11 +6,12 @@
     max-width: 400px;
   }
   .create-title-card{
-  padding-left: 520px;
+    padding-top: 140px;
+    padding-left: 50px;
   }
   .create-card {
    width: 100pc;
-   height: 10pc;
+   height: 365px;
   }
   
   .example-header-image {
@@ -28,7 +29,24 @@
   }
 
   .create {
-    margin-left: 48%;
+    margin-left: 40%;
+  }
+
+  .example-list {
+    padding-top: 80px;
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 900px;
+    width: 100%;
+  
+  
+  }
+  
+  .example-full-width {
+    width: 100%;
+   
   }
 
 //Sidenav
