@@ -40,21 +40,22 @@
             
             
             <!-- Filter -->
-            <form>
+            <form #searchTripForm="ngForm">
               <mat-form-field>
                 <input 
                   type="text" 
+                  name="filtertrip"
+                  id="filtertrip"
                   placeholder="Search"
-                  aria-label="trips"
                   matInput 
                   [formControl]="myControl" 
                   [matAutocomplete]="auto">
-                  <button mat-icon-button matSuffix aria-label="Search-icon" (click)="console()">
+                  <button mat-icon-button matSuffix aria-label="Search-icon" (click)="retrieveTrip()">
                     <mat-icon>search icon</mat-icon>
                   </button>
                 <!-- <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"> -->
                 <mat-autocomplete #auto="matAutocomplete" >
-                  <mat-option *ngFor="let listTrip of filteredListTrips | async " [value]="listTrip.title">
+                  <mat-option *ngFor="let listTrip of filteredListTrips | async" [value]="listTrip.title">
                     {{listTrip.title}}
                   </mat-option>
                 </mat-autocomplete>

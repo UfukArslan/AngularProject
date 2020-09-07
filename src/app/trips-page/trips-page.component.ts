@@ -7,10 +7,12 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { CreatetripService } from '../api/services/createtrip.service';
 import { ListTripsService } from '../api/services/list-trips.service';
+import { SearchTripService } from '../api/services/search-trip.service';
 import { ListTripsResponse } from '../models/list-trips-response';
+import { SearchTripRequest } from '../models/search-trip-request';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { title } from 'process';
+
 
   //@title
 
@@ -23,6 +25,7 @@ export class TripsPageComponent implements OnInit {
   myControl = new FormControl();
   listTrips: ListTripsResponse[];
   filteredListTrips: Observable<ListTripsResponse[]>
+  searchTrip: SearchTripRequest;
 
   opened: boolean;
   
@@ -30,7 +33,9 @@ export class TripsPageComponent implements OnInit {
   constructor(
     private userService: UserService, 
     private dialog: MatDialog, 
-    private listTripsService: ListTripsService
+    private listTripsService: ListTripsService,
+    private searchTripService: SearchTripService,
+    private router: Router
     ) {}
 
   ngOnInit(): void {
@@ -55,6 +60,15 @@ export class TripsPageComponent implements OnInit {
     return this.listTrips.filter(listTrip => listTrip.title.toLowerCase().includes(filterValue));
   }
 
+
+   retrieveTrip() {
+    this.searchTripService.searchTrip(this.myControl.value).subscribe({
+      next: (listTrip) =>  this.listTrips = listTrip, 
+      error: (err) => { alert(`Authentication failed: ${err.message}`);
+      },
+    });
+  }
+
   openDialog() {
     const tripsRef = this.dialog.open(CreateTripComponent,{width: '500px', height: '350px'});
 
@@ -64,7 +78,7 @@ export class TripsPageComponent implements OnInit {
   }
 
   console(){
-    console.log(this.listTrips[0].title);
+    console.log(this.myControl.value);
   }
 
   displayFn(subject: any){
