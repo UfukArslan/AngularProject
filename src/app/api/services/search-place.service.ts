@@ -11,7 +11,16 @@ export class SearchPlaceService {
 
   constructor(private http: HttpClient) {}
     
-    searchPlace (name: string): Observable<any> {
-      return this.http.get<any>(`${environment.apiUrl}/places?name=${name}`);
+    searchPlace (name: string, id: string): Observable<any> {
+      if (name == '') 
+      {
+        return this.http.get<any>(`${environment.apiUrl}/places?trip=${id}`);
+      }
+      else (typeof name == 'string')
+      {
+        return this.http.get<any>(`${environment.apiUrl}/places?name=${name}`);
+      }
   }
 }
+
+

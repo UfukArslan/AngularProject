@@ -102,7 +102,7 @@ export class PlacesMapComponent implements OnInit {
   }
  
   retrievePlace() {
-    this.searchPlaceService.searchPlace(this.myControl.value).subscribe({
+    this.searchPlaceService.searchPlace(this.myControl.value, this.dataTransferTripId.id).subscribe({
       next: (listPlace) =>  this.listPlaces = listPlace, 
       error: (err) => { alert(`Authentication failed: ${err.message}`);
       },
