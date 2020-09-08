@@ -35,17 +35,17 @@
         <mat-sidenav-content>
           
           
+          <!-- Filter -->
           <mat-grid-list class="example-list" cols="4" rowHeight="2.7:1" gutterSize="50px">
           
           <mat-grid-tile rowspan="1" colspan="4"> 
-            <!-- Filter -->
             <form class="example-form" #searchTripForm="ngForm">
               <mat-form-field class="example-full-width" appearance="fill">
                 <input 
                 type="text" 
                 name="filtertrip"
                 id="filtertrip"
-                placeholder="Search"
+                placeholder="Search trip"
                 matInput 
                 [formControl]="myControl" 
                 [matAutocomplete]="auto">
@@ -62,9 +62,11 @@
               </form>
             </mat-grid-tile>
           </mat-grid-list>
+          <!-- Filter -->
+
+          <!-- Card 1 -->  
             <mat-grid-list cols="4" rowHeight="1:1" gutterSize="50px">
             
-            <!-- Card 1 -->  
             <mat-grid-tile rowspan="2" colspan="1"> 
             <mat-card class="create-card">
               <mat-card-header>

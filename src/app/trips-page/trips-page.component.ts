@@ -22,16 +22,19 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ["./trips-page.component.scss"],
 })
 export class TripsPageComponent implements OnInit {
+
+  // Dialog
+  opened: boolean;
+
+  // Filter
   myControl = new FormControl();
   listTrips: ListTripsResponse[];
   filteredListTrips: Observable<ListTripsResponse[]>
   searchTrip: SearchTripRequest;
 
-  opened: boolean;
   
   // Inject the UserService
   constructor(
-    private userService: UserService, 
     private dialog: MatDialog, 
     private listTripsService: ListTripsService,
     private searchTripService: SearchTripService,

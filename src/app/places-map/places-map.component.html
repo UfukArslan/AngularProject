@@ -14,42 +14,70 @@
     </mat-toolbar>
   </div>
 
-<!-- Body -->
-
-
+  
+  <!-- Body -->
+  
+  
   <mat-sidenav-container >
-
-
-        <!-- Secondary -->
-        <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-          <mat-selection-list [multiple]="false">
-            <mat-action-list>
-              <mat-list-option>Delete account</mat-list-option>
-              <mat-list-option>Delete account</mat-list-option>
-              <mat-list-option>Update account</mat-list-option>
-              <button mat-list-item (click)="logout()">Logout</button>
-              <p>{{createPlaceRequest.name}}</p>
-              
-            </mat-action-list>
-          </mat-selection-list>
-          <app-logout-button></app-logout-button>
-        </mat-sidenav>  
-        
-        <!-- Main -->
-        <mat-sidenav-content>
+    
+    
+    <!-- Secondary -->
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+      <mat-selection-list [multiple]="false">
+        <mat-action-list>
+          <mat-list-option>Delete account</mat-list-option>
+          <mat-list-option>Delete account</mat-list-option>
+          <mat-list-option>Update account</mat-list-option>
+          <button mat-list-item (click)="logout()">Logout</button>
+          <p>{{createPlaceRequest.name}}</p>
           
+        </mat-action-list>
+      </mat-selection-list>
+      <app-logout-button></app-logout-button>
+    </mat-sidenav>  
+    
+    <!-- Main -->
+
+    <mat-sidenav-content>
+
+      <mat-grid-list  cols="4" rowHeight="2.75:1" gutterSize="50px">  
+        <!-- Filter -->
+        <!-- <mat-grid-list class="example-list" cols="4" rowHeight="2.7:1" gutterSize="50px"> -->
           
-          <mat-grid-list cols="4" rowHeight="1:1" gutterSize="50px">
+          <mat-grid-tile rowspan="2" colspan="4"> 
+            <form class="example-form" #searchPlaceForm="ngForm">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <input 
+                type="text" 
+                name="filterplace"
+                id="filterplace"
+                placeholder="Search place"
+                matInput 
+                [formControl]="myControl" 
+                [matAutocomplete]="auto">
+                <button mat-icon-button matSuffix aria-label="Search-icon" (click)="retrievePlace()">
+                  <mat-icon>search icon</mat-icon>
+                </button>
+                <!-- <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"> -->
+                  <mat-autocomplete #auto="matAutocomplete" >
+                    <mat-option *ngFor="let listPlace of filteredListPlaces | async" [value]="listPlace.name">
+                      {{listPlace.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </form>
+            </mat-grid-tile>  
+            </mat-grid-list>  
+            <!-- Filter -->
             
             
-            <!-- Grid 1 -->  
-            <mat-grid-tile rowspan="3"> 
+            <!-- Forms -->  
+            <mat-grid-list  cols="4" rowHeight="1:1" gutterSize="50px">  
+            <!-- <mat-grid-list class="example-list" cols="4" rowHeight="1:1" gutterSize="50px">      -->
               
-              <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-                {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-              </button> -->
+     
+            <mat-grid-tile rowspan="3" colspan="1"> 
               <mat-vertical-stepper [linear]="isLinear" #stepper>
-                
                 <!-- Name -->
                 <mat-step [stepControl]="firstFormGroup">
                   <form [formGroup]="firstFormGroup">
@@ -71,7 +99,6 @@
                     </div>
                   </form>
                 </mat-step>
-                
                 <!-- Description -->
                 <mat-step [stepControl]="secondFormGroup">
                   <form [formGroup]="secondFormGroup">
@@ -94,7 +121,6 @@
                     </div>
                   </form>
                 </mat-step>
-                
                 <!-- Coordinates -->
                 <mat-step [stepControl]="thirdFormGroup">
                   <form [formGroup]="thirdFormGroup">
@@ -127,17 +153,20 @@
                 </mat-step>
               </mat-vertical-stepper>
           </mat-grid-tile> 
-        
-          
-          <!-- Grid 2 -->  
+          <!-- Map -->  
           <mat-grid-tile rowspan="3" colspan="3">
             <app-map [dataTransferTripId]="dataTransferTripId"></app-map>
-          
           </mat-grid-tile>
+
+             
+
+
           <mat-grid-tile rowspan="2" colspan="1" *ngFor="let listPlace of listPlaces">
             <app-template-card-place [listPlaces]="listPlace" [dataTransferTripId]="dataTransferTripId"></app-template-card-place>
           </mat-grid-tile>
         </mat-grid-list>
+
+        
         
       </mat-sidenav-content>
       

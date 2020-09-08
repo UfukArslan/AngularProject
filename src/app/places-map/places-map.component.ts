@@ -9,6 +9,13 @@ import { CreatePlaceService } from '../api/services/create-place.service';
 import { ListPlacesService } from 'src/app/api/services/list-places.service';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ListPlacesResponse } from '../models/list-places-response';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { SearchPlaceService } from 'src/app/api/services/search-place.service';
+import { SearchPlaceRequest } from '../models/search-place-request';
+import { map, startWith } from 'rxjs/operators';
+
+
 
 
 
@@ -20,17 +27,22 @@ import { ListPlacesResponse } from '../models/list-places-response';
   styleUrls: ['./places-map.component.scss']
 })
 export class PlacesMapComponent implements OnInit {
+  opened: boolean;
   coord: any;
   dataTransferTripId: any;
   listPlaces: ListPlacesResponse[];
   createPlaceRequest: CreatePlaceRequest;
   createPlaceRequestError: boolean;
-  opened: boolean;
-  // variables FormStepper ---------------------
+  // FormStepper 
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+   // Filter 
+   myControl = new FormControl();
+  //voir listePlaces
+   filteredListPlaces: Observable<ListPlacesResponse[]>
+   searchPlace: SearchPlaceRequest;
 
  
 
@@ -42,6 +54,7 @@ export class PlacesMapComponent implements OnInit {
     private createP: CreatePlaceService,
     private _formBuilder: FormBuilder,
     private listPlacesService: ListPlacesService,
+    private searchPlaceService: SearchPlaceService
     ){
     this.createPlaceRequest = new CreatePlaceRequest();
     this.createPlaceRequestError = false;
@@ -66,19 +79,40 @@ export class PlacesMapComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
-
-    // this.dataTransferTripId = this.dataTransferTripIdService.getData();
-    console.log("place-map/dataTransferTripID",this.dataTransferTripId.href);
-
-    this.listPlacesService.loadListPlaces(this.dataTransferTripId.id).subscribe({
-      next: (listPlaces) => {this.listPlaces = listPlaces; console.log("Subscribe/listPlaces", this.listPlaces);}
-      // next: (listPlaces) => {this.listPlaces = listPlaces; console.log(this.createPlaceRequest);}
-      // next: () => console.log("Subscribe", this.createPlaceRequest),
-    });
+    
     this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
 
+    // this.dataTransferTripId = this.dataTransferTripIdService.getData();
+    // console.log("place-map/dataTransferTripID",this.dataTransferTripId.href);
+
+    this.listPlacesService.loadListPlaces(this.dataTransferTripId.id).subscribe({
+      next: (listPlaces) => { this.listPlaces = listPlaces; 
+                              console.log("Subscribe/listPlaces", this.listPlaces);
+                              this.filteredListPlaces = this.myControl.valueChanges.pipe(
+                                                                                          startWith(''),
+                                                                                          map(value => this._filter(value))
+                                                                                         )},
+    });
+
+  }
+
+  _filter (value: any) : any[] {
+    const filterValue = value.toLowerCase();
+    return this.listPlaces.filter(listPlace => listPlace.name.toLowerCase().includes(filterValue));
   }
  
+  retrievePlace() {
+    this.searchPlaceService.searchPlace(this.myControl.value).subscribe({
+      next: (listPlace) =>  this.listPlaces = listPlace, 
+      error: (err) => { alert(`Authentication failed: ${err.message}`);
+      },
+    });
+  }
+
+  displayFn(subject: any){
+    return subject ? subject.title : undefined;
+  }
+
   console(){
     console.log("placesMap listPlace", this.listPlaces);
     console.log("placesMap dataTransferTrip", this.dataTransferTripId);
