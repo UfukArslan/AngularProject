@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../security/auth.service';
 import { DataTransferTripIdService } from '../api/services/data-transfer-tripId.service';
 import { DataTransferMarkerCoordService } from "../api/services/data-transfer-marker-coord.service";
@@ -14,6 +14,8 @@ import { Observable } from 'rxjs';
 import { SearchPlaceService } from 'src/app/api/services/search-place.service';
 import { SearchPlaceRequest } from '../models/search-place-request';
 import { map, startWith } from 'rxjs/operators';
+import { MapComponent } from '../map/map.component';
+
 
 
 
@@ -27,6 +29,9 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./places-map.component.scss']
 })
 export class PlacesMapComponent implements OnInit {
+
+  @ViewChild (MapComponent) mapComponent:MapComponent;
+  mapMarkers: L.Marker[] = [];
   opened: boolean;
   coord: any;
   dataTransferTripId: any;
@@ -103,7 +108,7 @@ export class PlacesMapComponent implements OnInit {
  
   retrievePlace() {
     this.searchPlaceService.searchPlace(this.myControl.value, this.dataTransferTripId.id).subscribe({
-      next: (listPlace) =>  this.listPlaces = listPlace, 
+      next: (listPlace) =>  {this.listPlaces = listPlace, console.log("mapmakerbefore",this.mapMarkers), this.mapMarkers.length = 0, console.log("my control", this.myControl.value), console.log("mapmakerafter",this.mapMarkers), console.log("listplace",this.listPlaces), this.mapComponent.addMarker(this.listPlaces)},
       error: (err) => { alert(`Authentication failed: ${err.message}`);
       },
     });
