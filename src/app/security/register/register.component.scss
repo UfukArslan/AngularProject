@@ -17,3 +17,16 @@
  .example-spacer {
   flex: 1 1 auto;
 }
+
+.example-form {
+  min-width: 150px;
+  max-width: 900px;
+  width: 100%;
+  margin: auto;
+  margin-top: 100pt;
+  }
+
+.example-full-width {
+  padding-top: 10px;
+  width: 100%;
+}

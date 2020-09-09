@@ -5,11 +5,9 @@
   <div>
     <mat-toolbar color="primary">
       <mat-toolbar-row>  
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" type="button" (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <span class="example-spacer"></span>
         <span>Places - Travel log</span>
+        <span class="example-spacer"></span>
+        <app-logout-button></app-logout-button>
       </mat-toolbar-row>
     </mat-toolbar>
   </div>
@@ -18,27 +16,8 @@
   <!-- Body -->
   
   
-  <mat-sidenav-container >
-    
-    
-    <!-- Secondary -->
-    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-      <mat-selection-list [multiple]="false">
-        <mat-action-list>
-          <mat-list-option>Delete account</mat-list-option>
-          <mat-list-option>Delete account</mat-list-option>
-          <mat-list-option>Update account</mat-list-option>
-          <button mat-list-item (click)="logout()">Logout</button>
-          <p>{{createPlaceRequest.name}}</p>
-          
-        </mat-action-list>
-      </mat-selection-list>
-      <app-logout-button></app-logout-button>
-    </mat-sidenav>  
-    
-    <!-- Main -->
-
-    <mat-sidenav-content>
+ 
+   
 
       <!-- Filter -->
         <mat-grid-list  cols="4" rowHeight="2.75:1" gutterSize="50px">  
@@ -155,7 +134,7 @@
           </mat-grid-tile> 
           <!-- Map -->  
           <mat-grid-tile rowspan="3" colspan="3">
-            <app-map [dataTransferTripId]="dataTransferTripId" [mapMarkers]="mapMarkers" [listPlaces]="listPlaces"></app-map>
+            <app-map [dataTransferTripId]="dataTransferTripId" [mapMarkers]="mapMarkers"></app-map>
           </mat-grid-tile>
 
              
@@ -167,10 +146,7 @@
         </mat-grid-list>
 
         
-        
-      </mat-sidenav-content>
-      
-    </mat-sidenav-container>
+
   </div>
   
 

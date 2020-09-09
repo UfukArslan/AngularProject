@@ -49,7 +49,7 @@ export class TripsPageComponent implements OnInit {
                             console.log("observalbloadlist",this.listTrips),  
                             this.filteredListTrips = this.myControl.valueChanges.pipe(
                                                                                       startWith(''),
-                                                                                      map(value => this._filter(value))
+                                                                                      map(value => this._filter(value)),
                                                                                      )},
       // next: (listTrips) => console.log(listTrips),
       error: (error) => console.warn(error)

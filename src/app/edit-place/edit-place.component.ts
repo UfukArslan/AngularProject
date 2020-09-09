@@ -70,12 +70,6 @@ export class EditPlaceComponent implements OnInit {
     // console.log(this.dataTransferTripId)
     console.log("Hello World")
   }
-  
-
-  logout(): void {
-    this.auth.logout();
-    this.router.navigateByUrl("/login");
-  }
 
 
   addCoord(){

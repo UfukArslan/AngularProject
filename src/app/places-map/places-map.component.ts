@@ -32,7 +32,6 @@ export class PlacesMapComponent implements OnInit {
 
   @ViewChild (MapComponent) mapComponent:MapComponent;
   mapMarkers: L.Marker[] = [];
-
   opened: boolean;
   coord: any;
   dataTransferTripId: any;
@@ -45,10 +44,10 @@ export class PlacesMapComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
    // Filter 
-  myControl = new FormControl();
+   myControl = new FormControl();
   //voir listePlaces
-  filteredListPlaces: Observable<ListPlacesResponse[]>
-  searchPlace: SearchPlaceRequest;
+   filteredListPlaces: Observable<ListPlacesResponse[]>
+   searchPlace: SearchPlaceRequest;
 
  
 
@@ -125,12 +124,6 @@ export class PlacesMapComponent implements OnInit {
     console.log("placesMap creatPlaceRequest", this.createPlaceRequest);
   }
   
-
-  logout(): void {
-    this.auth.logout();
-    this.router.navigateByUrl("/login");
-  }
-
 
   addCoord(){
     this.createPlaceRequest.location.coordinates = this.coord;

@@ -2,138 +2,64 @@
 
   <!-- Header -->
 
-  <div>
-    <mat-toolbar color="primary">
-      <mat-toolbar-row>  
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" type="button" (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <span class="example-spacer"></span>
-        <span>Trips - Travel log</span>
-      </mat-toolbar-row>
-    </mat-toolbar>
-  </div>
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>  
+      <span>Trips - Travel log</span>
+      <span class="example-spacer"></span>
+      <app-logout-button></app-logout-button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
 
 <!-- Body -->
 
+<!-- Filter -->
+<mat-grid-list class="example-list" cols="4" rowHeight="2.7:1" gutterSize="50px">
+  <mat-grid-tile rowspan="1" colspan="4"> 
+    <form class="example-form" #searchTripForm="ngForm">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input 
+        type="text" 
+        name="filtertrip"
+        id="filtertrip"
+        placeholder="Search trip"
+        matInput 
+        [formControl]="myControl" 
+        [matAutocomplete]="auto">
+        <button mat-icon-button matSuffix aria-label="Search-icon" (click)="retrieveTrip()">
+          <mat-icon>search icon</mat-icon>
+        </button>
+        <!-- <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"> -->
+          <mat-autocomplete #auto="matAutocomplete" >
+            <mat-option *ngFor="let listTrip of filteredListTrips | async" [value]="listTrip.title">
+              {{listTrip.title}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+  </mat-grid-tile>
+</mat-grid-list>
 
-  <mat-sidenav-container >
-
-
-        <!-- Secondary -->
-        <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-          <mat-selection-list [multiple]="false">
-            <mat-list-option>Delete account</mat-list-option>
-            <mat-list-option>Delete account</mat-list-option>
-            <mat-list-option>Update account</mat-list-option>
-          </mat-selection-list>
-         <app-logout-button></app-logout-button>
-        </mat-sidenav>  
-    
-        <!-- Main -->
-        
-        <mat-sidenav-content>
+<!-- Card 1 -->  
+<mat-grid-list cols="4" rowHeight="1:1" gutterSize="50px">
+  <mat-grid-tile rowspan="2" colspan="1"> 
+    <mat-card class="create-card">
+      <mat-card-header>
+        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-card-title class="create-title-card">Create Trip</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+          <button class="create" mat-mini-fab color="primary" (click)="openDialog()">+</button>
+    </mat-card-content>
+  </mat-card>
+  </mat-grid-tile>
+  <!-- ngFor -->
+  <mat-grid-tile rowspan="2" *ngFor="let listTrip of listTrips"> 
+   <app-template-card-trip [listTrips]="listTrip"></app-template-card-trip>
+  </mat-grid-tile>
+</mat-grid-list>
           
-          
-          <!-- Filter -->
-          <mat-grid-list class="example-list" cols="4" rowHeight="2.7:1" gutterSize="50px">
-          
-          <mat-grid-tile rowspan="1" colspan="4"> 
-            <form class="example-form" #searchTripForm="ngForm">
-              <mat-form-field class="example-full-width" appearance="fill">
-                <input 
-                type="text" 
-                name="filtertrip"
-                id="filtertrip"
-                placeholder="Search trip"
-                matInput 
-                [formControl]="myControl" 
-                [matAutocomplete]="auto">
-                <button mat-icon-button matSuffix aria-label="Search-icon" (click)="retrieveTrip()">
-                  <mat-icon>search icon</mat-icon>
-                </button>
-                <!-- <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"> -->
-                  <mat-autocomplete #auto="matAutocomplete" >
-                    <mat-option *ngFor="let listTrip of filteredListTrips | async" [value]="listTrip.title">
-                      {{listTrip.title}}
-                    </mat-option>
-                  </mat-autocomplete>
-                </mat-form-field>
-              </form>
-            </mat-grid-tile>
-          </mat-grid-list>
-          <!-- Filter -->
-
-          <!-- Card 1 -->  
-            <mat-grid-list cols="4" rowHeight="1:1" gutterSize="50px">
-            
-            <mat-grid-tile rowspan="2" colspan="1"> 
-            <mat-card class="create-card">
-              <mat-card-header>
-                <!-- <div mat-card-avatar class="example-header-image"></div> -->
-                <mat-card-title class="create-title-card">Create Trip</mat-card-title>
-                <mat-card-subtitle></mat-card-subtitle>
-              </mat-card-header>
-              
-              <mat-card-content>
-                
-                  <button class="create" mat-mini-fab color="primary" (click)="openDialog()">+</button>
-                  
-              
-            </mat-card-content>
-            
-            <mat-card-actions>
-              <!-- <button mat-button>LIKE</button> -->
-              <!-- <button mat-button>SHARE</button> -->
-            </mat-card-actions>
-            
-          </mat-card>
-          </mat-grid-tile>
-
-            <!-- ngFor -->
-            <mat-grid-tile rowspan="2" *ngFor="let listTrip of listTrips"> 
-              <app-template-card-trip [listTrips]="listTrip"></app-template-card-trip>
-            </mat-grid-tile>
-            
-      
-          <!-- TemplateAngularMaterial -->
-
-          <!-- <mat-grid-tile rowspan="2"> 
-            <mat-card class="example-card">
-              <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>Shiba Inu</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-              </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-              </p>
-            </mat-card-content>
-            
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-            
-          </mat-card>
-          </mat-grid-tile> -->
-        
-        
-          <!-- test(header+footer) -->  
-          <!-- <mat-grid-tile rowspan="3" colspan="3">
-            <button mat-stroked-button (click)="openDialog()">Create trip</button>
-            <mat-grid-tile-header>Header</mat-grid-tile-header>
-            <mat-grid-tile-footer>footer</mat-grid-tile-footer>
-          </mat-grid-tile> -->
-          </mat-grid-list>
-          
-        </mat-sidenav-content>
-
-</mat-sidenav-container>
 
 
