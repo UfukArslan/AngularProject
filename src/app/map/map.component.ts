@@ -66,11 +66,10 @@ export class MapComponent implements OnInit {
   // addmaker-----------------------------------------------------
 
   addMarker(f){
-    // const marker = L.marker(place.location.coordinates, { icon: defaultIcon }).bindTooltip('Hello');
-    // marker.addTo(this.map);
-    console.log(f);
-  }
-  
+    const marker = L.marker(f[0].location.coordinates, { icon: defaultIcon }).bindTooltip('Hello');
+    marker.addTo(this.map);
+    // console.log(f[0].location.coordinates);
+    }
   // Display map
   // -------------------------------------------------------------
   onMapReady(map: L.Map): void {
