@@ -15,6 +15,7 @@ import { SearchPlaceService } from 'src/app/api/services/search-place.service';
 import { SearchPlaceRequest } from '../models/search-place-request';
 import { map, startWith } from 'rxjs/operators';
 import { MapComponent } from '../map/map.component';
+import { DataTransferTripIdMarkerService } from '../api/services/data-transfer-tripId-marker.service';
 
 
 
@@ -55,6 +56,7 @@ export class PlacesMapComponent implements OnInit {
     private auth: AuthService, 
     private router: Router, 
     private dataTransferTripIdService: DataTransferTripIdService, 
+    private dataTransferTripIdMarkerService: DataTransferTripIdMarkerService,
     private dataTransferMarkerCoordService: DataTransferMarkerCoordService, 
     private createP: CreatePlaceService,
     private _formBuilder: FormBuilder,
@@ -64,6 +66,7 @@ export class PlacesMapComponent implements OnInit {
     this.createPlaceRequest = new CreatePlaceRequest();
     this.createPlaceRequestError = false;
     this.dataTransferTripId = this.dataTransferTripIdService.getData(); // Get tripId for get request of the ListPlaces------------------------------
+    console.log(this.dataTransferTripIdService.getData()); // Get tripId for get request of the ListPlaces------------------------------
     this.createPlaceRequest.tripId = this.dataTransferTripId.id;  // Fill informations for postPlace()------------------------------
     this.createPlaceRequest.tripHref= this.dataTransferTripId.href;
     // this.createPlaceRequest.name= this.dataTransferTripId.name;
@@ -84,7 +87,6 @@ export class PlacesMapComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
-    
     this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
 
     // this.dataTransferTripId = this.dataTransferTripIdService.getData();
@@ -93,6 +95,8 @@ export class PlacesMapComponent implements OnInit {
     this.listPlacesService.loadListPlaces(this.dataTransferTripId.id).subscribe({
       next: (listPlaces) => { this.listPlaces = listPlaces; 
                               console.log("Subscribe/listPlaces", this.listPlaces);
+                              console.log("Subscribe/dataTripId", this.dataTransferTripId);
+                              console.log("Subscribe/dataTripIdMArker", this.dataTransferTripId);
                               this.filteredListPlaces = this.myControl.valueChanges.pipe(
                                                                                           startWith(''),
                                                                                           map(value => this._filter(value))
@@ -122,23 +126,29 @@ export class PlacesMapComponent implements OnInit {
     console.log("placesMap listPlace", this.listPlaces);
     console.log("placesMap dataTransferTrip", this.dataTransferTripId);
     console.log("placesMap creatPlaceRequest", this.createPlaceRequest);
+    console.log(this.dataTransferTripIdService.getData());
   }
   
 
   addCoord(){
     this.createPlaceRequest.location.coordinates = this.coord;
+    console.log(this.dataTransferTripId);
+    
   }
 
 
   postPlace(){
     this.createP.createdPlace(this.createPlaceRequest).subscribe({
-      next: () => this.router.navigateByUrl("/trips"),
+      // next: () => {console.log("Before"), this.dataTransferTripIdService.setData("stringdata"),this.dataTransferTripIdMarkerService.setData("stringdata"),console.log(this.dataTransferTripId),console.log("After"),setTimeout(()=>location.replace(`http://localhost:4200/places`), 1000)},
+      next: () => this.router.navigateByUrl("trips"),
       error: (err) => {
         this.createPlaceRequestError = true;
-        console.warn (`Anthentication failed: ${err.message}`);
+        alert ("ERROR");
       },
   })}
 
   
 
 }
+
+

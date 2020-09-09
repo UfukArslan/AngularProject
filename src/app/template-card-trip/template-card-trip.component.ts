@@ -10,7 +10,7 @@ import { EditTripService } from '../api/services/edit-trip.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 import { DeletedTripService } from '../api/services/deleted-trip.service';
-import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-template-card-trip',
@@ -24,15 +24,16 @@ export class TemplateCardTripComponent implements OnInit {
 
 
   constructor(
+    
     private router: Router, 
     private dataTransferTripIdService: DataTransferTripIdService, 
     private dataTransferTripIdMarkerService: DataTransferTripIdMarkerService,
     private dialog: MatDialog,
     private deletedTripService: DeletedTripService,
-    private location: Location
-    ){}
+    
+    ){console.log('constructore');}
 
-  ngOnInit(): void {
+  ngOnInit(): void {console.log('oninit');
   }
 
   deletedTrip() {
@@ -49,6 +50,7 @@ export class TemplateCardTripComponent implements OnInit {
   this.dataTransferTripIdService.setData(this.listTrips);
   this.dataTransferTripIdMarkerService.setData(this.listTrips);
   this.router.navigateByUrl("/places");
+  console.log(this.listTrips)
   }
 
   openEdit() {
