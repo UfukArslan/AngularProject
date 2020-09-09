@@ -24,6 +24,7 @@ export class MapComponent implements OnInit {
 
   @Input() dataTransferTripId: any;
   @Input() mapMarkers: L.Marker[] = [];
+  @Input() listPlaces:any;
 
   centerPlace: [];
   name = 'Angular';
@@ -49,7 +50,7 @@ export class MapComponent implements OnInit {
       // console.log("mapComponent", this.dataTransferTripIdMarker)
       console.log("mapComponent/input", this.dataTransferTripId)
       this.listPlacesMarkerService.loadListPlaces(this.dataTransferTripId.id).subscribe({
-      next: (listPlaces) => {this.centerPlace = listPlaces[1], console.log(this.centerPlace), listPlaces.forEach( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon }).bindTooltip('Hello')))}
+      next: (listPlaces) => {this.centerPlace = listPlaces[1], console.log(this.mapMarkers), listPlaces.forEach( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon })))}
       // next: (listPlaces) => listPlaces.forEach( listPlaces => console.log('loop', listPlaces))
       // next: () => console.log(this.dataTransferTripIdMarker)
     });   
@@ -66,7 +67,7 @@ export class MapComponent implements OnInit {
   // addmaker-----------------------------------------------------
 
   addMarker(f){
-    const marker = L.marker(f[0].location.coordinates, { icon: defaultIcon }).bindTooltip('Hello');
+    const marker = L.marker(f[0].location.coordinates, { icon: defaultIcon }).bindTooltip(f[0].name);
     marker.addTo(this.map);
     // console.log(f[0].location.coordinates);
     }
