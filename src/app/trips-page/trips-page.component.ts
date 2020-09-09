@@ -12,6 +12,7 @@ import { ListTripsResponse } from '../models/list-trips-response';
 import { SearchTripRequest } from '../models/search-trip-request';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 
   //@title
@@ -38,7 +39,8 @@ export class TripsPageComponent implements OnInit {
     private dialog: MatDialog, 
     private listTripsService: ListTripsService,
     private searchTripService: SearchTripService,
-    private router: Router
+    private router: Router,
+    private location: Location
     ) {}
 
   ngOnInit(): void {
@@ -129,7 +131,8 @@ export class CreateTripComponent {
 
       // Perform the request for register to the API.
       this.createT.createdTrip(this.createTripRequest).subscribe({
-        next: () => this.router.navigateByUrl("/trips"),
+        // next: () => this.router.navigateByUrl("/places"),
+        next: () => location.reload(true),
         error: (err) => {
           this.createTripRequestError = true;
           console.warn(`Authentication failed: ${err.message}`);

@@ -10,6 +10,7 @@ import { EditTripService } from '../api/services/edit-trip.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 import { DeletedTripService } from '../api/services/deleted-trip.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-template-card-trip',
@@ -27,7 +28,8 @@ export class TemplateCardTripComponent implements OnInit {
     private dataTransferTripIdService: DataTransferTripIdService, 
     private dataTransferTripIdMarkerService: DataTransferTripIdMarkerService,
     private dialog: MatDialog,
-    private deletedTripService: DeletedTripService
+    private deletedTripService: DeletedTripService,
+    private location: Location
     ){}
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class TemplateCardTripComponent implements OnInit {
 
   deletedTrip() {
     this.deletedTripService.removeTrip(this.listTrips.id).subscribe({
-      next: () => alert("Deleted Trip")
+      next: () => {location.reload(true), alert("Deleted Trip")}
     });
   }
 
