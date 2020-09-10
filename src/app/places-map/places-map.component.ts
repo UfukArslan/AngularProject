@@ -116,6 +116,7 @@ export class PlacesMapComponent implements OnInit {
       .subscribe({
         
                     next: (listPlaces: ListPlacesResponse[]) => { this.listPlaces = listPlaces;
+                                                                  this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
                                                                   this.filteredListPlaces = this.myControl.valueChanges
                                                                                               .pipe(
                                                                                                       startWith(''),

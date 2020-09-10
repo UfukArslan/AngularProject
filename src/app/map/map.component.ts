@@ -50,7 +50,9 @@ export class MapComponent implements OnInit {
       // console.log("mapComponent", this.dataTransferTripIdMarker)
       console.log("mapComponent/input", this.dataTransferTripId)
       this.listPlacesMarkerService.loadListPlaces(this.dataTransferTripId.id).subscribe({
-      next: (listPlaces) => {this.centerPlace = listPlaces[1], console.log(this.mapMarkers), listPlaces.forEach( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon })))}
+      next: (listPlaces) => { this.centerPlace = listPlaces[1], 
+                              console.log(this.mapMarkers), 
+                              listPlaces.forEach ( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon })))}
       // next: (listPlaces) => listPlaces.forEach( listPlaces => console.log('loop', listPlaces))
       // next: () => console.log(this.dataTransferTripIdMarker)
     });   
