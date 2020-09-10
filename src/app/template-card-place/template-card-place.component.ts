@@ -25,7 +25,7 @@ export class TemplateCardPlaceComponent implements OnInit {
     private dataTransferEditPlace: DataTransferEditPlaceService,
     private dataTTripId: DataTransferTripIdService,
     ) {}
-l
+
   ngOnInit(): void {
   }
   

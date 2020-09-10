@@ -96,24 +96,33 @@ export class PlacesMapComponent implements OnInit {
                                                   this.loadListPlace();
                                                  });
 
-    this.listPlacesService.loadListPlaces(this.dataTransferTripId.id).subscribe({
-      next: (listPlaces) => { this.listPlaces = listPlaces; 
-                              console.log("Subscribe/listPlaces", this.listPlaces);
-                              console.log("Subscribe/dataTripId", this.dataTransferTripId);
-                              console.log("Subscribe/dataTripIdMArker", this.dataTransferTripId);
-                              this.filteredListPlaces = this.myControl.valueChanges.pipe(
-                                                                                          startWith(''),
-                                                                                          map(value => this._filter(value))
-                                                                                         )},
-    });
+    // this.listPlacesService.loadListPlaces(this.dataTransferTripId.id).subscribe({
+    //   next: (listPlaces) => { this.listPlaces = listPlaces; 
+    //                           console.log("Subscribe/listPlaces", this.listPlaces);
+    //                           console.log("Subscribe/dataTripId", this.dataTransferTripId);
+    //                           console.log("Subscribe/dataTripIdMArker", this.dataTransferTripId);
+    //                           this.filteredListPlaces = this.myControl.valueChanges.pipe(
+    //                                                                                       startWith(''),
+    //                                                                                       map(value => this._filter(value))
+    //                                                                                      )},
+    // });
+
+    this.loadListPlace()
 
   }
 
   private loadListPlace(){
     this.listPlacesService.loadListPlaces(this.dataTransferTripId.id)
-      .subscribe(
-                  (listPlaces: ListPlacesResponse[]) => this.listPlaces = listPlaces
-                );
+      .subscribe({
+        
+                    next: (listPlaces: ListPlacesResponse[]) => { this.listPlaces = listPlaces;
+                                                                  this.filteredListPlaces = this.myControl.valueChanges
+                                                                                              .pipe(
+                                                                                                      startWith(''),
+                                                                                                      map(value => this._filter(value))
+                                                                                                    )
+                                                                },
+                  });
   } 
 
   _filter (value: any) : any[] {
