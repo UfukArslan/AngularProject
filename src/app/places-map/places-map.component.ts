@@ -141,9 +141,7 @@ export class PlacesMapComponent implements OnInit {
     this.createP.createdPlace(this.createPlaceRequest).subscribe({
       // next: () => {console.log("Before"), this.dataTransferTripIdService.setData("stringdata"),this.dataTransferTripIdMarkerService.setData("stringdata"),console.log(this.dataTransferTripId),console.log("After"),setTimeout(()=>location.replace(`http://localhost:4200/places`), 1000)},
       next: () => this.router.navigateByUrl("trips"),
-      error: (err) => {
-        this.createPlaceRequestError = true;
-        alert ("ERROR");
+      error: (err) => { alert ("ERROR");
       },
   })}
 
