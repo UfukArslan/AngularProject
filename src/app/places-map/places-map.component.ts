@@ -108,6 +108,7 @@ export class PlacesMapComponent implements OnInit {
     //                                                                                       map(value => this._filter(value))
     //                                                                                      )},
     // });
+    
 
     this.loadListPlace()
 
@@ -154,7 +155,10 @@ export class PlacesMapComponent implements OnInit {
  
   retrievePlace() {
     this.searchPlaceService.searchPlace(this.myControl.value, this.dataTransferTripId.id).subscribe({
-      next: (listPlace) =>  {this.listPlaces = listPlace, console.log("mapmakerbefore",this.mapMarkers), this.mapMarkers.length = 0, console.log("my control", this.myControl.value), console.log("mapmakerafter",this.mapMarkers), console.log("listplace",this.listPlaces), this.mapComponent.addMarker(this.listPlaces)},
+      next: (listPlace) =>  { this.listPlaces = listPlace, 
+                              this.mapMarkers.length = 0,  
+                              this.mapComponent.deleteSearchMarker();
+                              this.mapComponent.addMarker(this.listPlaces)},
       error: (err) => { alert(`Authentication failed: ${err.message}`);
       },
     });

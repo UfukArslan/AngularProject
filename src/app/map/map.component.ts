@@ -67,7 +67,7 @@ export class MapComponent implements OnInit {
             };
 
 
-  // deletedmaker-----------------------------------------------------
+  // deletedMarker-----------------------------------------------------
              
   deleteMarker(id: string){
 
@@ -80,7 +80,19 @@ export class MapComponent implements OnInit {
     });   
 
   }
-  // addmaker-----------------------------------------------------
+
+    // deletedsearchMarker-----------------------------------------------------
+             
+    deleteSearchMarker(){
+
+      this.drawnItems.clearLayers();
+                               
+        // next: (listPlaces) => listPlaces.forEach( listPlaces => console.log('loop', listPlaces))
+        // next: () => console.log(this.dataTransferTripIdMarker)
+      
+  
+    }
+  // addmarker-----------------------------------------------------
 
   addMarker(f){
     const marker = L.marker(f[0].location.coordinates, { icon: defaultIcon }).bindTooltip(f[0].name);
