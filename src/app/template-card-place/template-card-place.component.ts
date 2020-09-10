@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ListPlacesResponse } from '../models/list-places-response';
 import { DeletedPlaceService } from '../api/services/deleted-place.service';
 import { Router } from '@angular/router';
 import { DataTransferEditPlaceService } from '../api/services/data-transfer-edit-place.service';
 import { DataTransferTripIdService } from '../api/services/data-transfer-tripId.service';
 import { CreatePlaceRequest } from '../models/create-place-request';
+import { OnePlaceCoord } from '../models/one-place-coord-response';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class TemplateCardPlaceComponent implements OnInit {
   @Input() listPlaces: ListPlacesResponse;
   @Input() dataTransferTripId: any;
   @Input() createPlaceRequest: CreatePlaceRequest;
+  @Output() deleted: EventEmitter<any>;
 
 
   constructor(
@@ -24,14 +26,16 @@ export class TemplateCardPlaceComponent implements OnInit {
     private router: Router,
     private dataTransferEditPlace: DataTransferEditPlaceService,
     private dataTTripId: DataTransferTripIdService,
-    ) {}
+    ) {
+      this.deleted = new EventEmitter();
+    }
 
   ngOnInit(): void {
   }
   
   deletedPlace() {
     this.deletedPlaceService.removePlace(this.listPlaces.id).subscribe({
-      next: () => alert("Deleted Place")
+      next: () => { this.deleted.emit(), alert("Deleted Place")}
     });
   }
   

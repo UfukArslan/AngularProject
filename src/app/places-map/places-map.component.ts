@@ -111,7 +111,7 @@ export class PlacesMapComponent implements OnInit {
 
   }
 
-  private loadListPlace(){
+  loadListPlace(){
     this.listPlacesService.loadListPlaces(this.dataTransferTripId.id)
       .subscribe({
         
