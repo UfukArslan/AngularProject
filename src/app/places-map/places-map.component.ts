@@ -92,6 +92,10 @@ export class PlacesMapComponent implements OnInit {
     // this.dataTransferTripId = this.dataTransferTripIdService.getData();
     // console.log("place-map/dataTransferTripID",this.dataTransferTripId.href);
 
+    this.createP.RefreshNeeded$.subscribe(()=>{
+                                                  this.loadListPlace();
+                                                 });
+
     this.listPlacesService.loadListPlaces(this.dataTransferTripId.id).subscribe({
       next: (listPlaces) => { this.listPlaces = listPlaces; 
                               console.log("Subscribe/listPlaces", this.listPlaces);
@@ -104,6 +108,13 @@ export class PlacesMapComponent implements OnInit {
     });
 
   }
+
+  private loadListPlace(){
+    this.listPlacesService.loadListPlaces(this.dataTransferTripId.id)
+      .subscribe(
+                  (listPlaces: ListPlacesResponse[]) => this.listPlaces = listPlaces
+                );
+  } 
 
   _filter (value: any) : any[] {
     const filterValue = value.toLowerCase();
@@ -140,7 +151,7 @@ export class PlacesMapComponent implements OnInit {
   postPlace(){
     this.createP.createdPlace(this.createPlaceRequest).subscribe({
       // next: () => {console.log("Before"), this.dataTransferTripIdService.setData("stringdata"),this.dataTransferTripIdMarkerService.setData("stringdata"),console.log(this.dataTransferTripId),console.log("After"),setTimeout(()=>location.replace(`http://localhost:4200/places`), 1000)},
-      next: () => this.router.navigateByUrl("trips"),
+      next: () => this.router.navigateByUrl("/places"),
       error: (err) => { alert ("ERROR");
       },
   })}
