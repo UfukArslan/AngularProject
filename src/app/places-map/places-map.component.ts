@@ -32,6 +32,8 @@ import { DataTransferTripIdMarkerService } from '../api/services/data-transfer-t
 export class PlacesMapComponent implements OnInit {
 
   @ViewChild (MapComponent) mapComponent:MapComponent;
+
+  
   mapMarkers: L.Marker[] = [];
   opened: boolean;
   coord: any;
@@ -116,7 +118,6 @@ export class PlacesMapComponent implements OnInit {
       .subscribe({
         
                     next: (listPlaces: ListPlacesResponse[]) => { this.listPlaces = listPlaces;
-                                                                  this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
                                                                   this.filteredListPlaces = this.myControl.valueChanges
                                                                                               .pipe(
                                                                                                       startWith(''),
@@ -125,6 +126,26 @@ export class PlacesMapComponent implements OnInit {
                                                                 },
                   });
   } 
+
+  deletedPlace(){
+    this.listPlacesService.loadListPlaces(this.dataTransferTripId.id)
+      .subscribe({
+        
+                    next: (listPlaces: ListPlacesResponse[]) => { this.listPlaces = listPlaces;
+                                                                  this.mapMarkers.length = 0;
+                                                                  this.mapComponent.deleteMarker(this.dataTransferTripId.id);
+                                                                  this.filteredListPlaces = this.myControl.valueChanges
+                                                                                              .pipe(
+                                                                                                      startWith(''),
+                                                                                                      map(value => this._filter(value))
+                                                                                                    )
+                                                                },
+                  });
+  } 
+
+
+
+
 
   _filter (value: any) : any[] {
     const filterValue = value.toLowerCase();

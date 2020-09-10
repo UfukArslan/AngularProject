@@ -50,9 +50,9 @@ export class MapComponent implements OnInit {
       // console.log("mapComponent", this.dataTransferTripIdMarker)
       console.log("mapComponent/input", this.dataTransferTripId)
       this.listPlacesMarkerService.loadListPlaces(this.dataTransferTripId.id).subscribe({
-      next: (listPlaces) => { this.centerPlace = listPlaces[1], 
+      next: (coords) => { this.centerPlace = coords[1], 
                               console.log(this.mapMarkers), 
-                              listPlaces.forEach ( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon })))}
+                              coords.forEach ( coord => this.mapMarkers.push(L.marker(coord, { icon: defaultIcon })))}
       // next: (listPlaces) => listPlaces.forEach( listPlaces => console.log('loop', listPlaces))
       // next: () => console.log(this.dataTransferTripIdMarker)
     });   
@@ -66,6 +66,20 @@ export class MapComponent implements OnInit {
                       center: L.latLng(46.818932, 8.179)
             };
 
+
+  // deletedmaker-----------------------------------------------------
+             
+  deleteMarker(id: string){
+
+    this.listPlacesMarkerService.loadListPlaces(id).subscribe({
+      next: (listPlaces) => { this.drawnItems.clearLayers();
+                              console.log(this.drawnItems), 
+                              listPlaces.forEach ( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon })))}
+      // next: (listPlaces) => listPlaces.forEach( listPlaces => console.log('loop', listPlaces))
+      // next: () => console.log(this.dataTransferTripIdMarker)
+    });   
+
+  }
   // addmaker-----------------------------------------------------
 
   addMarker(f){
