@@ -12,45 +12,50 @@
     <!-- Name -->
     <div class="content">
     <mat-card-content>
-      <mat-form-field class="example-full-width">
+      <mat-form-field [formGroup]="firstFormGroup" class="example-full-width">
         <mat-label>Title</mat-label>
         <input 
           matInput 
           type="text" 
           name="name"
           id="name"
-          #titleField="ngModel"
+          formControlName="firstCtrl"
           required
-          [(ngModel)]="createTripRequest.title" 
-          >
+          [(ngModel)]="createTripRequest.title">
         <button mat-button *ngIf="createTripRequest.title" matSuffix mat-icon-button aria-label="Clear" (click)="createTripRequest.title=''">
           <mat-icon>close</mat-icon>
         </button>
-        <mat-error *ngIf="titleField.hasError('required') && titleField.touched">
-          Title is <strong>required</strong>
-        </mat-error>
+        <mat-error
+        *ngIf="firstFormGroup.controls['firstCtrl'].invalid &&
+                firstFormGroup.controls['firstCtrl'].touched"
+        class="is-invalid">
+        Title must be between 3 and 14 characters
+      </mat-error>
       </mat-form-field>
     </mat-card-content>
 
     <!-- Password -->
     <mat-card-content>
-      <mat-form-field class="example-full-width">
+      <mat-form-field [formGroup]="secondFormGroup" class="example-full-width">
         <mat-label>Description</mat-label>
         <input 
             matInput 
             type="texte" 
             name="description"
             id="description"
-            #descriptionField="ngModel"
+            formControlName="secondCtrl" 
             [(ngModel)]="createTripRequest.description" 
             required
           >
         <button mat-button *ngIf="createTripRequest.description" matSuffix mat-icon-button aria-label="Clear" (click)="createTripRequest.description=''">
           <mat-icon>close</mat-icon>
         </button>
-        <mat-error *ngIf="descriptionField.hasError('required') && descriptionField.touched">
-          Desciption is <strong>required</strong>
-        </mat-error>
+        <mat-error
+        *ngIf="secondFormGroup.controls['secondCtrl'].invalid &&
+                secondFormGroup.controls['secondCtrl'].touched"
+        class="is-invalid">
+        Description must be between 5 and 14 characters
+      </mat-error>
       </mat-form-field>
     </mat-card-content>
     </div>

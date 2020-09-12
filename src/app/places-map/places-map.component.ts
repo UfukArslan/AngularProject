@@ -35,24 +35,24 @@ export class PlacesMapComponent implements OnInit {
   @ViewChild (MapComponent) mapComponent:MapComponent;
 
   
-  mapMarkers: L.Marker[] = [];
-  opened: boolean;
-  coord: any;
-  dataTransferTripId: any;
-  listPlaces: any[];
-  // listPlaces: ListPlacesResponse[];
-  createPlaceRequest: CreatePlaceRequest;
-  createPlaceRequestError: boolean;
-  // FormStepper 
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
-   // Filter 
-  myControl = new FormControl();
-  //voir listePlaces
-  filteredListPlaces: Observable<ListPlacesResponse[]>
-  searchPlace: SearchPlaceRequest;
+    mapMarkers: L.Marker[] = [];
+    opened: boolean;
+    coord: any;
+    dataTransferTripId: any;
+    listPlaces: any[];
+    // listPlaces: ListPlacesResponse[];
+    createPlaceRequest: CreatePlaceRequest;
+    createPlaceRequestError: boolean;
+    // FormStepper 
+    isLinear = false;
+    firstFormGroup: FormGroup;
+    secondFormGroup: FormGroup;
+    thirdFormGroup: FormGroup;
+    // Filter 
+    myControl = new FormControl();
+    //voir listePlaces
+    filteredListPlaces: Observable<ListPlacesResponse[]>
+    searchPlace: SearchPlaceRequest;
 
  
 
@@ -80,8 +80,8 @@ export class PlacesMapComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    // Between placeComponent and template cardComponent------------------------------
-    // Form ---------------------------------------------------------------------------
+
+    // Form validation---------------------------------------------------------------------------
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
     });
