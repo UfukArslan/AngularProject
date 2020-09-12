@@ -57,17 +57,28 @@
             <mat-form-field>
               <mat-label>Name place</mat-label>
               <input 
-              matInput 
-              placeholder="ex: Place de la gare" 
-              type="text"
-              name="nameId"
-              formControlName="firstCtrl" 
-              [(ngModel)]="createPlaceRequest.name"
-              required
-              >
+                matInput 
+                placeholder="ex: Place de la gare" 
+                type="text"
+                name="name"
+                formControlName="firstCtrl" 
+                [(ngModel)]="createPlaceRequest.name"
+                required>
+              <mat-error
+                *ngIf="firstFormGroup.controls['firstCtrl'].invalid &&
+                        firstFormGroup.controls['firstCtrl'].touched"
+                class="is-invalid">
+                Name must be between 3 and 14 characters
+              </mat-error>
+
             </mat-form-field>
             <div>
-              <button mat-button matStepperNext>Next</button>
+              <button 
+                [disabled]="firstFormGroup.invalid"
+                mat-button 
+                matStepperNext>
+                Next
+              </button>
             </div>
           </form>
         </mat-step>
@@ -82,15 +93,28 @@
               formControlName="secondCtrl" 
               placeholder="Ex. Belle ambiance"
               type="text"
-              name="description"
               id="descriptionId"
-              required
               [(ngModel)]="createPlaceRequest.description"
-              >
+              required>
+              <mat-error
+                *ngIf="secondFormGroup.controls['secondCtrl'].invalid &&
+                        secondFormGroup.controls['secondCtrl'].touched"
+                class="is-invalid">
+                Description must be between 5 and 14 characters
+              </mat-error>
             </mat-form-field>
             <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <button 
+                mat-button 
+                matStepperPrevious>
+                Back
+              </button>
+              <button 
+                [disabled]="secondFormGroup.invalid"
+                mat-button 
+                matStepperNext>
+                Next
+              </button>
             </div>
           </form>
         </mat-step>
@@ -107,12 +131,27 @@
                 name="location"
                 id="locationId"
                 [(ngModel)]="this.coord"
-                required
-                >
+                required>
+                <mat-error
+                *ngIf="thirdFormGroup.controls['thirdCtrl'].invalid"
+                class="is-invalid">
+                Location must be clicked on map
+              </mat-error>
+            
+
             </mat-form-field>
             <div>
-              <button mat-button matStepperPrevious >Back</button>
-              <button mat-button matStepperNext (click)="addCoord()">Next</button>
+              <button 
+                mat-button 
+                matStepperPrevious>
+                Back
+              </button>
+              <button 
+                [disabled]="thirdFormGroup.invalid"
+                mat-button 
+                matStepperNext (click)="addCoord()">
+                Next
+              </button>
             </div>
           </form>
         </mat-step>
@@ -121,8 +160,19 @@
           <ng-template matStepLabel>Done</ng-template>
           <!-- <p>You are now done.</p> -->
           <div>
-            <button mat-flat-button color="primary" (click)="postPlace()" type="submit">Save</button>
-            <button mat-button matStepperPrevious>Back</button>
+            <button 
+              
+              
+              [disabled]="thirdFormGroup.invalid"
+              mat-flat-button color="primary" 
+              (click)="postPlace()" 
+              type="submit">
+              Save
+            </button>
+            <button 
+              mat-button matStepperPrevious>
+              Back
+            </button>
             <!-- <button mat-flat-button color="primary" (click)="console()" type="submit" cdkFocusInitial>Console</button> -->
           </div>
         </mat-step>

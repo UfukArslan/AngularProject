@@ -39,7 +39,8 @@ export class PlacesMapComponent implements OnInit {
   opened: boolean;
   coord: any;
   dataTransferTripId: any;
-  listPlaces: ListPlacesResponse[];
+  listPlaces: any[];
+  // listPlaces: ListPlacesResponse[];
   createPlaceRequest: CreatePlaceRequest;
   createPlaceRequestError: boolean;
   // FormStepper 
@@ -85,7 +86,7 @@ export class PlacesMapComponent implements OnInit {
       firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      secondCtrl: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(14)]]
     });
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
