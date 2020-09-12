@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ListTripsResponse } from '../models/list-trips-response';
 import { EditTripRequest } from '../models/edit-trip-request';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataTransferTripIdService } from '../api/services/data-transfer-tripId.service';
 import { DataTransferTripIdMarkerService } from '../api/services/data-transfer-tripId-marker.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -70,20 +70,35 @@ export class TemplateCardTripComponent implements OnInit {
   templateUrl: './edit-trip.component.html',
   styleUrls: ["./edit-trip.component.scss"],
 })
-export class EditTripComponent {
+export class EditTripComponent implements OnInit {
 
 
   editTripRequest: EditTripRequest;
   editTripRequestError: boolean;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
   constructor(
     private router: Router,
     private editT: EditTripService,
+    private _formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any
     ){
       this.editTripRequest = new EditTripRequest();
       this.editTripRequestError = false;
     }
+
+    ngOnInit(): void {
+
+      this.firstFormGroup = this._formBuilder.group({
+        firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
+      });
+  
+      this.secondFormGroup = this._formBuilder.group({
+        secondCtrl: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(14)]]
+      });
+  
+      }
 
     console(){
       console.log(this.data.id)

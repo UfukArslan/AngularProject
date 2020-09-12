@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialogActions, MatDialog } from '@angular/material/dialog';
 import { CreateTripRequest } from '../models/create-trip-request';
 import { Router } from '@angular/router';
-import { NgForm,FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreatetripService } from '../api/services/createtrip.service';
 import { ListTripsService } from '../api/services/list-trips.service';
 import { SearchTripService } from '../api/services/search-trip.service';
@@ -120,7 +120,7 @@ export class CreateTripComponent implements OnInit {
   constructor(
     private createT: CreatetripService, 
     private router: Router,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: FormBuilder
     ){
     this.createTripRequest = new CreateTripRequest();
     this.createTripRequestError = false;
