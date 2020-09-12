@@ -123,6 +123,7 @@ export class PlacesMapComponent implements OnInit {
         
                     next: (listPlaces: ListPlacesResponse[]) => { this.listPlaces = listPlaces;
                                                                   console.log(this.listPlaces);
+                                                                  console.log(this.dataTransferTripId);
                                                                   this.filteredListPlaces = this.myControl.valueChanges
                                                                                               .pipe(
                                                                                                       startWith(''),

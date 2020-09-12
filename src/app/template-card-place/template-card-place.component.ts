@@ -15,7 +15,7 @@ import { OnePlaceCoord } from '../models/one-place-coord-response';
 })
 export class TemplateCardPlaceComponent implements OnInit {
 
-  @Input() listPlaces: ListPlacesResponse;
+  @Input() listPlaces: any;
   @Input() dataTransferTripId: any;
   @Input() createPlaceRequest: CreatePlaceRequest;
   @Output() deleted: EventEmitter<any>;
