@@ -117,6 +117,14 @@ export class PlacesMapComponent implements OnInit {
 
   }
 
+  consoleIf1(){
+    console.log(this.myControl);
+  }
+
+  consoleIf2(){
+    console.log(this.myControl);
+  }
+
   loadListPlace(){
     this.listPlacesService.loadListPlaces(this.dataTransferTripId.id)
       .subscribe({
