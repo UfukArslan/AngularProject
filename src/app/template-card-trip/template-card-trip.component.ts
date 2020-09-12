@@ -84,8 +84,8 @@ export class EditTripComponent implements OnInit {
     private _formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any
     ){
-      this.editTripRequest = new EditTripRequest();
-      this.editTripRequestError = false;
+    this.editTripRequest = new EditTripRequest();
+    this.editTripRequestError = false;
     }
 
     ngOnInit(): void {
