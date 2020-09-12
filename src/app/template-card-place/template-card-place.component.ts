@@ -31,6 +31,7 @@ export class TemplateCardPlaceComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    console.log(this.listPlaces)
   }
   
   deletedPlace() {

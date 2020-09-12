@@ -97,7 +97,7 @@ export class EditTripComponent {
   
         // Perform the request for register to the API.
         this.editT.editTrip(this.data.id, this.editTripRequest).subscribe({
-          next: () => this.router.navigateByUrl("/"),
+          next: () => {location.reload(true), alert("Create Trip")},
           error: (err) => {
             this.editTripRequestError = true;
             console.warn(`Authentication failed: ${err.message}`);

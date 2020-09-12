@@ -24,6 +24,7 @@ import { DataTransferTripIdMarkerService } from '../api/services/data-transfer-t
 
 
 
+
 @Component({
   selector: 'app-places-map',
   templateUrl: './places-map.component.html',
@@ -47,10 +48,10 @@ export class PlacesMapComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
    // Filter 
-   myControl = new FormControl();
+  myControl = new FormControl();
   //voir listePlaces
-   filteredListPlaces: Observable<ListPlacesResponse[]>
-   searchPlace: SearchPlaceRequest;
+  filteredListPlaces: Observable<ListPlacesResponse[]>
+  searchPlace: SearchPlaceRequest;
 
  
 
@@ -81,7 +82,7 @@ export class PlacesMapComponent implements OnInit {
     // Between placeComponent and template cardComponent------------------------------
     // Form ---------------------------------------------------------------------------
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
@@ -90,6 +91,7 @@ export class PlacesMapComponent implements OnInit {
       thirdCtrl: ['', Validators.required]
     });
     this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
+
 
     // this.dataTransferTripId = this.dataTransferTripIdService.getData();
     // console.log("place-map/dataTransferTripID",this.dataTransferTripId.href);
@@ -119,6 +121,7 @@ export class PlacesMapComponent implements OnInit {
       .subscribe({
         
                     next: (listPlaces: ListPlacesResponse[]) => { this.listPlaces = listPlaces;
+                                                                  console.log(this.listPlaces);
                                                                   this.filteredListPlaces = this.myControl.valueChanges
                                                                                               .pipe(
                                                                                                       startWith(''),
@@ -186,7 +189,7 @@ export class PlacesMapComponent implements OnInit {
   postPlace(){
     this.createP.createdPlace(this.createPlaceRequest).subscribe({
       // next: () => {console.log("Before"), this.dataTransferTripIdService.setData("stringdata"),this.dataTransferTripIdMarkerService.setData("stringdata"),console.log(this.dataTransferTripId),console.log("After"),setTimeout(()=>location.replace(`http://localhost:4200/places`), 1000)},
-      next: () => this.router.navigateByUrl("/places"),
+      next: () => {this.router.navigateByUrl("/places"), alert("Create place")},
       error: (err) => { alert ("ERROR");
       },
   })}
