@@ -75,7 +75,9 @@ export class MapComponent implements OnInit {
       next: (coords) => { this.centerPlace = coords[1], 
                               console.log(this.mapMarkers), 
                               coords.forEach ( coord => this.mapMarkers.push(L.marker(coord, { icon: defaultIcon })))}
+                              
                             });   
+                            
   }
   // deletedMarker-----------------------------------------------------
              
@@ -84,10 +86,12 @@ export class MapComponent implements OnInit {
     this.listPlacesMarkerService.loadListPlaces(id).subscribe({
       next: (listPlaces) => { this.drawnItems.clearLayers();
                               console.log(this.drawnItems), 
-                              listPlaces.forEach ( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon })))}
+                              listPlaces.forEach ( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon })))},
       // next: (listPlaces) => listPlaces.forEach( listPlaces => console.log('loop', listPlaces))
       // next: () => console.log(this.dataTransferTripIdMarker)
-    });   
+      error: (err) => { alert(`ERROR`)},     
+    });  
+                             
 
   }
 

@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
         next: () => this.router.navigateByUrl("../login"),
         error: (err) => {
           this.registerError = true;
-          console.warn(`Authentication failed: ${err.message}`);
+          alert(`Error`);
         },
       });
     }

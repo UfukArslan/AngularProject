@@ -155,7 +155,7 @@ export class CreateTripComponent implements OnInit {
         next: () => location.reload(true),
         error: (err) => {
           this.createTripRequestError = true;
-          console.warn(`Authentication failed: ${err.message}`);
+          alert("Error");
         },
       });
     }

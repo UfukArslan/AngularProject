@@ -38,7 +38,9 @@ export class TemplateCardTripComponent implements OnInit {
 
   deletedTrip() {
     this.deletedTripService.removeTrip(this.listTrips.id).subscribe({
-      next: () => {location.reload(true), alert("Deleted Trip")}
+      next: () => {location.reload(true), alert("Deleted Trip")},
+      error: (err) => { alert(`ERROR`)}, 
+
     });
   }
 
@@ -115,7 +117,7 @@ export class EditTripComponent implements OnInit {
           next: () => {location.reload(true), alert("Create Trip")},
           error: (err) => {
             this.editTripRequestError = true;
-            console.warn(`Authentication failed: ${err.message}`);
+            alert("Error");
           },
         });
       }

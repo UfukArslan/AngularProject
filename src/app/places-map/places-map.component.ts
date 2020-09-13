@@ -102,16 +102,7 @@ export class PlacesMapComponent implements OnInit {
                                                   this.loadListPlace();
                                                  });
 
-    // this.listPlacesService.loadListPlaces(this.dataTransferTripId.id).subscribe({
-    //   next: (listPlaces) => { this.listPlaces = listPlaces; 
-    //                           console.log("Subscribe/listPlaces", this.listPlaces);
-    //                           console.log("Subscribe/dataTripId", this.dataTransferTripId);
-    //                           console.log("Subscribe/dataTripIdMArker", this.dataTransferTripId);
-    //                           this.filteredListPlaces = this.myControl.valueChanges.pipe(
-    //                                                                                       startWith(''),
-    //                                                                                       map(value => this._filter(value))
-    //                                                                                      )},
-    // });
+
     
 
     this.loadListPlace()
@@ -139,6 +130,8 @@ export class PlacesMapComponent implements OnInit {
                                                                                                       map(value => this._filter(value))
                                                                                                     )
                                                                 },
+                    error: (err) => { alert(`ERROR`)},  
+                                                                  
                   });
   } 
 
@@ -155,6 +148,7 @@ export class PlacesMapComponent implements OnInit {
                                                                                                       map(value => this._filter(value))
                                                                                                     )
                                                                 },
+                      error: (err) => { alert(`ERROR`)}, 
                   });
   } 
 
@@ -181,6 +175,7 @@ export class PlacesMapComponent implements OnInit {
                                                                                                     map(value => this._filter(value))
                                                                                                   )
                                                               },
+                  error: (err) => { alert(`ERROR`)}, 
                 });
   }
 
@@ -192,8 +187,7 @@ export class PlacesMapComponent implements OnInit {
                                           this.mapMarkers.length = 0,  
                                           this.mapComponent.deleteSearchMarker(),
                                           this.mapComponent.addMarker(this.listPlaces)},
-                  error: (err) => { alert(`ERROR`);
-      },
+                  error: (err) => { alert(`ERROR`)},
     });
   }
 
