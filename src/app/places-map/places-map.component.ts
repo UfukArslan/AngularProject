@@ -53,6 +53,7 @@ export class PlacesMapComponent implements OnInit {
     //voir listePlaces
     filteredListPlaces: Observable<ListPlacesResponse[]>
     searchPlace: SearchPlaceRequest;
+    
 
  
 
@@ -118,11 +119,11 @@ export class PlacesMapComponent implements OnInit {
   }
 
   consoleIf1(){
-    console.log(this.myControl);
+    console.log("avec");
   }
 
   consoleIf2(){
-    console.log(this.myControl);
+    console.log("sans");
   }
 
   loadListPlace(){

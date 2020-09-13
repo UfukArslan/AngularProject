@@ -35,7 +35,16 @@
           <!-- <div *ngif="myControl.value0 ">
             <button mat-icon-button matSuffix aria-label="Search-icon" (click)="consoleIf1()"><mat-icon>search icon</mat-icon></button>
           </div> -->
-          <button mat-icon-button matSuffix aria-label="Search-icon" (click)="consoleIf2()"><mat-icon>search icon</mat-icon></button>
+          <ng-container *ngIf='myControl.value==""; then sans; else avec'>
+          
+          </ng-container>
+
+          <ng-template #avec>
+            <button mat-icon-button matSuffix aria-label="Search-icon" (click)="consoleIf1()"><mat-icon>search icon</mat-icon></button>
+          </ng-template>
+          <ng-template #sans>
+            <button mat-icon-button matSuffix aria-label="Search-icon" (click)="consoleIf2()"><mat-icon>search icon</mat-icon></button>
+          </ng-template>
           <!-- <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"> -->
           <mat-autocomplete #auto="matAutocomplete" >
             <mat-option *ngFor="let listPlace of filteredListPlaces | async" [value]="listPlace.name">
