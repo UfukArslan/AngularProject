@@ -85,7 +85,8 @@ export class EditPlaceComponent implements OnInit {
     this.updatePlace.editplace(this.place.id, this.editPlaceRequest).subscribe({
       // next: () => {this.router.navigateByUrl("places"); console.log("hello")},
       // next: () => {this.dataTransferTripIdMarkerService.setData(this.place.location.coordinates); this.dataTransferTripIdService.setData(this.place);this.router.navigateByUrl("places"); console.log("hello")},
-      next: () => {this.dataTransferTripIdService.setData(this.dataTransferTripId);this.router.navigateByUrl("places"); console.log(this.place)},
+      next: () => {this.dataTransferTripIdService.setData(this.dataTransferTripId);
+                  this.router.navigateByUrl("/places"); console.log(this.place)},
       // next: () => {this.listPlacesService.loadListPlaces(this.place.tripId);this.router.navigateByUrl("places"); console.log("hello")},
       // next: () => console.log(this.place.tripId),
       // next: () => this.location.replaceState(`${environment.apiUrl}/places`),

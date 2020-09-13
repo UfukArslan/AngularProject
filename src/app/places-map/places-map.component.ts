@@ -167,13 +167,32 @@ export class PlacesMapComponent implements OnInit {
     return this.listPlaces.filter(listPlace => listPlace.name.toLowerCase().includes(filterValue));
   }
  
+  retrievePlaces() {
+    this.listPlacesService.loadListPlaces(this.dataTransferTripId.id)
+    .subscribe({
+      
+                  next: (listPlaces: ListPlacesResponse[]) => { this.listPlaces = listPlaces,
+                                                                this.mapMarkers.length = 0,
+                                                                this.mapComponent.deleteSearchMarker(),
+                                                                this.mapComponent.loadlistplaces(),
+                                                                this.filteredListPlaces = this.myControl.valueChanges
+                                                                                            .pipe(
+                                                                                                    startWith(''),
+                                                                                                    map(value => this._filter(value))
+                                                                                                  )
+                                                              },
+                });
+  }
+
+
   retrievePlace() {
-    this.searchPlaceService.searchPlace(this.myControl.value, this.dataTransferTripId.id).subscribe({
-      next: (listPlace) =>  { this.listPlaces = listPlace, 
-                              this.mapMarkers.length = 0,  
-                              this.mapComponent.deleteSearchMarker();
-                              this.mapComponent.addMarker(this.listPlaces)},
-      error: (err) => { alert(`Authentication failed: ${err.message}`);
+    this.searchPlaceService.searchPlace(this.myControl.value, this.dataTransferTripId.id)
+    .subscribe({
+                  next: (listPlace) =>  { this.listPlaces = listPlace, 
+                                          this.mapMarkers.length = 0,  
+                                          this.mapComponent.deleteSearchMarker(),
+                                          this.mapComponent.addMarker(this.listPlaces)},
+                  error: (err) => { alert(`ERROR`);
       },
     });
   }

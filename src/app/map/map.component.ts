@@ -67,6 +67,16 @@ export class MapComponent implements OnInit {
             };
 
 
+
+  // loadlistplaces-----------------------------------------------------
+
+  loadlistplaces(){
+    this.listPlacesMarkerService.loadListPlaces(this.dataTransferTripId.id).subscribe({
+      next: (coords) => { this.centerPlace = coords[1], 
+                              console.log(this.mapMarkers), 
+                              coords.forEach ( coord => this.mapMarkers.push(L.marker(coord, { icon: defaultIcon })))}
+                            });   
+  }
   // deletedMarker-----------------------------------------------------
              
   deleteMarker(id: string){
