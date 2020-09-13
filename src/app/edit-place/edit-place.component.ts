@@ -90,10 +90,8 @@ export class EditPlaceComponent implements OnInit {
       // next: () => {this.listPlacesService.loadListPlaces(this.place.tripId);this.router.navigateByUrl("places"); console.log("hello")},
       // next: () => console.log(this.place.tripId),
       // next: () => this.location.replaceState(`${environment.apiUrl}/places`),
-      // error: (err) => {
-        // this.editPlaceRequestError = true;
-        // console.warn (`Anthentication failed: ${err.message}`);
-      // },
+      error: (err) => { alert ("Error");
+      },
   })}
   // editPlace(){
   //   this.createP.createdPlace(this.createPlaceRequest).subscribe({
