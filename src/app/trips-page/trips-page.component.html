@@ -41,7 +41,7 @@
   </mat-grid-tile>
 </mat-grid-list>
 
-<!-- Card 1 -->  
+<!-- Cards Create -->  
 <mat-grid-list cols="4" rowHeight="1:1" gutterSize="50px">
   <mat-grid-tile rowspan="2" colspan="1"> 
     <mat-card class="create-card">
@@ -55,8 +55,8 @@
     </mat-card-content>
   </mat-card>
   </mat-grid-tile>
-  <!-- ngFor -->
-  <mat-grid-tile rowspan="2" *ngFor="let listTrip of listTrips"> 
+  <!-- Cards Trip -->   
+  <mat-grid-tile rowspan="2" colspan="1" *ngFor="let listTrip of listTrips"> 
    <app-template-card-trip [listTrips]="listTrip"></app-template-card-trip>
   </mat-grid-tile>
 </mat-grid-list>

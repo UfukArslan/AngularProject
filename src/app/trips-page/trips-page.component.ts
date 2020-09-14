@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialogActions, MatDialog } from '@angular/material/dialog';
 import { CreateTripRequest } from '../models/create-trip-request';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreatetripService } from '../api/services/createtrip.service';
 import { ListTripsService } from '../api/services/list-trips.service';
 import { SearchTripService } from '../api/services/search-trip.service';
@@ -39,11 +39,14 @@ export class TripsPageComponent implements OnInit {
     private dialog: MatDialog, 
     private listTripsService: ListTripsService,
     private searchTripService: SearchTripService,
-    private router: Router
+    private router: Router,
+   
   
     ) {}
 
   ngOnInit(): void {
+
+  
   
 
     this.listTripsService.loadListTrips().subscribe({
@@ -52,7 +55,8 @@ export class TripsPageComponent implements OnInit {
                             this.filteredListTrips = this.myControl.valueChanges.pipe(
                                                                                       startWith(''),
                                                                                       map(value => this._filter(value)),
-                                                                                     )},
+                                                                                     )
+                                                                                    },
       // next: (listTrips) => console.log(listTrips),
       error: (error) => console.warn(error)
     });
@@ -98,13 +102,15 @@ export class TripsPageComponent implements OnInit {
   templateUrl: './create-trip.component.html',
   styleUrls: ["./create-trip.component.scss"],
 })
-export class CreateTripComponent {
+export class CreateTripComponent implements OnInit {
 
       /**
    * This authentication request object will be updated when the user
    * edits the login form. It will then be sent to the API.
    */
   createTripRequest: CreateTripRequest;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
   /**
    * If true, it means that the authentication API has return a failed response
@@ -112,11 +118,26 @@ export class CreateTripComponent {
    */
   createTripRequestError: boolean;
 
-  constructor(private createT: CreatetripService, private router: Router) {
+  constructor(
+    private createT: CreatetripService, 
+    private router: Router,
+    private _formBuilder: FormBuilder
+    ){
     this.createTripRequest = new CreateTripRequest();
     this.createTripRequestError = false;
-  }
+    }
 
+    ngOnInit(): void {
+
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
+    });
+
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(14)]]
+    });
+
+    }
 
   
 
@@ -132,10 +153,10 @@ export class CreateTripComponent {
       // Perform the request for register to the API.
       this.createT.createdTrip(this.createTripRequest).subscribe({
         // next: () => this.router.navigateByUrl("/places"),
-        next: () => location.reload(true),
+        next: () => {location.reload(true),alert("Create trip")},
         error: (err) => {
           this.createTripRequestError = true;
-          console.warn(`Authentication failed: ${err.message}`);
+          alert("Error");
         },
       });
     }

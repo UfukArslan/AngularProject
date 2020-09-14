@@ -3,7 +3,7 @@ import { RegisRequest } from "../../models/regis-request";
 import { AuthService } from "../auth.service";
 import { RegisterService } from "../register.service";
 import { Router } from "@angular/router";
-import { NgForm } from "@angular/forms";
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -11,23 +11,33 @@ import { NgForm } from "@angular/forms";
   templateUrl: "./register.component.html",
   styleUrls: ["./register.component.scss"],
 })
-export class RegisterComponent {
-  /**
-   * This authentication request object will be updated when the user
-   * edits the login form. It will then be sent to the API.
-   */
-  regisRequest: RegisRequest;
+export class RegisterComponent implements OnInit {
 
-  /**
-   * If true, it means that the authentication API has return a failed response
-   * (probably because the name or password is incorrect).
-   */
+  regisRequest: RegisRequest;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
   registerError: boolean;
 
-  constructor(private regis: RegisterService, private router: Router) {
+  constructor(
+    private regis: RegisterService, 
+    private router: Router,
+    private _formBuilder: FormBuilder,
+    ){
     this.regisRequest = new RegisRequest();
     this.registerError = false;
   }
+
+  ngOnInit(): void {
+
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]]
+    });
+
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', [Validators.required, Validators.minLength(4)]]
+    });
+
+    }
   
 
   /**
@@ -44,7 +54,7 @@ export class RegisterComponent {
         next: () => this.router.navigateByUrl("../login"),
         error: (err) => {
           this.registerError = true;
-          console.warn(`Authentication failed: ${err.message}`);
+          alert(`Error`);
         },
       });
     }

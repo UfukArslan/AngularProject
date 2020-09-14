@@ -15,7 +15,7 @@ import { OnePlaceCoord } from '../models/one-place-coord-response';
 })
 export class TemplateCardPlaceComponent implements OnInit {
 
-  @Input() listPlaces: ListPlacesResponse;
+  @Input() listPlaces: any;
   @Input() dataTransferTripId: any;
   @Input() createPlaceRequest: CreatePlaceRequest;
   @Output() deleted: EventEmitter<any>;
@@ -31,11 +31,13 @@ export class TemplateCardPlaceComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    console.log(this.listPlaces)
   }
   
   deletedPlace() {
     this.deletedPlaceService.removePlace(this.listPlaces.id).subscribe({
-      next: () => { this.deleted.emit(), alert("Deleted Place")}
+      next: () => { this.deleted.emit(), alert("Deleted Place")},
+      error: (err) => { alert(`ERROR`)}, 
     });
   }
   

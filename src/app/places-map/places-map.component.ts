@@ -24,6 +24,7 @@ import { DataTransferTripIdMarkerService } from '../api/services/data-transfer-t
 
 
 
+
 @Component({
   selector: 'app-places-map',
   templateUrl: './places-map.component.html',
@@ -34,23 +35,25 @@ export class PlacesMapComponent implements OnInit {
   @ViewChild (MapComponent) mapComponent:MapComponent;
 
   
-  mapMarkers: L.Marker[] = [];
-  opened: boolean;
-  coord: any;
-  dataTransferTripId: any;
-  listPlaces: ListPlacesResponse[];
-  createPlaceRequest: CreatePlaceRequest;
-  createPlaceRequestError: boolean;
-  // FormStepper 
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
-   // Filter 
-   myControl = new FormControl();
-  //voir listePlaces
-   filteredListPlaces: Observable<ListPlacesResponse[]>
-   searchPlace: SearchPlaceRequest;
+    mapMarkers: L.Marker[] = [];
+    opened: boolean;
+    coord: any;
+    dataTransferTripId: any;
+    listPlaces: any[];
+    // listPlaces: ListPlacesResponse[];
+    createPlaceRequest: CreatePlaceRequest;
+    createPlaceRequestError: boolean;
+    // FormStepper 
+    isLinear = false;
+    firstFormGroup: FormGroup;
+    secondFormGroup: FormGroup;
+    thirdFormGroup: FormGroup;
+    // Filter 
+    myControl = new FormControl();
+    //voir listePlaces
+    filteredListPlaces: Observable<ListPlacesResponse[]>
+    searchPlace: SearchPlaceRequest;
+    
 
  
 
@@ -78,18 +81,19 @@ export class PlacesMapComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    // Between placeComponent and template cardComponent------------------------------
-    // Form ---------------------------------------------------------------------------
+
+    // Form validation---------------------------------------------------------------------------
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      secondCtrl: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(14)]]
     });
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
     this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
+
 
     // this.dataTransferTripId = this.dataTransferTripIdService.getData();
     // console.log("place-map/dataTransferTripID",this.dataTransferTripId.href);
@@ -98,20 +102,19 @@ export class PlacesMapComponent implements OnInit {
                                                   this.loadListPlace();
                                                  });
 
-    // this.listPlacesService.loadListPlaces(this.dataTransferTripId.id).subscribe({
-    //   next: (listPlaces) => { this.listPlaces = listPlaces; 
-    //                           console.log("Subscribe/listPlaces", this.listPlaces);
-    //                           console.log("Subscribe/dataTripId", this.dataTransferTripId);
-    //                           console.log("Subscribe/dataTripIdMArker", this.dataTransferTripId);
-    //                           this.filteredListPlaces = this.myControl.valueChanges.pipe(
-    //                                                                                       startWith(''),
-    //                                                                                       map(value => this._filter(value))
-    //                                                                                      )},
-    // });
+
     
 
     this.loadListPlace()
 
+  }
+
+  consoleIf1(){
+    console.log("avec");
+  }
+
+  consoleIf2(){
+    console.log("sans");
   }
 
   loadListPlace(){
@@ -119,12 +122,16 @@ export class PlacesMapComponent implements OnInit {
       .subscribe({
         
                     next: (listPlaces: ListPlacesResponse[]) => { this.listPlaces = listPlaces;
+                                                                  console.log(this.listPlaces);
+                                                                  console.log(this.dataTransferTripId);
                                                                   this.filteredListPlaces = this.myControl.valueChanges
                                                                                               .pipe(
                                                                                                       startWith(''),
                                                                                                       map(value => this._filter(value))
                                                                                                     )
                                                                 },
+                    error: (err) => { alert(`ERROR`)},  
+                                                                  
                   });
   } 
 
@@ -141,6 +148,7 @@ export class PlacesMapComponent implements OnInit {
                                                                                                       map(value => this._filter(value))
                                                                                                     )
                                                                 },
+                      error: (err) => { alert(`ERROR`)}, 
                   });
   } 
 
@@ -153,15 +161,33 @@ export class PlacesMapComponent implements OnInit {
     return this.listPlaces.filter(listPlace => listPlace.name.toLowerCase().includes(filterValue));
   }
  
+  retrievePlaces() {
+    this.listPlacesService.loadListPlaces(this.dataTransferTripId.id)
+    .subscribe({
+      
+                  next: (listPlaces: ListPlacesResponse[]) => { this.listPlaces = listPlaces,
+                                                                this.mapMarkers.length = 0,
+                                                                this.mapComponent.deleteSearchMarker(),
+                                                                this.mapComponent.loadlistplaces(),
+                                                                this.filteredListPlaces = this.myControl.valueChanges
+                                                                                            .pipe(
+                                                                                                    startWith(''),
+                                                                                                    map(value => this._filter(value))
+                                                                                                  )
+                                                              },
+                  error: (err) => { alert(`ERROR`)}, 
+                });
+  }
+
+
   retrievePlace() {
     this.searchPlaceService.searchPlace(this.myControl.value, this.dataTransferTripId.id)
     .subscribe({
-      next: (listPlace) =>  { this.listPlaces = listPlace, 
-                              this.mapMarkers.length = 0,  
-                              this.mapComponent.deleteSearchMarker();
-                              this.mapComponent.addMarker(this.listPlaces)},
-      error: (err) => { alert(`Authentication failed: ${err.message}`);
-      },
+                  next: (listPlace) =>  { this.listPlaces = listPlace, 
+                                          this.mapMarkers.length = 0,  
+                                          this.mapComponent.deleteSearchMarker(),
+                                          this.mapComponent.addMarker(this.listPlaces)},
+                  error: (err) => { alert(`ERROR`)},
     });
   }
 
@@ -187,7 +213,7 @@ export class PlacesMapComponent implements OnInit {
   postPlace(){
     this.createP.createdPlace(this.createPlaceRequest).subscribe({
       // next: () => {console.log("Before"), this.dataTransferTripIdService.setData("stringdata"),this.dataTransferTripIdMarkerService.setData("stringdata"),console.log(this.dataTransferTripId),console.log("After"),setTimeout(()=>location.replace(`http://localhost:4200/places`), 1000)},
-      next: () => this.router.navigateByUrl("/places"),
+      next: () => {this.router.navigateByUrl("/places"), alert("Create place")},
       error: (err) => { alert ("ERROR");
       },
   })}
