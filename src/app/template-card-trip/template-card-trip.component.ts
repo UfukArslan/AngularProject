@@ -114,7 +114,7 @@ export class EditTripComponent implements OnInit {
   
         // Perform the request for register to the API.
         this.editT.editTrip(this.data.id, this.editTripRequest).subscribe({
-          next: () => {location.reload(true), alert("Create Trip")},
+          next: () => {location.reload(true), alert("Edit Trip")},
           error: (err) => {
             this.editTripRequestError = true;
             alert("Error");
