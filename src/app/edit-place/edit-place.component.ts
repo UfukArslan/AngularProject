@@ -55,10 +55,10 @@ export class EditPlaceComponent implements OnInit {
         this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
         // Form ---------------------------------------------------------------------------
         this.firstFormGroup = this._formBuilder.group({
-          firstCtrl: ['', Validators.required]
+          firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
         });
         this.secondFormGroup = this._formBuilder.group({
-          secondCtrl: ['', Validators.required]
+          secondCtrl: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(14)]]
         });
         this.thirdFormGroup = this._formBuilder.group({
           thirdCtrl: ['', Validators.required]

@@ -39,17 +39,18 @@
                   formControlName="firstCtrl" 
                   [(ngModel)]="editPlaceRequest.name"
                   required>
-                <!-- <mat-error
-                  *ngIf="firstFormGroup.controls['firstCtrl'].invalid &&
+                <mat-error
+                    *ngIf="firstFormGroup.controls['firstCtrl'].invalid &&
                           firstFormGroup.controls['firstCtrl'].touched"
-                  class="is-invalid">
-                  Name must be between 3 and 14 characters
-                </mat-error> -->
+                    class="is-invalid">
+                   Name must be between 3 and 14 characters
+                </mat-error>
+             
   
               </mat-form-field>
               <div>
                 <button 
-                  
+                  [disabled]="firstFormGroup.invalid"
                   mat-button 
                   matStepperNext>
                   Next
@@ -71,12 +72,12 @@
                 id="descriptionId"
                 [(ngModel)]="editPlaceRequest.description"
                 required>
-                <!-- <mat-error
+                <mat-error
                   *ngIf="secondFormGroup.controls['secondCtrl'].invalid &&
                           secondFormGroup.controls['secondCtrl'].touched"
                   class="is-invalid">
                   Description must be between 5 and 14 characters
-                </mat-error> -->
+                </mat-error>
               </mat-form-field>
               <div>
                 <button 
@@ -85,11 +86,11 @@
                   Back
                 </button>
                 <button 
-                  
+                  [disabled]="secondFormGroup.invalid"
                   mat-button 
                   matStepperNext>
                   Next
-                </button>
+              </button>
               </div>
             </form>
           </mat-step>
@@ -107,11 +108,11 @@
                   id="locationId"
                   [(ngModel)]="this.coord"
                   required>
-                  <!-- <mat-error
+                  <mat-error
                   *ngIf="thirdFormGroup.controls['thirdCtrl'].invalid"
                   class="is-invalid">
                   Location must be clicked on map
-                </mat-error> -->
+                </mat-error>
               
   
               </mat-form-field>
@@ -127,7 +128,7 @@
                   mat-button 
                   matStepperNext 
                   >
-                  Save
+                  Next
                 </button>
               </div>
             </form>

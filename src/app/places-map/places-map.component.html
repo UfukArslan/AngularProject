@@ -159,7 +159,7 @@
               <button 
                 [disabled]="thirdFormGroup.invalid"
                 mat-button 
-                matStepperNext (click)="addCoord()">
+                matStepperNext >
                 Next
               </button>
             </div>
@@ -175,6 +175,7 @@
               
               [disabled]="thirdFormGroup.invalid"
               mat-flat-button color="primary" 
+              (click)="addCoord()"
               (click)="postPlace()" 
               type="submit">
               Save
