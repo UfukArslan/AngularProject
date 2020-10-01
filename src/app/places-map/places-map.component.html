@@ -5,9 +5,9 @@
   <div>
     <mat-toolbar color="primary">
       <mat-toolbar-row>  
-        <span>Places - Travel log </span>
-        <span class="example-spacer"></span>
         Trip - {{dataTransferTripId.title}}
+        <span class="example-spacer"></span>
+        <span>Places</span>
         <app-logout-button></app-logout-button>
       </mat-toolbar-row>
     </mat-toolbar>
@@ -159,7 +159,7 @@
               <button 
                 [disabled]="thirdFormGroup.invalid"
                 mat-button 
-                matStepperNext >
+                matStepperNext (click)="addCoord()">
                 Next
               </button>
             </div>
@@ -175,7 +175,6 @@
               
               [disabled]="thirdFormGroup.invalid"
               mat-flat-button color="primary" 
-              (click)="addCoord()"
               (click)="postPlace()" 
               type="submit">
               Save
