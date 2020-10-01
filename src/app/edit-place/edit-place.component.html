@@ -10,9 +10,9 @@
     <div>
       <mat-toolbar color="primary">
         <mat-toolbar-row>  
-          <span>Edit - Travel log </span>
-          <span class="example-spacer"></span>
           Trip - {{dataTransferTripId.title}}
+          <span class="example-spacer"></span>
+          <span>Edit -  </span>
           <app-logout-button></app-logout-button>
         </mat-toolbar-row>
       </mat-toolbar>
@@ -119,9 +119,7 @@
               <div>
                 <button 
                   mat-button 
-                  matStepperPrevious
-                  routerLink="/places"
-                  routerLinkActive="activebutton">
+                  matStepperPrevious>
                   Back
                 </button>
                 <button 
@@ -149,7 +147,10 @@
                 Save
               </button>
               <button 
-                mat-button matStepperPrevious>
+                mat-button 
+                matStepperPrevious
+                routerLink="/trips"
+                routerLinkActive="activebutton">
                 Back
               </button>
               <!-- <button mat-flat-button color="primary" (click)="console()" type="submit" cdkFocusInitial>Console</button> -->
