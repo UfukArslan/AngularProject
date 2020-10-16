@@ -17,7 +17,6 @@
 
   <!-- Filter -->
   <mat-grid-list  cols="4" rowHeight="2.75:1" gutterSize="50px">  
-    <!-- <mat-grid-list class="example-list" cols="4" rowHeight="2.7:1" gutterSize="50px"> -->
     <mat-grid-tile rowspan="2" colspan="4"> 
       <form class="example-form" #searchPlaceForm="ngForm">
         <mat-form-field class="example-full-width" appearance="fill">
@@ -29,10 +28,6 @@
           matInput 
           [formControl]="myControl" 
           [matAutocomplete]="auto">
-          <!-- <button mat-icon-button matSuffix aria-label="Search-icon" (click)="retrievePlace()">
-          <mat-icon>search icon</mat-icon>
-          </button> -->
-         
           <ng-container *ngIf='myControl.value==""; then sans; else avec'>
           </ng-container>
           <ng-template #avec>
@@ -41,8 +36,6 @@
           <ng-template #sans>
             <button mat-icon-button matSuffix aria-label="Search-icon" (click)="retrievePlaces()"><mat-icon>search icon</mat-icon></button>
           </ng-template>
-
-          <!-- <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"> -->
           <mat-autocomplete #auto="matAutocomplete" >
             <mat-option *ngFor="let listPlace of filteredListPlaces | async" [value]="listPlace.name">
             {{listPlace.name}}
@@ -57,7 +50,6 @@
             
   <!-- Forms -->  
   <mat-grid-list  cols="4" rowHeight="1:1" gutterSize="50px">  
-  <!-- <mat-grid-list class="example-list" cols="4" rowHeight="1:1" gutterSize="50px">      -->
     <mat-grid-tile rowspan="3" colspan="1"> 
       <mat-vertical-stepper [linear]="isLinear" #stepper>
         <!-- Name -->
@@ -80,7 +72,6 @@
                 class="is-invalid">
                 Name must be between 3 and 14 characters
               </mat-error>
-
             </mat-form-field>
             <div>
               <button 
@@ -92,6 +83,7 @@
             </div>
           </form>
         </mat-step>
+
         <!-- Description -->
         <mat-step [stepControl]="secondFormGroup">
           <form [formGroup]="secondFormGroup">
@@ -128,6 +120,7 @@
             </div>
           </form>
         </mat-step>
+
         <!-- Location -->
         <mat-step [stepControl]="thirdFormGroup">
           <form [formGroup]="thirdFormGroup">
@@ -147,8 +140,6 @@
                 class="is-invalid">
                 Location must be clicked on map
               </mat-error>
-            
-
             </mat-form-field>
             <div>
               <button 
@@ -168,11 +159,8 @@
         
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>
-          <!-- <p>You are now done.</p> -->
           <div>
             <button 
-              
-              
               [disabled]="thirdFormGroup.invalid"
               mat-flat-button color="primary" 
               (click)="postPlace()" 
@@ -183,7 +171,6 @@
               mat-button matStepperPrevious>
               Back
             </button>
-            <!-- <button mat-flat-button color="primary" (click)="console()" type="submit" cdkFocusInitial>Console</button> -->
           </div>
         </mat-step>
       </mat-vertical-stepper>
@@ -199,10 +186,7 @@
     <app-template-card-place [createPlaceRequest]="createPlaceRequest" [listPlaces]="listPlace" [dataTransferTripId]="dataTransferTripId" (deleted)="deletedPlace()"></app-template-card-place>
   </mat-grid-tile>
 </mat-grid-list>
-
-        
-
-  </div>
+</div>
   
 
     

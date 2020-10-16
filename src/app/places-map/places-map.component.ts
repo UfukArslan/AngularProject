@@ -3,7 +3,6 @@ import { AuthService } from '../security/auth.service';
 import { DataTransferTripIdService } from '../api/services/data-transfer-tripId.service';
 import { DataTransferMarkerCoordService } from "../api/services/data-transfer-marker-coord.service";
 import { Router } from '@angular/router';
-import { ListTripsResponse } from '../models/list-trips-response';
 import { CreatePlaceRequest } from '../models/create-place-request';
 import { CreatePlaceService } from '../api/services/create-place.service';
 import { ListPlacesService } from 'src/app/api/services/list-places.service';
@@ -19,12 +18,6 @@ import { DataTransferTripIdMarkerService } from '../api/services/data-transfer-t
 
 
 
-
-
-
-
-
-
 @Component({
   selector: 'app-places-map',
   templateUrl: './places-map.component.html',
@@ -34,34 +27,32 @@ export class PlacesMapComponent implements OnInit {
 
   @ViewChild (MapComponent) mapComponent:MapComponent;
 
-  
     mapMarkers: L.Marker[] = [];
     opened: boolean;
     coord: any;
     dataTransferTripId: any;
     listPlaces: any[];
-    // listPlaces: ListPlacesResponse[];
     createPlaceRequest: CreatePlaceRequest;
     createPlaceRequestError: boolean;
-    // FormStepper 
+    
+    // FormStepper ------------------------------------
     isLinear = false;
     firstFormGroup: FormGroup;
     secondFormGroup: FormGroup;
     thirdFormGroup: FormGroup;
-    // Filter 
+
+    // Filter -----------------------------------------
     myControl = new FormControl();
-    //voir listePlaces
+
+    //Voir listePlaces --------------------------------
     filteredListPlaces: Observable<ListPlacesResponse[]>
     searchPlace: SearchPlaceRequest;
     
 
- 
-
   constructor(
-    private auth: AuthService, 
+
     private router: Router, 
     private dataTransferTripIdService: DataTransferTripIdService, 
-    private dataTransferTripIdMarkerService: DataTransferTripIdMarkerService,
     private dataTransferMarkerCoordService: DataTransferMarkerCoordService, 
     private createP: CreatePlaceService,
     private _formBuilder: FormBuilder,
@@ -70,14 +61,13 @@ export class PlacesMapComponent implements OnInit {
     ){
     this.createPlaceRequest = new CreatePlaceRequest();
     this.createPlaceRequestError = false;
-    this.dataTransferTripId = this.dataTransferTripIdService.getData(); // Get tripId for get request of the ListPlaces------------------------------
-    console.log(this.dataTransferTripIdService.getData()); // Get tripId for get request of the ListPlaces------------------------------
-    this.createPlaceRequest.tripId = this.dataTransferTripId.id;  // Fill informations for postPlace()------------------------------
+
+    // Get tripId for get request of the ListPlaces---------------------------------------------
+    this.dataTransferTripId = this.dataTransferTripIdService.getData();
+
+    // Fill informations for postPlace()---------------------------------------------------------
+    this.createPlaceRequest.tripId = this.dataTransferTripId.id; 
     this.createPlaceRequest.tripHref= this.dataTransferTripId.href;
-    // this.createPlaceRequest.name= this.dataTransferTripId.name;
-    // this.createPlaceRequest.description= this.dataTransferTripId.description;
-    // this.createPlaceRequest.location.coordinates = this.dataTransferTripId.location.coordinates;
-    // this.createPlaceRequest.location.coordinates = this.coord;
   }
   
   ngOnInit(): void {
@@ -94,27 +84,12 @@ export class PlacesMapComponent implements OnInit {
     });
     this.dataTransferMarkerCoordService.currentMessage.subscribe(coord => this.coord = coord);
 
-
-    // this.dataTransferTripId = this.dataTransferTripIdService.getData();
-    // console.log("place-map/dataTransferTripID",this.dataTransferTripId.href);
-
     this.createP.RefreshNeeded$.subscribe(()=>{
                                                   this.loadListPlace();
                                                  });
 
-
-    
-
     this.loadListPlace()
 
-  }
-
-  consoleIf1(){
-    console.log("avec");
-  }
-
-  consoleIf2(){
-    console.log("sans");
   }
 
   loadListPlace(){
@@ -151,9 +126,6 @@ export class PlacesMapComponent implements OnInit {
                       error: (err) => { alert(`ERROR`)}, 
                   });
   } 
-
-
-
 
 
   _filter (value: any) : any[] {
@@ -212,14 +184,12 @@ export class PlacesMapComponent implements OnInit {
 
   postPlace(){
     this.createP.createdPlace(this.createPlaceRequest).subscribe({
-      // next: () => {console.log("Before"), this.dataTransferTripIdService.setData("stringdata"),this.dataTransferTripIdMarkerService.setData("stringdata"),console.log(this.dataTransferTripId),console.log("After"),setTimeout(()=>location.replace(`http://localhost:4200/places`), 1000)},
       next: () => {this.router.navigateByUrl("/places"), alert("Create place")},
       error: (err) => { alert ("ERROR");
       },
   })}
 
   
-
 }
 
 

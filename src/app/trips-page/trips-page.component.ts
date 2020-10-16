@@ -104,18 +104,12 @@ export class TripsPageComponent implements OnInit {
 })
 export class CreateTripComponent implements OnInit {
 
-      /**
-   * This authentication request object will be updated when the user
-   * edits the login form. It will then be sent to the API.
-   */
+
   createTripRequest: CreateTripRequest;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-  /**
-   * If true, it means that the authentication API has return a failed response
-   * (probably because the name or password is incorrect).
-   */
+ 
   createTripRequestError: boolean;
 
   constructor(
@@ -141,18 +135,14 @@ export class CreateTripComponent implements OnInit {
 
   
 
-  /**
-   * Called when the login form is submitted.
-   */
+ 
   onSubmit(form: NgForm) {
-    // Only do something if the form is valid
+   
     if (form.valid) {
-      // Hide any previous login error.
+  
       this.createTripRequestError = false;
 
-      // Perform the request for register to the API.
       this.createT.createdTrip(this.createTripRequest).subscribe({
-        // next: () => this.router.navigateByUrl("/places"),
         next: () => {location.reload(true),alert("Create trip")},
         error: (err) => {
           this.createTripRequestError = true;
