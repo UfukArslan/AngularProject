@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
 
       // Perform the request for register to the API.
       this.regis.register(this.regisRequest).subscribe({
-        next: () => this.router.navigateByUrl("../login"),
+        next: () => {this.router.navigateByUrl("/login"), alert("User registered")},
         error: (err) => {
           this.registerError = true;
           alert(`Error`);
