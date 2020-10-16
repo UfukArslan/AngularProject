@@ -1,8 +1,4 @@
 
-  
-
-    
-
   <div class="main-container">
 
     <!-- ToolBar -->
@@ -23,7 +19,6 @@
               
     <!-- Forms -->  
     <mat-grid-list  cols="4" rowHeight="1:1" gutterSize="50px">  
-    <!-- <mat-grid-list class="example-list" cols="4" rowHeight="1:1" gutterSize="50px">      -->
       <mat-grid-tile rowspan="3" colspan="1"> 
         <mat-vertical-stepper [linear]="isLinear" #stepper>
           <!-- Name -->
@@ -134,7 +129,6 @@
           
           <mat-step>
             <ng-template matStepLabel>Done</ng-template>
-            <!-- <p>You are now done.</p> -->
             <div>
               <button 
                 
@@ -153,7 +147,6 @@
                 routerLinkActive="activebutton">
                 Back
               </button>
-              <!-- <button mat-flat-button color="primary" (click)="console()" type="submit" cdkFocusInitial>Console</button> -->
             </div>
           </mat-step>
         </mat-vertical-stepper>

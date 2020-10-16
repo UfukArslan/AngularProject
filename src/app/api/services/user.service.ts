@@ -5,7 +5,7 @@ import { User } from "src/app/models/user";
 import { environment} from "../../../environments/environment"
 import { AuthRequest } from 'src/app/models/auth-request';
 
-// TODO: Insert here your personnal api URL
+
 const apiUrl = "<REPLACE_ME>";
 
 @Injectable({

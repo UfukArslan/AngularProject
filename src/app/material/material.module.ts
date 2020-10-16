@@ -18,11 +18,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-
-
-
-
-
 const MaterialComponents =[
   MatButtonModule,
   MatSliderModule,

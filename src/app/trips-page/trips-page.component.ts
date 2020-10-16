@@ -133,9 +133,6 @@ export class CreateTripComponent implements OnInit {
 
     }
 
-  
-
- 
   onSubmit(form: NgForm) {
    
     if (form.valid) {

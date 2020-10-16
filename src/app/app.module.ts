@@ -22,10 +22,6 @@ import { EditPlaceComponent } from './edit-place/edit-place.component';
 import { MapEditComponent } from './map-edit/map-edit.component';
 
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent, 

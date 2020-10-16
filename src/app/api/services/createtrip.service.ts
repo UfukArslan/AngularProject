@@ -9,8 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class CreatetripService {
 
-  //private createdTrip$: ReplaySubject<CreateTripRequest>;
-
   constructor(private http: HttpClient) {
    }
 

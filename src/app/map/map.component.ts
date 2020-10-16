@@ -2,15 +2,9 @@ import { Component, OnInit, Input } from "@angular/core";
 import { defaultIcon } from "./default-marker";
 import { DataTransferMarkerCoordService } from "../api/services/data-transfer-marker-coord.service";
 import * as L from "leaflet";
-import { map } from 'rxjs/operators';
-import { ListPlacesResponse } from '../models/list-places-response';
 import { ListTripsResponse } from '../models/list-trips-response';
 import { DataTransferTripIdMarkerService } from '../api/services/data-transfer-tripId-marker.service';
-
-import { CreatePlaceRequest } from '../models/create-place-request';
 import { ListPlacesMarkerService } from '../api/services/list-places-marker.service';
-
-//import { Map } from "leaflet";
 
 
 
@@ -29,7 +23,6 @@ export class MapComponent implements OnInit {
   centerPlace: [];
   name = 'Angular';
   map: L.Map;
-  // mapMarkers: L.Marker[] = [];
   reservationArr : Array<object> = [];
   dataTransferTripIdMarker: ListTripsResponse;
 
@@ -40,21 +33,15 @@ export class MapComponent implements OnInit {
     private dataTransferMarkerCoord: DataTransferMarkerCoordService,  
     private dataTransferTripIdMarkerService: DataTransferTripIdMarkerService, 
     private listPlacesMarkerService: ListPlacesMarkerService,
-    ){
-      // this.mapMarkers = [
-      // ];
-    }
+    ){}
     
     ngOnInit () {
       this.dataTransferTripIdMarker = this.dataTransferTripIdMarkerService.getData();
-      // console.log("mapComponent", this.dataTransferTripIdMarker)
       console.log("mapComponent/input", this.dataTransferTripId)
       this.listPlacesMarkerService.loadListPlaces(this.dataTransferTripId.id).subscribe({
       next: (coords) => { this.centerPlace = coords[1], 
                               console.log(this.mapMarkers), 
                               coords.forEach ( coord => this.mapMarkers.push(L.marker(coord, { icon: defaultIcon })))}
-      // next: (listPlaces) => listPlaces.forEach( listPlaces => console.log('loop', listPlaces))
-      // next: () => console.log(this.dataTransferTripIdMarker)
     });   
   }
 
@@ -68,7 +55,7 @@ export class MapComponent implements OnInit {
 
 
 
-  // loadlistplaces-----------------------------------------------------
+  // loadlistplaces------------------------------------------------------------
 
   loadlistplaces(){
     this.listPlacesMarkerService.loadListPlaces(this.dataTransferTripId.id).subscribe({
@@ -79,7 +66,8 @@ export class MapComponent implements OnInit {
                             });   
                             
   }
-  // deletedMarker-----------------------------------------------------
+
+  // deletedMarker------------------------------------------------------------
              
   deleteMarker(id: string){
 
@@ -87,34 +75,25 @@ export class MapComponent implements OnInit {
       next: (listPlaces) => { this.drawnItems.clearLayers();
                               console.log(this.drawnItems), 
                               listPlaces.forEach ( listPlaces => this.mapMarkers.push(L.marker(listPlaces, { icon: defaultIcon })))},
-      // next: (listPlaces) => listPlaces.forEach( listPlaces => console.log('loop', listPlaces))
-      // next: () => console.log(this.dataTransferTripIdMarker)
       error: (err) => { alert(`ERROR`)},     
     });  
                              
 
   }
 
-    // deletedsearchMarker-----------------------------------------------------
-             
+  // deletedsearchMarker-----------------------------------------------------             
     deleteSearchMarker(){
 
-      this.drawnItems.clearLayers();
-                               
-        // next: (listPlaces) => listPlaces.forEach( listPlaces => console.log('loop', listPlaces))
-        // next: () => console.log(this.dataTransferTripIdMarker)
-      
-  
+      this.drawnItems.clearLayers();                    
     }
-  // addmarker-----------------------------------------------------
 
+  // addmarker---------------------------------------------------------------
   addMarker(f){
     const marker = L.marker(f[0].location.coordinates, { icon: defaultIcon }).bindTooltip(f[0].name);
     marker.addTo(this.map);
-    // console.log(f[0].location.coordinates);
     }
-  // Display map
-  // -------------------------------------------------------------
+
+  // Display map -------------------------------------------------------------
   onMapReady(map: L.Map): void {
     this.map = map;
     
@@ -124,9 +103,7 @@ export class MapComponent implements OnInit {
     });
   }
   
-  // Toolbar-----------------------------------------------------
-  
-  
+  // Toolbar----------------------------------------------------------------  
   drawnItems: L.FeatureGroup = L.featureGroup();
 
   drawOptions = {
