@@ -57,7 +57,6 @@ export class TripsPageComponent implements OnInit {
                                                                                       map(value => this._filter(value)),
                                                                                      )
                                                                                     },
-      // next: (listTrips) => console.log(listTrips),
       error: (error) => console.warn(error)
     });
 
