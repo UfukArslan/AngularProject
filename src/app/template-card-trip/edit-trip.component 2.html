@@ -1,0 +1,72 @@
+<form class="example-form" #editTripForm="ngForm">
+  <!-- <mat-card class='example-card'> -->
+    
+    <mat-toolbar color="primary">
+      <span>Edit Trip</span>
+      <span class="example-spacer"></span>
+
+    </mat-toolbar>
+    <mat-card-title></mat-card-title> 
+    <mat-card-subtitle></mat-card-subtitle>
+
+    <!-- Name -->
+    <div class="content">
+    <mat-card-content>
+      <mat-form-field [formGroup]="firstFormGroup" class="example-full-width">
+        <mat-label>Title</mat-label>
+        <input 
+          matInput 
+          type="text" 
+          name="name"
+          id="name"
+          formControlName="firstCtrl"
+          required
+          [(ngModel)]="editTripRequest.title" 
+          >
+        <button mat-button *ngIf="editTripRequest.title" matSuffix mat-icon-button aria-label="Clear" (click)="editTripRequest.title=''">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error
+        *ngIf="firstFormGroup.controls['firstCtrl'].invalid &&
+                firstFormGroup.controls['firstCtrl'].touched"
+        class="is-invalid">
+        Title must be between 3 and 14 characters
+      </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+
+    <!-- Password -->
+    <mat-card-content>
+      <mat-form-field [formGroup]="secondFormGroup"  class="example-full-width" >
+        <mat-label>Description</mat-label>
+        <input 
+            matInput 
+            type="texte" 
+            name="description"
+            id="description"
+            formControlName="secondCtrl" 
+            [(ngModel)]="editTripRequest.description" 
+            required
+          >
+        <button mat-button *ngIf="editTripRequest.description" matSuffix mat-icon-button aria-label="Clear" (click)="editTripRequest.description=''">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error
+        *ngIf="secondFormGroup.controls['secondCtrl'].invalid &&
+                secondFormGroup.controls['secondCtrl'].touched"
+        class="is-invalid">
+        Description must be between 5 and 14 characters
+      </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    </div>
+    <mat-card-actions class="example-actions">
+      <button mat-flat-button mat-dialog-close color="primary" (click)="onSubmit(editTripForm)" type="submit" cdkFocusInitial>Edit</button>
+      <button mat-button mat-dialog-close>Cancel</button>
+      <!-- <button mat-button mat-dialog-close (click)="console()">Console</button> -->
+    </mat-card-actions>
+    <mat-card-footer></mat-card-footer>
+  <!-- </mat-card> -->
+</form>
+
+

@@ -1,0 +1,65 @@
+<div class="main-container">
+
+  <!-- Header -->
+
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>  
+      <span>Trips - Travel log</span>
+      <span class="example-spacer"></span>
+      <app-logout-button></app-logout-button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<!-- Body -->
+
+<!-- Filter -->
+<mat-grid-list class="example-list" cols="4" rowHeight="2.7:1" gutterSize="50px">
+  <mat-grid-tile rowspan="1" colspan="4"> 
+    <form class="example-form" #searchTripForm="ngForm">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input 
+        type="text" 
+        name="filtertrip"
+        id="filtertrip"
+        placeholder="Search trip"
+        matInput 
+        [formControl]="myControl" 
+        [matAutocomplete]="auto">
+        <button mat-icon-button matSuffix aria-label="Search-icon" (click)="retrieveTrip()">
+          <mat-icon>search icon</mat-icon>
+        </button>
+        <!-- <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"> -->
+          <mat-autocomplete #auto="matAutocomplete" >
+            <mat-option *ngFor="let listTrip of filteredListTrips | async" [value]="listTrip.title">
+              {{listTrip.title}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<!-- Cards Create -->  
+<mat-grid-list cols="4" rowHeight="1:1" gutterSize="50px">
+  <mat-grid-tile rowspan="2" colspan="1"> 
+    <mat-card class="create-card">
+      <mat-card-header>
+        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-card-title class="create-title-card">Create Trip</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+          <button class="create" mat-mini-fab color="primary" (click)="openDialog()">+</button>
+    </mat-card-content>
+  </mat-card>
+  </mat-grid-tile>
+  <!-- Cards Trip -->   
+  <mat-grid-tile rowspan="2" colspan="1" *ngFor="let listTrip of listTrips"> 
+   <app-template-card-trip [listTrips]="listTrip"></app-template-card-trip>
+  </mat-grid-tile>
+</mat-grid-list>
+          
+
+

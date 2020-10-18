@@ -1,0 +1,31 @@
+.example-card {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 20px;
+  
+  }
+
+.example-actions {
+    max-width: 450px;
+    margin-left: auto;
+    
+ }
+
+ .content {
+   margin: 10px;
+ }
+
+ .example-spacer {
+  flex: 1 1 auto;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 900px;
+  width: 100%;
+}
+
+.example-full-width {
+  padding-top: 10px;
+  width: 100%;
+}

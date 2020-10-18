@@ -1,0 +1,169 @@
+
+  
+
+    
+
+  <div class="main-container">
+
+    <!-- ToolBar -->
+  
+    <div>
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>  
+          <span>Edit - Travel log </span>
+          <span class="example-spacer"></span>
+          Trip - {{dataTransferTripId.title}}
+          <app-logout-button></app-logout-button>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+  
+  
+              
+              
+    <!-- Forms -->  
+    <mat-grid-list  cols="4" rowHeight="1:1" gutterSize="50px">  
+    <!-- <mat-grid-list class="example-list" cols="4" rowHeight="1:1" gutterSize="50px">      -->
+      <mat-grid-tile rowspan="3" colspan="1"> 
+        <mat-vertical-stepper [linear]="isLinear" #stepper>
+          <!-- Name -->
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Change name</ng-template>
+              <mat-form-field>
+                <mat-label>{{place.name}}</mat-label>
+                <input 
+                  matInput
+                  type="text"
+                  name="name"
+                  formControlName="firstCtrl" 
+                  [(ngModel)]="editPlaceRequest.name"
+                  required>
+                <!-- <mat-error
+                  *ngIf="firstFormGroup.controls['firstCtrl'].invalid &&
+                          firstFormGroup.controls['firstCtrl'].touched"
+                  class="is-invalid">
+                  Name must be between 3 and 14 characters
+                </mat-error> -->
+  
+              </mat-form-field>
+              <div>
+                <button 
+                  
+                  mat-button 
+                  matStepperNext>
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+          <!-- Description -->
+          <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+              <ng-template matStepLabel>Change description</ng-template>
+              <mat-form-field>
+                <mat-label>{{place.description}}</mat-label>
+                <input 
+                matInput 
+                formControlName="secondCtrl" 
+                placeholder="Ex. Belle ambiance"
+                type="text"
+                id="descriptionId"
+                [(ngModel)]="editPlaceRequest.description"
+                required>
+                <!-- <mat-error
+                  *ngIf="secondFormGroup.controls['secondCtrl'].invalid &&
+                          secondFormGroup.controls['secondCtrl'].touched"
+                  class="is-invalid">
+                  Description must be between 5 and 14 characters
+                </mat-error> -->
+              </mat-form-field>
+              <div>
+                <button 
+                  mat-button 
+                  matStepperPrevious>
+                  Back
+                </button>
+                <button 
+                  
+                  mat-button 
+                  matStepperNext>
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+          <!-- Location -->
+          <mat-step [stepControl]="thirdFormGroup">
+            <form [formGroup]="thirdFormGroup">
+              <ng-template matStepLabel>Change location</ng-template>
+              <mat-form-field>
+                <mat-label>{{place.location.coordinates}}</mat-label>
+                <input 
+                  matInput 
+                  formControlName="thirdCtrl" 
+                  placeholder="46.000 , 0.015"
+                  name="location"
+                  id="locationId"
+                  [(ngModel)]="this.coord"
+                  required>
+                  <!-- <mat-error
+                  *ngIf="thirdFormGroup.controls['thirdCtrl'].invalid"
+                  class="is-invalid">
+                  Location must be clicked on map
+                </mat-error> -->
+              
+  
+              </mat-form-field>
+              <div>
+                <button 
+                  mat-button 
+                  matStepperPrevious
+                  routerLink="/places"
+                  routerLinkActive="activebutton">
+                  Back
+                </button>
+                <button 
+                  mat-button 
+                  matStepperNext 
+                  >
+                  Save
+                </button>
+              </div>
+            </form>
+          </mat-step>
+          
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <!-- <p>You are now done.</p> -->
+            <div>
+              <button 
+                
+                
+                
+                mat-flat-button color="primary" 
+                (click)="addCoord()"
+                (click)="editPlace()"
+                type="submit">
+                Save
+              </button>
+              <button 
+                mat-button matStepperPrevious>
+                Back
+              </button>
+              <!-- <button mat-flat-button color="primary" (click)="console()" type="submit" cdkFocusInitial>Console</button> -->
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+    </mat-grid-tile> 
+    
+     <!-- Map -->  
+     <mat-grid-tile rowspan="3" colspan="3">
+      <app-map-edit></app-map-edit>
+    </mat-grid-tile>
+  </mat-grid-list>
+  
+
+    
+  
+      
