@@ -40,15 +40,9 @@ export class TripsPageComponent implements OnInit {
     private listTripsService: ListTripsService,
     private searchTripService: SearchTripService,
     private router: Router,
-   
-  
     ) {}
 
   ngOnInit(): void {
-
-  
-  
-
     this.listTripsService.loadListTrips().subscribe({
       next: (listTrip) => { this.listTrips = listTrip, 
                             console.log("observalbloadlist",this.listTrips),  
@@ -56,18 +50,14 @@ export class TripsPageComponent implements OnInit {
                                                                                       startWith(''),
                                                                                       map(value => this._filter(value)),
                                                                                      )},
-      // next: (listTrips) => console.log(listTrips),
       error: (error) => console.warn(error)
     });
-
-  
   }
 
   _filter (value: any) : any[] {
     const filterValue = value.toLowerCase();
     return this.listTrips.filter(listTrip => listTrip.title.toLowerCase().includes(filterValue));
   }
-
 
    retrieveTrip() {
     this.searchTripService.searchTrip(this.myControl.value).subscribe({
@@ -103,59 +93,39 @@ export class TripsPageComponent implements OnInit {
 })
 export class CreateTripComponent implements OnInit {
 
-      /**
-   * This authentication request object will be updated when the user
-   * edits the login form. It will then be sent to the API.
-   */
   createTripRequest: CreateTripRequest;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-
-  /**
-   * If true, it means that the authentication API has return a failed response
-   * (probably because the name or password is incorrect).
-   */
   createTripRequestError: boolean;
 
   constructor(
-    private createT: CreatetripService, 
-    private router: Router,
-    private _formBuilder: FormBuilder
+      private createT: CreatetripService, 
+      private router: Router,
+      private _formBuilder: FormBuilder
     ){
-    this.createTripRequest = new CreateTripRequest();
-    this.createTripRequestError = false;
+      this.createTripRequest = new CreateTripRequest();
+      this.createTripRequestError = false;
     }
 
     ngOnInit(): void {
+      this.firstFormGroup = this._formBuilder.group({
+        firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
+      });
 
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
-    });
-
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(14)]]
-    });
-
+      this.secondFormGroup = this._formBuilder.group({
+        secondCtrl: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(14)]]
+      });
     }
 
-  
-
-  /**
-   * Called when the login form is submitted.
-   */
   onSubmit(form: NgForm) {
-    // Only do something if the form is valid
     if (form.valid) {
-      // Hide any previous login error.
+
       this.createTripRequestError = false;
 
-      // Perform the request for register to the API.
-      this.createT.createdTrip(this.createTripRequest).subscribe({
-        // next: () => this.router.navigateByUrl("/places"),
+      this.createT.createdTrip(this.createTripRequest).subscribe({,
         next: () => location.reload(true),
         error: (err) => {
-          this.createTripRequestError = true;
-          alert("Error");
+                          this.createTripRequestError = true; alert("Error");
         },
       });
     }

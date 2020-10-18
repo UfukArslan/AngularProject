@@ -26,9 +26,6 @@ export class MapComponent implements OnInit {
   reservationArr : Array<object> = [];
   dataTransferTripIdMarker: ListTripsResponse;
 
-
-  
-
   constructor(
     private dataTransferMarkerCoord: DataTransferMarkerCoordService,  
     private dataTransferTripIdMarkerService: DataTransferTripIdMarkerService, 
@@ -53,10 +50,7 @@ export class MapComponent implements OnInit {
                       center: L.latLng(46.818932, 8.179)
             };
 
-
-
   // loadlistplaces------------------------------------------------------------
-
   loadlistplaces(){
     this.listPlacesMarkerService.loadListPlaces(this.dataTransferTripId.id).subscribe({
       next: (coords) => { this.centerPlace = coords[1], 
@@ -67,8 +61,7 @@ export class MapComponent implements OnInit {
                             
   }
 
-  // deletedMarker------------------------------------------------------------
-             
+  // deletedMarker------------------------------------------------------------    
   deleteMarker(id: string){
 
     this.listPlacesMarkerService.loadListPlaces(id).subscribe({
@@ -97,8 +90,7 @@ export class MapComponent implements OnInit {
   onMapReady(map: L.Map): void {
     this.map = map;
     
-    
-    setTimeout(() => {
+  setTimeout(() => {
       map.invalidateSize();
     });
   }

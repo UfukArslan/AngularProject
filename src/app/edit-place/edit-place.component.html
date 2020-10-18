@@ -2,7 +2,6 @@
   <div class="main-container">
 
     <!-- ToolBar -->
-  
     <div>
       <mat-toolbar color="primary">
         <mat-toolbar-row>  
@@ -13,10 +12,7 @@
         </mat-toolbar-row>
       </mat-toolbar>
     </div>
-  
-  
-              
-              
+
     <!-- Forms -->  
     <mat-grid-list  cols="4" rowHeight="1:1" gutterSize="50px">  
       <mat-grid-tile rowspan="3" colspan="1"> 
@@ -40,8 +36,6 @@
                     class="is-invalid">
                    Name must be between 3 and 14 characters
                 </mat-error>
-             
-  
               </mat-form-field>
               <div>
                 <button 
@@ -108,8 +102,6 @@
                   class="is-invalid">
                   Location must be clicked on map
                 </mat-error>
-              
-  
               </mat-form-field>
               <div>
                 <button 
@@ -126,14 +118,10 @@
               </div>
             </form>
           </mat-step>
-          
           <mat-step>
             <ng-template matStepLabel>Done</ng-template>
             <div>
               <button 
-                
-                
-                
                 mat-flat-button color="primary" 
                 (click)="addCoord()"
                 (click)="editPlace()"

@@ -28,28 +28,23 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+      this.firstFormGroup = this._formBuilder.group({
+        firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]]
+      });
 
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]]
-    });
-
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', [Validators.required, Validators.minLength(4)]]
-    });
+      this.secondFormGroup = this._formBuilder.group({
+        secondCtrl: ['', [Validators.required, Validators.minLength(4)]]
+      });
 
     }
   
 
-  /**
-   * Called when the login form is submitted.
-   */
   onSubmit(form: NgForm) {
-    // Only do something if the form is valid
+
     if (form.valid) {
-      // Hide any previous login error.
+
       this.registerError = false;
 
-      // Perform the request for register to the API.
       this.regis.register(this.regisRequest).subscribe({
         next: () => {this.router.navigateByUrl("/login"), alert("User registered")},
         error: (err) => {

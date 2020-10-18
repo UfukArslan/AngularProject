@@ -50,7 +50,6 @@ export class PlacesMapComponent implements OnInit {
     
 
   constructor(
-
     private router: Router, 
     private dataTransferTripIdService: DataTransferTripIdService, 
     private dataTransferMarkerCoordService: DataTransferMarkerCoordService, 
@@ -71,7 +70,6 @@ export class PlacesMapComponent implements OnInit {
   }
   
   ngOnInit(): void {
-
     // Form validation---------------------------------------------------------------------------
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
@@ -87,7 +85,6 @@ export class PlacesMapComponent implements OnInit {
     this.createP.RefreshNeeded$.subscribe(()=>{
                                                   this.loadListPlace();
                                                  });
-
     this.loadListPlace()
 
   }
@@ -127,7 +124,6 @@ export class PlacesMapComponent implements OnInit {
                   });
   } 
 
-
   _filter (value: any) : any[] {
     const filterValue = value.toLowerCase();
     return this.listPlaces.filter(listPlace => listPlace.name.toLowerCase().includes(filterValue));
@@ -151,7 +147,6 @@ export class PlacesMapComponent implements OnInit {
                 });
   }
 
-
   retrievePlace() {
     this.searchPlaceService.searchPlace(this.myControl.value, this.dataTransferTripId.id)
     .subscribe({
@@ -174,13 +169,11 @@ export class PlacesMapComponent implements OnInit {
     console.log(this.dataTransferTripIdService.getData());
   }
   
-
   addCoord(){
     this.createPlaceRequest.location.coordinates = this.coord;
     console.log(this.dataTransferTripId);
     
   }
-
 
   postPlace(){
     this.createP.createdPlace(this.createPlaceRequest).subscribe({

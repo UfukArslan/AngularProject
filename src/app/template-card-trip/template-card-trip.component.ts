@@ -74,7 +74,6 @@ export class TemplateCardTripComponent implements OnInit {
 })
 export class EditTripComponent implements OnInit {
 
-
   editTripRequest: EditTripRequest;
   editTripRequestError: boolean;
   firstFormGroup: FormGroup;
@@ -91,15 +90,13 @@ export class EditTripComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
-      this.firstFormGroup = this._formBuilder.group({
-        firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
-      });
-  
-      this.secondFormGroup = this._formBuilder.group({
-        secondCtrl: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(14)]]
-      });
-  
+        this.firstFormGroup = this._formBuilder.group({
+          firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
+        });
+    
+        this.secondFormGroup = this._formBuilder.group({
+          secondCtrl: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(14)]]
+        });
       }
 
     console(){
@@ -107,12 +104,10 @@ export class EditTripComponent implements OnInit {
     }
 
     onSubmit(form: NgForm) {
-      // Only do something if the form is valid
       if (form.valid) {
-        // Hide any previous login error.
+
         this.editTripRequestError = false;
   
-        // Perform the request for register to the API.
         this.editT.editTrip(this.data.id, this.editTripRequest).subscribe({
           next: () => {location.reload(true), alert("Edit Trip")},
           error: (err) => {

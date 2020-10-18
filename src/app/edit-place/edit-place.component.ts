@@ -68,11 +68,9 @@ export class EditPlaceComponent implements OnInit {
        
   }
 
-
   addCoord(){
     this.editPlaceRequest.location.coordinates = this.coord;
   }
-
 
   editPlace(){
     this.updatePlace.editplace(this.place.id, this.editPlaceRequest).subscribe({

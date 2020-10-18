@@ -40,15 +40,9 @@ export class TripsPageComponent implements OnInit {
     private listTripsService: ListTripsService,
     private searchTripService: SearchTripService,
     private router: Router,
-   
-  
     ) {}
 
   ngOnInit(): void {
-
-  
-  
-
     this.listTripsService.loadListTrips().subscribe({
       next: (listTrip) => { this.listTrips = listTrip, 
                             console.log("observalbloadlist",this.listTrips),  
@@ -59,15 +53,12 @@ export class TripsPageComponent implements OnInit {
                                                                                     },
       error: (error) => console.warn(error)
     });
-
-  
   }
 
   _filter (value: any) : any[] {
     const filterValue = value.toLowerCase();
     return this.listTrips.filter(listTrip => listTrip.title.toLowerCase().includes(filterValue));
   }
-
 
    retrieveTrip() {
     this.searchTripService.searchTrip(this.myControl.value).subscribe({
@@ -121,21 +112,18 @@ export class CreateTripComponent implements OnInit {
     }
 
     ngOnInit(): void {
+      this.firstFormGroup = this._formBuilder.group({
+        firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
+      });
 
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]]
-    });
-
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(14)]]
-    });
-
+      this.secondFormGroup = this._formBuilder.group({
+        secondCtrl: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(14)]]
+      });
     }
 
   onSubmit(form: NgForm) {
-   
     if (form.valid) {
-  
+      
       this.createTripRequestError = false;
 
       this.createT.createdTrip(this.createTripRequest).subscribe({

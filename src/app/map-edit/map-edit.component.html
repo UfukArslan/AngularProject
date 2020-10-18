@@ -6,8 +6,6 @@
     [leafletLayers]="mapMarkers"
     [leafletDrawOptions]="drawOptions"
     (leafletDrawCreated)="onDrawCreated($event)"
-    
-    
     (leafletMapReady)="onMapReady($event)">
     <div [leafletLayer]="drawnItems"></div>
   </div>

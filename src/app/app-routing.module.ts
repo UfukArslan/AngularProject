@@ -22,9 +22,7 @@ const routes: Routes = [
   // Prevent access to this page to unauthenticated users
    {path: "trips",component: TripsPageComponent,canActivate: [AuthGuard]},
   
-
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -13,14 +13,10 @@ export class RegisterService {
   
   private registered$: ReplaySubject<User>;
 
-  constructor(private http: HttpClient) {
-
-
-   }
+  constructor(private http: HttpClient) {}
 
   register (regisRequest: RegisRequest){
     return this.http.post<RegisRequest>(`${environment.apiUrl}/users`, regisRequest);
-      
   }
 
  

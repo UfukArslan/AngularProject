@@ -23,9 +23,6 @@ export class MapEditComponent implements OnInit {
   reservationArr : Array<object> = [];
   dataTransferTripIdMarker: ListTripsResponse;
 
-
-  
-
   constructor(
     private dataTransferMarkerCoord: DataTransferMarkerCoordService,  
     private dataTransferTripIdMarkerService: DataTransferTripIdMarkerService, 
@@ -42,8 +39,6 @@ export class MapEditComponent implements OnInit {
     zoom: 7.6,
     center: L.latLng(46.818932, 8.179)
   };
-  
-  
   
   // Display map -------------------------------------------------------------
   onMapReady(map: L.Map): void {

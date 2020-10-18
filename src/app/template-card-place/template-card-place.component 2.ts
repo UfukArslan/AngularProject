@@ -26,7 +26,7 @@ export class TemplateCardPlaceComponent implements OnInit {
     private router: Router,
     private dataTransferEditPlace: DataTransferEditPlaceService,
     private dataTTripId: DataTransferTripIdService,
-    ) {
+    ){
       this.deleted = new EventEmitter();
     }
 
@@ -48,7 +48,6 @@ export class TemplateCardPlaceComponent implements OnInit {
   }
   
   console(){
-
     console.log("templateCard. datatRansferTripId",this.dataTransferTripId)
     console.log("templateCardPlace, listPlaces",this.listPlaces)
   }
